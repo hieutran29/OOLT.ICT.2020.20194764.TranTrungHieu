@@ -9,17 +9,31 @@ public class DayOfMonth {
 					  		 		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 					 				};
 	
+	static String[] monthInNumber = {"1", "2", "3", "4",
+										"5", "6", "7", "8",
+										"9", "10", "11", "12"
+									};
+	
 	static String[] Month = {"January", "February", "March", "April", 
 								"May", "June", "July", "August", 
 								"September", "October", "November", "December"
 							};
 	
 	static int getMonth(String month) {
-		String substringOfMonth = month.substring(0, 3);
 		int ret = -1;
-		for(int i = 0; i < 12; i++) {
-			if(MonthInShort[i].equals(substringOfMonth)) {
-				ret = i;
+		if(month.length() >= 3) {
+			String substringOfMonth = month.substring(0, 3);
+			for(int i = 0; i < 12; i++) {
+				if(MonthInShort[i].equals(substringOfMonth)) {
+					ret = i;
+				}
+			}
+		}
+		else {
+			for(int i = 0; i < 12; i++) {
+				if(monthInNumber[i].equals(month)) {
+					ret = i;
+				}
 			}
 		}
 		return ret;
