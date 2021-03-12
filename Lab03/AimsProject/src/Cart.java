@@ -40,16 +40,19 @@ public class Cart {
 		else {
 			Iterator<DigitalVideoDisc> iter = this.itemsOrdered.iterator();
 			
-			System.out.print("Delted: [");
+			int countRemoved = 0;
 			while(iter.hasNext()) {
 				DigitalVideoDisc elem = iter.next();
 				if(elem.getTitle().compareToIgnoreCase(disc.getTitle()) == 0) {
-					System.out.println("");
-					elem.displayDetail();
+					elem.displayDetail("Deleted Message");
 					iter.remove();
+					countRemoved += 1;
 				}
 			}
-			System.out.println("]");
+			if(countRemoved == 0) {
+				JOptionPane.showMessageDialog(null, disc.getTitle() + ": not found", "NOT FOUND", JOptionPane.ERROR_MESSAGE);
+			}
+
 			this.setQtyOrdered(this.itemsOrdered.size());
 		}
 	}
@@ -144,16 +147,14 @@ public class Cart {
 		ArrayList<DigitalVideoDisc> allDiscs = (ArrayList<DigitalVideoDisc>) itemsOrdered.clone();
 		Collections.sort(allDiscs, DVDComparator);
 		for(DigitalVideoDisc disc : allDiscs) {
-			disc.displayDetail();
-			System.out.println("");
+			disc.displayDetail("Display Cart");
 		}	
 	}
 	
 	public void printAllDVD() {
 		// for debugging
 		for(DigitalVideoDisc disc : this.itemsOrdered) {
-			disc.displayDetail();
-			System.out.println("");
+			disc.displayDetail("Display Cart");
 		}
 	}
 }

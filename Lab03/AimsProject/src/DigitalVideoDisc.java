@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 /*
  * QUESTION: If you create a constructor method to build a DVD by title,
  * then create a constructor method to build a DVD by category.
@@ -37,6 +39,14 @@ public class DigitalVideoDisc {
 		this.length = length;
 		this.cost = cost;
 	}
+	public DigitalVideoDisc(String title, String category, String director, String length, String cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.director = director;
+		this.length = (length.length() == 0 ? 0 : Integer.parseInt(length));
+		this.cost = (cost.length() == 0 ? 0 : Float.parseFloat(cost));
+	}
 	public DigitalVideoDisc(String title) {
 		super();
 		this.title = title;
@@ -73,19 +83,24 @@ public class DigitalVideoDisc {
 	
 	public void playDVD() {
 		if(this.getLength() == 0) {
-			System.out.println("The DVD cannot be played");
+			JOptionPane.showMessageDialog(null, "This DVD has length 0", 
+										  null, JOptionPane.ERROR_MESSAGE);	
 		}
 		else {
-			System.out.println("\tTitle: " + this.getTitle());
-			System.out.println("\tLength: " + this.getLength());
+			String message = "Title: " + this.getTitle() + "\n" +
+					 		 "Length: " + this.getLength();
+			JOptionPane.showMessageDialog(null, message, "Play DVD", 
+										  JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
-	public void displayDetail() {
-		System.out.println("\tTitle: " + this.getTitle());
-		System.out.println("\tCategory: " + this.getCategory());
-		System.out.println("\tDirector: " + this.getDirector());
-		System.out.println("\tLength: " + this.getLength());
-		System.out.println("\tCost: " + this.getCost());
+	public void displayDetail(String titleMessage) {
+		String message = "Title: " + this.getTitle() + "\n" +
+						 "Category: " + this.getCategory() + "\n" +
+						 "Director: " + this.getDirector() + "\n" +
+						 "Length: " + this.getLength() + "\n" +
+						 "Cost: " + this.getCost();
+		JOptionPane.showMessageDialog(null, message, titleMessage, 
+										JOptionPane.INFORMATION_MESSAGE);
 	}
 }
