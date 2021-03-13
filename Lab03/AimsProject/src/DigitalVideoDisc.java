@@ -65,41 +65,41 @@ public class DigitalVideoDisc {
 		this.cost = cost;
 	}
 	
-	public String getTitle() {
+	public String title() {
 		return title;
 	}
-	public String getCategory() {
+	public String category() {
 		return category;
 	}
-	public String getDirector() {
+	public String director() {
 		return director;
 	}
-	public int getLength() {
+	public int length() {
 		return length;
 	}
-	public float getCost() {
+	public float cost() {
 		return cost;
 	}
 	
 	public void playDVD() {
-		if(this.getLength() == 0) {
+		if(this.length() == 0) {
 			JOptionPane.showMessageDialog(null, "This DVD has length 0", 
 										  null, JOptionPane.ERROR_MESSAGE);	
 		}
 		else {
-			String message = "Title: " + this.getTitle() + "\n" +
-					 		 "Length: " + this.getLength();
+			String message = "Title: " + this.title() + "\n" +
+					 		 "Length: " + this.length();
 			JOptionPane.showMessageDialog(null, message, "Play DVD", 
 										  JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
 	public void displayDetail(String titleMessage) {
-		String message = "Title: " + this.getTitle() + "\n" +
-						 "Category: " + this.getCategory() + "\n" +
-						 "Director: " + this.getDirector() + "\n" +
-						 "Length: " + this.getLength() + "\n" +
-						 "Cost: " + this.getCost();
+		String message = "Title: " + this.title() + "\n" +
+						 "Category: " + this.category() + "\n" +
+						 "Director: " + this.director() + "\n" +
+						 "Length: " + this.length() + "\n" +
+						 "Cost: " + this.cost();
 		JOptionPane.showMessageDialog(null, message, titleMessage, 
 										JOptionPane.INFORMATION_MESSAGE);
 	}
