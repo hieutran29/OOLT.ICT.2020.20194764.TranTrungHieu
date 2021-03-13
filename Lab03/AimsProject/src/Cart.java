@@ -43,14 +43,15 @@ public class Cart {
 			int countRemoved = 0;
 			while(iter.hasNext()) {
 				DigitalVideoDisc elem = iter.next();
-				if(elem.getTitle().compareToIgnoreCase(disc.getTitle()) == 0) {
+				if(elem.title().compareToIgnoreCase(disc.title()) == 0 ||
+				elem.title().replaceAll("\\s", "").compareToIgnoreCase(disc.title()) == 0) {
 					elem.displayDetail("Deleted Message");
 					iter.remove();
 					countRemoved += 1;
 				}
 			}
 			if(countRemoved == 0) {
-				JOptionPane.showMessageDialog(null, disc.getTitle() + ": not found", "NOT FOUND", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, disc.title() + ": not found", "NOT FOUND", JOptionPane.ERROR_MESSAGE);
 			}
 
 			this.setQtyOrdered(this.itemsOrdered.size());
@@ -60,7 +61,7 @@ public class Cart {
 	public float totalCost() {
 		float cost = 0;
 		for(DigitalVideoDisc item : itemsOrdered) {
-			cost += item.getCost();
+			cost += item.cost();
 		}
 		return cost;
 	}
@@ -75,21 +76,21 @@ public class Cart {
 	public DigitalVideoDisc searchAccordingOnType(String search, Cart.Search_Option type) {
 		if(type == Cart.Search_Option.TITLE) {
 			for(DigitalVideoDisc disc : this.itemsOrdered) {
-				if(disc.getTitle().equalsIgnoreCase(search)) {
+				if(disc.title().equalsIgnoreCase(search)) {
 					return disc;
 				}
 			}
 		}
 		else if(type == Cart.Search_Option.PRICE) {
 			for(DigitalVideoDisc disc : this.itemsOrdered) {
-				if(disc.getCost() == Float.parseFloat(search)) {
+				if(disc.cost() == Float.parseFloat(search)) {
 					return disc;
 				}
 			}
 		}
 		else if(type == Cart.Search_Option.CATEGORY) {
 			for(DigitalVideoDisc disc : this.itemsOrdered) {
-				if(disc.getCategory().equalsIgnoreCase(search)) {
+				if(disc.category().equalsIgnoreCase(search)) {
 					return disc;
 				}
 			}
@@ -101,10 +102,10 @@ public class Cart {
 		// using lambda expression
 		this.itemsOrdered.sort(new Comparator<DigitalVideoDisc> () {
 			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
-				if(disc1.getCost() == disc2.getCost()) {
+				if(disc1.cost() == disc2.cost()) {
 					return 0;
 				}
-				else if(disc1.getCost() < disc2.getCost()) {
+				else if(disc1.cost() < disc2.cost()) {
 					return -1;
 				}
 				else {
@@ -121,24 +122,24 @@ public class Cart {
 			@Override
 			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
 				
-				if(disc1.getTitle().compareToIgnoreCase(disc2.getTitle()) == 0) {
-					if(disc1.getCost() == disc2.getCost()) {
-						if(disc1.getLength() == disc2.getLength()) {
+				if(disc1.title().compareToIgnoreCase(disc2.title()) == 0) {
+					if(disc1.cost() == disc2.cost()) {
+						if(disc1.length() == disc2.length()) {
 							return 0;
 						}
 						else {
-							return disc2.getLength() - disc1.getLength();
+							return disc2.length() - disc1.length();
 						}
 					}
-					else if(disc1.getCost() < disc2.getCost()) {
+					else if(disc1.cost() < disc2.cost()) {
 						return 1;
 					}
-					else if(disc1.getCost() > disc2.getCost()) {
+					else if(disc1.cost() > disc2.cost()) {
 						return -1;
 					}
 				}
 				else {
-					return disc1.getTitle().compareToIgnoreCase(disc2.getTitle());
+					return disc1.title().compareToIgnoreCase(disc2.title());
 				}
 				return 1;
 			}

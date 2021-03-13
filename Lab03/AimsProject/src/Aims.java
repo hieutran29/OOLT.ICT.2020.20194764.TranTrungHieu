@@ -45,7 +45,7 @@ public class Aims {
 															newDVDAttributes[2],
 															newDVDAttributes[3],
 															newDVDAttributes[4]);
-				if(dvd.getTitle().length() != 0) {
+				if(dvd.title().length() != 0) {
 					cart.addDigitalVideoDisc(dvd);
 					if(JOptionPane.showConfirmDialog(null, "Do you want to play the DVD?", 
 													 null, JOptionPane.YES_NO_OPTION) == 0) {
