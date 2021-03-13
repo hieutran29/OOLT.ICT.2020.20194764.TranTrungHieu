@@ -1,4 +1,7 @@
-import javax.swing.JOptionPane;
+/**
+ * @author HieuTran
+ */
+
 
 /*
  * QUESTION: If you create a constructor method to build a DVD by title,
@@ -18,6 +21,18 @@ import javax.swing.JOptionPane;
  * 		DVD2 has title just by using title constructor for DVD1.
  */
 
+
+
+/**
+ * Pleas note that, in this class, I removed all "get" prefix for "getter" methods.
+ * In aspect of real world and of a real creature, a DVD cannot itself 
+ * "get" any attribute and give to us. We are not "getting" anything from a DVD. 
+ * All we do is asking a DVD to tell us its attribute.
+ */
+
+
+
+import javax.swing.JOptionPane;
 
 
 public class DigitalVideoDisc {
