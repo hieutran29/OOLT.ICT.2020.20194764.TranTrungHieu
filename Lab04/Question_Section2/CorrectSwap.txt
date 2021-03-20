@@ -1,0 +1,16 @@
+Assume that we have setDVD(DigitalVideoDisc disc) in DigitalVideoDisc class:
+public void setDVD(DigitalVideoDisc disc) {
+	this.title = disc.title();
+	this.category = disc.category();
+	this.director = disc.director();
+	this.length = disc.length();
+	this.cost = disc.cost();
+}
+
+With this setDVD() function, we can correctly swap two objects:	
+public static void swap(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+	DigitalVideoDisc tmp = new DigitalVideoDisc();
+	tmp.setDVD(disc1);
+	disc1.setDVD(disc2);
+	disc2.setDVD(tmp);
+}

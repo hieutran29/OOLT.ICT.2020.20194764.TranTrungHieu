@@ -1,0 +1,25 @@
+Java is a Pass by Vaue programming language.
+
+Consider a swap() function:
+	swap(Object o1, Object o2) {
+		Object tmp = o1;
+		o1 = o2;
+		o2 = tmp;
+	}
+
+In Java, there are actually 2 types of data, which are "actual" and "formal".
+The "actual" type is the local variable, whereas the "formal" one is the one we pass to a function.
+
+Moreover, there are 2 types of classes:
+	+) Primitive class: int, double, char, byte, ....
+	     When passing this type of class to a function, generally we can never change 
+	     the acutal value of the variable, although the formal one would be changed.
+	+) Wrapper class: String, Integer, Double, Object, ...
+	     When passing this type of class to a function, both "actual" and "formal"
+	     act like a pointer to a block containing value of the variable.
+	     And because the data type in a function is a "formal" one, then changing
+	     "formal" by assign "o1 = o2" will only affect on the "formal" one. Specifically,
+	     "o1" will now points to the block of "o2", while the "actual o1" still refers
+	     to the old block of "o1". Similarly to "o2". 
+	     Hence, after all, both object will not change anything after exiting the function.
+In conclusion, Java is a Pass by Value programming language.
