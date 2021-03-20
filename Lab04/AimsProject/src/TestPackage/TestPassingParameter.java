@@ -1,3 +1,5 @@
+package TestPackage;
+import LibPackage.DigitalVideoDisc;
 
 public class TestPassingParameter {
 
@@ -14,11 +16,10 @@ public class TestPassingParameter {
 		System.out.println("jungle DVD title: " + jungleDVD.title());
 	}
 	
-	public static void swap(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
-		DigitalVideoDisc tmp = new DigitalVideoDisc();
-		tmp.setDVD(disc1);
-		disc1.setDVD(disc2);
-		disc2.setDVD(tmp);
+	public static void swap(Object disc1, Object disc2) {
+		Object tmp = disc1;
+		disc1 = disc2;
+		disc2 = tmp;
 	}
 	
 	public static void changeTitle(DigitalVideoDisc dvd, String title) {
