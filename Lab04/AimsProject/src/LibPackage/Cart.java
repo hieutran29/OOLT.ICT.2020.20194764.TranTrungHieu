@@ -76,7 +76,8 @@ public class Cart {
 	}
 
 	/**
-	 * 
+	 * Remove DVD(s) in the cart that have attributes 
+	 * matching to attributes of disc with case-insensitive.
 	 * @param disc element to be removed from cart
 	 * @return 0 if successful, -1 if failed
 	 */
@@ -91,11 +92,12 @@ public class Cart {
 			int countRemoved = 0;
 			while(iter.hasNext()) {
 				DigitalVideoDisc elem = iter.next();
-				if(elem.title().compareToIgnoreCase(disc.title()) == 0 ||
-				elem.title().replaceAll("\\s", "").compareToIgnoreCase(disc.title()) == 0) {
+				if(elem.title().compareToIgnoreCase(disc.title()) == 0 &&
+				elem.category().compareToIgnoreCase(disc.category()) == 0 &&
+				elem.director().compareToIgnoreCase(disc.director()) == 0 &&
+				elem.length() == disc.length() && 
+				elem.cost() == disc.cost()) {
 					
-					elem.displayDetail();
-					System.out.println();
 					iter.remove();
 					countRemoved += 1;
 				}
