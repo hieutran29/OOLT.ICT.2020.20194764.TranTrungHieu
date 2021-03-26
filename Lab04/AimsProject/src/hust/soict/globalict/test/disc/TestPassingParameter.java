@@ -1,5 +1,5 @@
-package TestPackage;
-import LibPackage.DigitalVideoDisc;
+package hust.soict.globalict.test.disc;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class TestPassingParameter {
 

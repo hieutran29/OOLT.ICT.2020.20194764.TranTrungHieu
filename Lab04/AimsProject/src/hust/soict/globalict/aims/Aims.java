@@ -1,4 +1,4 @@
-package TestPackage;
+package hust.soict.globalict.aims;
 /**
  * @author HieuTran
  */
@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import LibPackage.Cart;
-import LibPackage.DigitalVideoDisc;
+import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 
 public class Aims {

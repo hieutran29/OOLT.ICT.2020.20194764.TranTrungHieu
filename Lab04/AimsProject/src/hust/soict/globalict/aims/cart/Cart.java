@@ -1,4 +1,4 @@
-package LibPackage;
+package hust.soict.globalict.aims.cart;
 /**
  * @author HieuTran
  */
@@ -7,6 +7,9 @@ package LibPackage;
 import java.util.*;
 
 import javax.swing.*;
+
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.utils.DVDUtils;
 
 public class Cart {
 	private final int MAX_NUMBER_ORDERED = 20;
