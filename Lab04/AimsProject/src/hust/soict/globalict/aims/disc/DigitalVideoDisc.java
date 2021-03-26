@@ -1,4 +1,4 @@
-package LibPackage;
+package hust.soict.globalict.aims.disc;
 /**
  * @author HieuTran
  */

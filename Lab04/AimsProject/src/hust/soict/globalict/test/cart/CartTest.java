@@ -1,7 +1,7 @@
-package TestPackage;
+package hust.soict.globalict.test.cart;
 
-import LibPackage.Cart;
-import LibPackage.DigitalVideoDisc;
+import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class CartTest {
 	public static void SUCC_FAIL_MSG(String message, int flag) {
