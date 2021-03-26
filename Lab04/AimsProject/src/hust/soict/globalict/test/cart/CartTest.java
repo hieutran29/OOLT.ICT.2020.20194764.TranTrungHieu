@@ -52,8 +52,12 @@ public class CartTest {
 		cart.displayCart();
 		System.out.println();
 		
-		cart.sortByCost();
-		System.out.println("Sort Cart By Cost:");
+		cart.sortByCostAscending();
+		System.out.println("Sort Cart By Cost Ascending:");
+		cart.printAllDVD();
+		
+		cart.sortByCostDescending();
+		System.out.println("Sort Cart By Cost Descending:");
 		cart.printAllDVD();
 		
 		cart.sortByTitle();
