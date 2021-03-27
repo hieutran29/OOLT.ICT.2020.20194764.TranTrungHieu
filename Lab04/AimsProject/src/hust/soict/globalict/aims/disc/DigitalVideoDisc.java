@@ -107,13 +107,25 @@ public class DigitalVideoDisc {
 	
 	public int compare(DigitalVideoDisc disc) {
 		if(title().compareToIgnoreCase(disc.title()) == 0 &&
-		category().compareToIgnoreCase(disc.category()) == 0 &&
-		director().compareToIgnoreCase(disc.director()) == 0 &&
-		length() == disc.length() && 
-		cost() == disc.cost()) {
+			category().compareToIgnoreCase(disc.category()) == 0 &&
+			director().compareToIgnoreCase(disc.director()) == 0 &&
+			length() == disc.length() && 
+			cost() == disc.cost()) {
 			return 0;
 		}
 		return -1;
+	}
+	
+	public boolean search(String title) {
+		String[] wordsInSearchedTitle = title.split("\\s");
+		String[] wordsInDiscTitle = title().split("\\s");
+		for(String origin : wordsInDiscTitle) {
+			for(String searched : wordsInSearchedTitle)
+				if(origin.equalsIgnoreCase(searched) == true) {
+					return true;
+				}
+		}
+		return false;
 	}
 
 	/* just for Lab 04 */
