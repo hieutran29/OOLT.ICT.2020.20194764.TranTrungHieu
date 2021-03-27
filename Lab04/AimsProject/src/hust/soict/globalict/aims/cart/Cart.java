@@ -40,7 +40,7 @@ public class Cart {
 		return 0;
 	}
 //	public int addDigitalVideoDisc(DigitalVideoDisc[] discList) {
-//		if(this.getQtyOrdered() + discList.length >= this.MAX_NUMBER_ORDERED) {
+//		if(this.getQtyOrdered() + discList.length > this.MAX_NUMBER_ORDERED) {
 //			System.out.println("You cannot buy more DVD!");
 //			return -1;
 //		}
@@ -53,7 +53,7 @@ public class Cart {
 //		return 0;
 //	}
 	public int addDigitalVideoDisc(DigitalVideoDisc ... discList) {
-		if(this.getQtyOrdered() + discList.length >= this.MAX_NUMBER_ORDERED) {
+		if(this.getQtyOrdered() + discList.length > this.MAX_NUMBER_ORDERED) {
 			System.out.println("You cannot buy more DVD!");
 			return -1;
 		}
@@ -66,7 +66,7 @@ public class Cart {
 		return 0;
 	}
 	public int addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-		if(this.getQtyOrdered() + 2 >= this.MAX_NUMBER_ORDERED) {
+		if(this.getQtyOrdered() + 2 > this.MAX_NUMBER_ORDERED) {
 			System.out.println("You cannot buy more DVD!");
 			return -1;
 		}
@@ -95,11 +95,7 @@ public class Cart {
 			int countRemoved = 0;
 			while(iter.hasNext()) {
 				DigitalVideoDisc elem = iter.next();
-				if(elem.title().compareToIgnoreCase(disc.title()) == 0 &&
-				elem.category().compareToIgnoreCase(disc.category()) == 0 &&
-				elem.director().compareToIgnoreCase(disc.director()) == 0 &&
-				elem.length() == disc.length() && 
-				elem.cost() == disc.cost()) {
+				if(elem.compare(disc) == 0) {
 					
 					iter.remove();
 					countRemoved += 1;
@@ -153,11 +149,32 @@ public class Cart {
 		return null;
 	}
 	
-	public void sortByCost() {
+	public void sortByCostAscending() {
 		// using lambda expression
 		this.itemsOrdered.sort(new Comparator<DigitalVideoDisc> () {
 			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
-				return DVDUtils.compareByCost(disc1, disc2);
+				int compareByCost = DVDUtils.compareByCost(disc1, disc2);
+				if(compareByCost == 0) {
+					return DVDUtils.compareByTitle(disc1, disc2);
+				}
+				else {
+					return compareByCost;
+				}
+			}
+		});
+	}
+	
+	public void sortByCostDescending() {
+		// using lambda expression
+		this.itemsOrdered.sort(new Comparator<DigitalVideoDisc> () {
+			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+				int compareByCost = -DVDUtils.compareByCost(disc1, disc2);
+				if(compareByCost == 0) {
+					return DVDUtils.compareByTitle(disc1, disc2);
+				}
+				else {
+					return compareByCost;
+				}
 			}
 		});
 	}
@@ -165,7 +182,13 @@ public class Cart {
 	public void sortByTitle() {
 		this.itemsOrdered.sort(new Comparator<DigitalVideoDisc> () {
 			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
-				return DVDUtils.compareByTitle(disc1, disc2);
+				int compareByTitle = DVDUtils.compareByTitle(disc1, disc2);
+				if(compareByTitle == 0) {
+					return -DVDUtils.compareByCost(disc1, disc2);
+				}
+				else {
+					return compareByTitle;
+				}
 			}
 		});
 	}
@@ -202,6 +225,11 @@ public class Cart {
 		}	
 		System.out.println("Total cost: " + this.totalCost());
 		System.out.println("******************");
+	}
+	
+	public void clear() {
+		this.itemsOrdered.clear();
+		this.setQtyOrdered(0);
 	}
 	
 	public void printAllDVD() {
