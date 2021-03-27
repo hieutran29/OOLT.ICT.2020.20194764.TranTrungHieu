@@ -17,22 +17,30 @@ public class Store {
 	
 	public int addDVD(DigitalVideoDisc disc) {
 		this.itemsInStore.add(disc);
+		System.out.printf("Added %s to store\n", disc.title());
 		return 0;
 	}
 	
 	public int removeDVD(DigitalVideoDisc disc) {
 		Iterator<DigitalVideoDisc> iter = this.itemsInStore.iterator();
 		
+		int countRemoved = 0;
 		while(iter.hasNext()) {
 			DigitalVideoDisc elem = iter.next();
 			if(elem.compare(disc) == 0) {
 				iter.remove();
+				countRemoved++;
+				System.out.println("Remove ID" + elem.ID());
 			}
+		}
+		
+		if(countRemoved == 0) {
+			System.out.println("NO MATCHING DVD FOUND");
 		}
 		
 		return 0;
 	}
-	
+
 	public static void showMenu() {
 		System.out.println("AIMS: ");
 		System.out.println("--------------------------------");
@@ -43,7 +51,7 @@ public class Store {
 		System.out.println("--------------------------------");
 		System.out.println("Please choose a number: 0-1-2-3");
 	}
-	
+
 	public void printDVDsInStore() {
 		for(DigitalVideoDisc e : this.itemsInStore) {
 			e.displayDetail();
@@ -117,7 +125,40 @@ public class Store {
 		}
 		
 		public static void filterDVDs(Cart cart) {
-			
+			Scanner scanner = new Scanner(System.in);
+			int filterChoice = 0;
+			do {
+				System.out.println("1. Filter by ID");
+				System.out.println("2. Filter by Title");
+				System.out.print("Choose: ");
+				filterChoice = scanner.nextInt();
+				if(filterChoice == 1) {
+					System.out.print("Enter ID: ");
+					int ID = scanner.nextInt();
+					DigitalVideoDisc found = cart.searchByID(ID);
+					if(found != null) {
+						found.displayDetail();
+					}
+					else {
+						System.out.println("NO DVD MATCHING");
+					}
+				}
+				else {
+					System.out.print("Enter Title: ");
+					scanner.nextLine();
+					String title = scanner.nextLine();
+					DigitalVideoDisc[] found = cart.searchByTitle(title);
+					if(found.length == 0) {
+						System.out.println("NO DVD MATCHING");
+					}
+					else {
+						for(DigitalVideoDisc f : found) {
+							f.displayDetail();
+							System.out.println();
+						}
+					}
+				}
+			} while(filterChoice != 1 && filterChoice != 2);
 		}
 		
 		public static void sortDVDs(Cart cart) {
@@ -130,9 +171,11 @@ public class Store {
 				
 				if(sortType == 1) {
 					cart.sortByCostDescending();
+					cart.printAllDVD();
 				}
 				else if(sortType == 2) {
 					cart.sortByTitle();
+					cart.printAllDVD();
 				}
 			} while(sortType != 1 && sortType != 2);
 			
