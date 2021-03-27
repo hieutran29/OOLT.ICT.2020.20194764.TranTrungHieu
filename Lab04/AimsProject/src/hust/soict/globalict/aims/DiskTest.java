@@ -4,7 +4,6 @@ import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class DiskTest {
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Cart cart = new Cart();
@@ -17,29 +16,44 @@ public class DiskTest {
 
 		cart.addDigitalVideoDisc(dvd1, dvd2, dvd3, dvd4, dvd5);
 
-		DigitalVideoDisc search = cart.searchByTitle("the lion");
-		if(search != null) {
+		DigitalVideoDisc[] search = cart.searchByTitle("the lion");
+		if(search.length != 0) {
 			System.out.println("Search \"the lion\": Found - OK");
+		}
+		else {
+			System.out.println("Search \"the lion\": Not Found - False");
 		}
 
 		search = cart.searchByTitle("loin king");
-		if(search != null) {
+		if(search.length != 0) {
 			System.out.println("Search \"loin king\": Found - OK");
+		}
+		else {
+			System.out.println("Search \"loin\": Not Found - False");
 		}
 
 		search = cart.searchByTitle("gniK noiL");
-		if(search == null) {
+		if(search.length == 0) {
 			System.out.println("Search \"gniK noiL\": NOT FOUND - OK");
+		}
+		else {
+			System.out.println("Search \"gniK noiL\": FOUND - False");
 		}
 
 		search = cart.searchByTitle("War");
-		if(search == null) {
+		if(search.length == 0) {
 			System.out.println("Search \"War\": NOT FOUND - OK");
+		}
+		else {
+			System.out.println("Search \"War\": Found - False");
 		}
 
 		search = cart.searchByTitle("raW");
-		if(search == null) {
+		if(search.length == 0) {
 			System.out.println("Search \"raW\": NOT FOUND - OK");
+		}
+		else {
+			System.out.println("Search \"raW\": FOUND - False");
 		}
 	}
 

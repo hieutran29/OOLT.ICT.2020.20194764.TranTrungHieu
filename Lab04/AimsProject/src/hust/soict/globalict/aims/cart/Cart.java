@@ -35,6 +35,7 @@ public class Cart {
 		}
 		else {
 			this.itemsOrdered.add(disc);
+			System.out.printf("Added %s to cart\n", disc.title());
 			this.setQtyOrdered(this.itemsOrdered.size());
 		}
 		return 0;
@@ -60,6 +61,7 @@ public class Cart {
 		else {
 			for(int i = 0; i < discList.length; i++) {
 				this.itemsOrdered.add(discList[i]);
+				System.out.printf("Added %s to cart\n", discList[i].title());
 			}
 			this.setQtyOrdered(this.itemsOrdered.size());
 		}
@@ -73,6 +75,8 @@ public class Cart {
 		else {
 			this.itemsOrdered.add(dvd1);
 			this.itemsOrdered.add(dvd2);
+			System.out.printf("Added %s to cart\n", dvd1.title());
+			System.out.printf("Added %s to cart\n", dvd2.title());
 			this.setQtyOrdered(this.itemsOrdered.size());
 		}
 		return 0;
@@ -96,7 +100,7 @@ public class Cart {
 			while(iter.hasNext()) {
 				DigitalVideoDisc elem = iter.next();
 				if(elem.compare(disc) == 0) {
-					
+					System.out.println("Remove ID" + elem.ID());
 					iter.remove();
 					countRemoved += 1;
 				}
@@ -137,16 +141,17 @@ public class Cart {
 	 * Search for the first DigitalVideoDisc object that at least one token of title
 	 * is a substring of disc.title.
 	 * @param title title wanted to search, can contains many tokens separated by whitespace.
-	 * @return the first DigitalVideoDisc object that match the condition.
-	 * Return null if none of them matches.
+	 * @return the an array DigitalVideoDisc objects that match the condition.
 	 */
-	public DigitalVideoDisc searchByTitle(String title) {
+	public DigitalVideoDisc[] searchByTitle(String title) {
+		DigitalVideoDisc[] ret = new DigitalVideoDisc[MAX_NUMBER_ORDERED];
+		int found = 0;
 		for(DigitalVideoDisc dvd : this.itemsOrdered) {
 			if(dvd.search(title)) {
-				return dvd;
+				ret[found++] = dvd;
 			}
 		}
-		return null;
+		return Arrays.copyOf(ret, found);
 	}
 	
 	public void sortByCostAscending() {

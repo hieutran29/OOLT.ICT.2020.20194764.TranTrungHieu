@@ -24,11 +24,11 @@ public class StoreTest {
 		store.addDVD(dvd6);
 		
 		System.out.println("Store before removing dvd6");
-		store.printStore();
+		store.printDVDsInStore();
 		
 		store.removeDVD(dvd6);
 		System.out.println("Store after removing dvd6");
-		store.printStore();
+		store.printDVDsInStore();
 	}
 
 }
