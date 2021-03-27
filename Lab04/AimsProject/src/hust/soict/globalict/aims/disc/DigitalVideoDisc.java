@@ -104,6 +104,17 @@ public class DigitalVideoDisc {
 		System.out.printf("DVD - %s - %s - %s - %d - %.2f$", this.title(), this.category(),
 											this.director(), this.length(), this.cost());
 	}
+	
+	public int compare(DigitalVideoDisc disc) {
+		if(title().compareToIgnoreCase(disc.title()) == 0 &&
+		category().compareToIgnoreCase(disc.category()) == 0 &&
+		director().compareToIgnoreCase(disc.director()) == 0 &&
+		length() == disc.length() && 
+		cost() == disc.cost()) {
+			return 0;
+		}
+		return -1;
+	}
 
 	/* just for Lab 04 */
 	public void setTitle(String title) {

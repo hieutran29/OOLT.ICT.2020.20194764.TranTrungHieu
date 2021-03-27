@@ -95,11 +95,7 @@ public class Cart {
 			int countRemoved = 0;
 			while(iter.hasNext()) {
 				DigitalVideoDisc elem = iter.next();
-				if(elem.title().compareToIgnoreCase(disc.title()) == 0 &&
-				elem.category().compareToIgnoreCase(disc.category()) == 0 &&
-				elem.director().compareToIgnoreCase(disc.director()) == 0 &&
-				elem.length() == disc.length() && 
-				elem.cost() == disc.cost()) {
+				if(elem.compare(disc) == 0) {
 					
 					iter.remove();
 					countRemoved += 1;
@@ -213,6 +209,11 @@ public class Cart {
 		}	
 		System.out.println("Total cost: " + this.totalCost());
 		System.out.println("******************");
+	}
+	
+	public void clear() {
+		this.itemsOrdered.clear();
+		this.setQtyOrdered(0);
 	}
 	
 	public void printAllDVD() {
