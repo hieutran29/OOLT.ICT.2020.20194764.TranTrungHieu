@@ -104,6 +104,18 @@ public class DigitalVideoDisc {
 		System.out.printf("DVD - %s - %s - %s - %d - %.2f$", this.title(), this.category(),
 											this.director(), this.length(), this.cost());
 	}
+	
+	public boolean search(String title) {
+		String[] wordsInSearchedTitle = title.split("\\s");
+		String[] wordsInDiscTitle = title().split("\\s");
+		for(String origin : wordsInDiscTitle) {
+			for(String searched : wordsInSearchedTitle)
+				if(origin.equalsIgnoreCase(searched) == true) {
+					return true;
+				}
+		}
+		return false;
+	}
 
 	/* just for Lab 04 */
 	public void setTitle(String title) {
