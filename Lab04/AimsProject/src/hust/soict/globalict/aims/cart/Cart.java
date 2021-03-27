@@ -132,6 +132,22 @@ public class Cart {
 		}
 		return null;
 	}
+
+	/**
+	 * Search for the first DigitalVideoDisc object that at least one token of title
+	 * is a substring of disc.title.
+	 * @param title title wanted to search, can contains many tokens separated by whitespace.
+	 * @return the first DigitalVideoDisc object that match the condition.
+	 * Return null if none of them matches.
+	 */
+	public DigitalVideoDisc searchByTitle(String title) {
+		for(DigitalVideoDisc dvd : this.itemsOrdered) {
+			if(dvd.search(title)) {
+				return dvd;
+			}
+		}
+		return null;
+	}
 	
 	public void sortByCostAscending() {
 		// using lambda expression
