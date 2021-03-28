@@ -89,7 +89,7 @@ public class DigitalVideoDisc {
 	}
 	
 	public static DigitalVideoDisc newDVD() {
-		String title = null, category = null, director = null;
+		String title = "", category = "", director = "";
 		int length = 0;
 		float cost = 0.0f;
 		
