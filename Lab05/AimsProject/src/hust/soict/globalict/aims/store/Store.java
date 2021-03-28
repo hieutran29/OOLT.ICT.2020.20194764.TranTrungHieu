@@ -36,8 +36,25 @@ public class Store {
 		
 		if(countRemoved == 0) {
 			System.out.println("NO MATCHING DVD FOUND");
+			return -1;
 		}
 		
+		return 0;
+	}
+	
+	public int removeDVD(int removedID) {
+		int indexRemoved = -1;
+		for(int i = 0; i < itemsInStore.size(); i++) {
+			if(itemsInStore.get(i).ID() == removedID) {
+				indexRemoved = i;
+			}
+		}
+		
+		if(indexRemoved == -1) {
+			System.out.println("NO MATCHING ID FOUND");
+			return -1;
+		}
+		itemsInStore.remove(indexRemoved);
 		return 0;
 	}
 
@@ -71,21 +88,15 @@ public class Store {
 			System.out.println("Please choose a number: 0-1-2-3");
 		}
 		
-		public static void seeDVD(Store store, DigitalVideoDisc disc) {
-			/* must check if disc exits */
-			int countNotFound = 0;
+		public static void seeDVD(Store store, int ID) {
 			for(DigitalVideoDisc i : store.itemsInStore) {
-				if(i.compare(disc) != 0) {
-					countNotFound += 1;
+				if(i.ID() == ID) {
+					i.displayDetail();
+					System.out.println();
+					return;
 				}
 			}
-			
-			if(countNotFound == store.itemsInStore.size()) {
-				System.out.println("NO MATCHING DVD IN STORE");
-			}
-			else {
-				disc.displayDetail();
-			}
+			System.out.println("NO ID MATCHING FOUND");
 		}
 		
 		@SuppressWarnings("unused")
@@ -106,8 +117,12 @@ public class Store {
 			store.addDVD(disc);
 		}
 		
-		public static void remvoveDVDFromStore(Store store, DigitalVideoDisc disc) {
+		public static void removeDVDFromStore(Store store, DigitalVideoDisc disc) {
 			store.removeDVD(disc);
+		}
+		
+		public static void removeDVDFromStore(Store store, int ID) {
+			store.removeDVD(ID);
 		}
 	}
 	
@@ -183,6 +198,10 @@ public class Store {
 		
 		public static int removeDVD(Cart cart, DigitalVideoDisc disc) {
 			return cart.removeDigitalVideoDisc(disc);
+		}
+		
+		public static int removeDVD(Cart cart, int ID) {
+			return cart.removeDigitalVideoDisc(ID);
 		}
 		
 		public static void placeOrder(Cart cart) {

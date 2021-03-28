@@ -43,8 +43,8 @@ public class Aims {
 			Store.showMenu();
 			System.out.print("Choose: ");
 			choice = scanner.nextInt();
-			switch(choice) {
-			case 1:
+			
+			if(choice == 1) {
 				store.printDVDsInStore();
 				
 				int choiceViewStore = 0;
@@ -52,87 +52,126 @@ public class Aims {
 					Store.ViewStore.menu();
 					System.out.print("Choose: ");
 					choiceViewStore = scanner.nextInt();
-					switch(choiceViewStore) {
-					case 1:
-						DigitalVideoDisc discSee = DigitalVideoDisc.newDVD();
-						Store.ViewStore.seeDVD(store, discSee);
+					
+					if(choiceViewStore == 1) {
+						System.out.print("Enter ID of DVD to see: ");
+						int ID = scanner.nextInt();
+						Store.ViewStore.seeDVD(store, ID);
 						System.out.println();
-						break;
-					case 2:
+					}
+					else if(choiceViewStore == 2) {
 						DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
 						Store.ViewStore.addDVDToCart(cart, discAdd);
 						System.out.println();
-						break;
-					case 3:
+					}
+					else if(choiceViewStore == 3) {
 						cart.displayCart();
+						
 						int choiceSeeCart = 0;
 						do {
 							SeeCurrentCart.menu();
 							System.out.print("Choose: ");
 							choiceSeeCart = scanner.nextInt();
-							switch(choiceSeeCart) {
-							case 1:
+							
+							if(choiceSeeCart == 1) {
 								SeeCurrentCart.filterDVDs(cart);
-								break;
-							case 2:
+							}
+							else if(choiceSeeCart == 2) {
 								SeeCurrentCart.sortDVDs(cart);
-								break;
-							case 3:
-								SeeCurrentCart.removeDVD(cart, dvd6);
-								break;
-							case 4:
+							}
+							else if(choiceSeeCart == 3) {
+								int choiceRemove = 0;
+								System.out.println("1. Remove by ID, or");
+								System.out.println("2. Remove by DVD's information");
+								System.out.print("Choose: ");
+								choiceRemove = scanner.nextInt();
+								
+								if(choiceRemove == 1) {
+									System.out.print("Input Removed ID: ");
+									int ID = scanner.nextInt();
+									SeeCurrentCart.removeDVD(cart, ID);
+								}
+								else if(choiceRemove == 2) {
+									DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
+									SeeCurrentCart.removeDVD(cart, DVDRemoved);
+								}
+							}
+							else if(choiceSeeCart == 4) {
 								SeeCurrentCart.placeOrder(cart);
-								break;
 							}
 						} while(choiceSeeCart != 0);
-						break;
 					}
 				} while(choiceViewStore != 0);
-				break;
-			case 2:
+			}
+			else if(choice == 2) {
 				int choiceUpdateStore = 0;
 				do {
 					UpdateStore.menu();
 					System.out.print("Choose: ");
 					choiceUpdateStore = scanner.nextInt();
 					
-					switch(choiceUpdateStore) {
-					case 1:
+					if(choiceUpdateStore == 1) {
 						DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
 						UpdateStore.addDVDToStore(store, discAdd);
-						break;
-					case 2:
-						UpdateStore.remvoveDVDFromStore(store, dvd6);
-						break;
+						System.out.println();
+					}
+					else if(choiceUpdateStore == 2) {
+						int choiceRemove = 0;
+						System.out.println("1. Remove by ID, or");
+						System.out.println("2. Remove by DVD's information");
+						System.out.println("0. Exit, do nothing");
+						System.out.print("Choose: ");
+						choiceRemove = scanner.nextInt();
+						
+						if(choiceRemove == 1) {
+							System.out.print("Input Removed ID: ");
+							int ID = scanner.nextInt();
+							UpdateStore.removeDVDFromStore(store, ID);
+						}
+						else if(choiceRemove == 2) {
+							DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
+							UpdateStore.removeDVDFromStore(store, DVDRemoved);
+						}
 					}
 				} while(choiceUpdateStore != 0);
 				
-				break;
-			case 3:
+			}
+			else if(choice == 3) {
 				cart.displayCart();
+				
 				int choiceSeeCart = 0;
 				do {
-					
 					SeeCurrentCart.menu();
 					System.out.print("Choose: ");
 					choiceSeeCart = scanner.nextInt();
-					switch(choiceSeeCart) {
-					case 1:
+					
+					if(choiceSeeCart == 1) {
 						SeeCurrentCart.filterDVDs(cart);
-						break;
-					case 2:
+					}
+					else if(choiceSeeCart == 2) {
 						SeeCurrentCart.sortDVDs(cart);
-						break;
-					case 3:
-						SeeCurrentCart.removeDVD(cart, dvd6);
-						break;
-					case 4:
+					}
+					else if(choiceSeeCart == 3) {
+						int choiceRemove = 0;
+						System.out.println("1. Remove by ID, or");
+						System.out.println("2. Remove by DVD's information");
+						System.out.print("Choose: ");
+						choiceRemove = scanner.nextInt();
+						
+						if(choiceRemove == 1) {
+							System.out.print("Input Removed ID: ");
+							int ID = scanner.nextInt();
+							SeeCurrentCart.removeDVD(cart, ID);
+						}
+						else if(choiceRemove == 2) {
+							DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
+							SeeCurrentCart.removeDVD(cart, DVDRemoved);
+						}
+					}
+					else if(choiceSeeCart == 4) {
 						SeeCurrentCart.placeOrder(cart);
-						break;
 					}
 				} while(choiceSeeCart != 0);
-				
-				break;
 			}
 		} while(choice != 0);
 		
