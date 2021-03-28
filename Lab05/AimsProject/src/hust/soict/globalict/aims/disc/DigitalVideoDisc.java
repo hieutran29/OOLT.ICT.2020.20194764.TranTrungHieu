@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
 
 
 public class DigitalVideoDisc {
-	private int id;
-	private String title;
-	private String category;
-	private String director;
-	private int length;
-	private float cost;
+	private int id = -1;
+	private String title = "";
+	private String category = "";
+	private String director = "";
+	private int length = 0;
+	private float cost = 0.0f;
 	private LocalDate dateAdded;
 	private static int numberDVDs = 0;
 	
