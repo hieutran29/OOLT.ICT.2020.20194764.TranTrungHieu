@@ -8,7 +8,7 @@ public class ConcatenationInLoops {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String fileName = "C:/Users/ADMIN/OneDrive/code/Coffee-Shop/build/tests/system_ut/system_sign_in_ut.exe";
+		String fileName = "test.exe";
 		byte[] inputBytes = {0};
 		long startTime, endTime;
 		
@@ -19,7 +19,16 @@ public class ConcatenationInLoops {
 			outputStringBuffer.append((char) b);
 		}
 		endTime = System.currentTimeMillis();
-		System.out.println("Time = " + (endTime - startTime));
+		System.out.println("Time append = " + (endTime - startTime));
+		
+		
+		startTime = System.currentTimeMillis();
+		String outputString = "";
+		for(byte b : inputBytes) {
+			outputString += (char) b;
+		}
+		endTime = System.currentTimeMillis();
+		System.out.println("Time using operator+ = " + (endTime - startTime));
 	}
 
 }
