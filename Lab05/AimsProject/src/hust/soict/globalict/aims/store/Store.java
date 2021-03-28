@@ -15,6 +15,15 @@ public class Store {
 		itemsInStore = new ArrayList<DigitalVideoDisc> ();
 	}
 	
+	public boolean exists(DigitalVideoDisc disc) {
+		for(DigitalVideoDisc i : itemsInStore) {
+			if(i.compare(disc) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public int addDVD(DigitalVideoDisc disc) {
 		this.itemsInStore.add(disc);
 		System.out.printf("Added %s to store\n", disc.title());
@@ -99,8 +108,11 @@ public class Store {
 			System.out.println("NO ID MATCHING FOUND");
 		}
 		
-		@SuppressWarnings("unused")
-		public static int addDVDToCart(Cart cart, DigitalVideoDisc disc) {
+		public static int addDVDFromStoreToCart(Store store, Cart cart, DigitalVideoDisc disc) {
+			if(!store.exists(disc)) {
+				System.out.println("CANNOT ADD A NON-EXIST DVD IN STORE TO A CART");
+				return -1;
+			}
 			return cart.addDigitalVideoDisc(disc);
 		}
 		
@@ -178,22 +190,19 @@ public class Store {
 		
 		public static void sortDVDs(Cart cart) {
 			Scanner scanner = new Scanner(System.in);
-			int sortType = 0;
-			do {
-				System.out.println("1. Sort by cost");
-				System.out.println("2. Sort by title");
-				sortType = scanner.nextInt();
-				
-				if(sortType == 1) {
-					cart.sortByCostDescending();
-					cart.printAllDVD();
-				}
-				else if(sortType == 2) {
-					cart.sortByTitle();
-					cart.printAllDVD();
-				}
-			} while(sortType != 1 && sortType != 2);
+			System.out.println("1. Sort by cost");
+			System.out.println("2. Sort by title");
+			System.out.println("Choose: ");
+			int sortType = scanner.nextInt();
 			
+			if(sortType == 1) {
+				cart.sortByCostDescending();
+				cart.printAllDVD();
+			}
+			else if(sortType == 2) {
+				cart.sortByTitle();
+				cart.printAllDVD();
+			}
 		}
 		
 		public static int removeDVD(Cart cart, DigitalVideoDisc disc) {

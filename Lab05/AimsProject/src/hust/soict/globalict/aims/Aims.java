@@ -18,6 +18,7 @@ import hust.soict.globalict.aims.store.Store.UpdateStore;
 public class Aims {
 	public static void main(String[] args) {
 		Cart cart = new Cart();
+		Store store = new Store();
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
@@ -25,17 +26,11 @@ public class Aims {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 90, 24f);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 100, 24f);
 		
-		cart.addDigitalVideoDisc(dvd1, dvd2, dvd3, dvd4, dvd5);
-//		cart.displayCart();
-		
-		Store store = new Store();
 		store.addDVD(dvd1);
 		store.addDVD(dvd2);
 		store.addDVD(dvd3);
 		store.addDVD(dvd4);
 		store.addDVD(dvd5);
-		
-		DigitalVideoDisc dvd6 = new DigitalVideoDisc("Harry Potter", "aaaa", "aaaa", 50, 100f);
 		
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
@@ -61,7 +56,7 @@ public class Aims {
 					}
 					else if(choiceViewStore == 2) {
 						DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
-						Store.ViewStore.addDVDToCart(cart, discAdd);
+						Store.ViewStore.addDVDFromStoreToCart(store, cart, discAdd);
 						System.out.println();
 					}
 					else if(choiceViewStore == 3) {
@@ -75,9 +70,11 @@ public class Aims {
 							
 							if(choiceSeeCart == 1) {
 								SeeCurrentCart.filterDVDs(cart);
+								System.out.println();
 							}
 							else if(choiceSeeCart == 2) {
 								SeeCurrentCart.sortDVDs(cart);
+								System.out.println();
 							}
 							else if(choiceSeeCart == 3) {
 								int choiceRemove = 0;
@@ -95,9 +92,12 @@ public class Aims {
 									DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
 									SeeCurrentCart.removeDVD(cart, DVDRemoved);
 								}
+								
+								System.out.println();
 							}
 							else if(choiceSeeCart == 4) {
 								SeeCurrentCart.placeOrder(cart);
+								System.out.println();
 							}
 						} while(choiceSeeCart != 0);
 					}
@@ -119,7 +119,6 @@ public class Aims {
 						int choiceRemove = 0;
 						System.out.println("1. Remove by ID, or");
 						System.out.println("2. Remove by DVD's information");
-						System.out.println("0. Exit, do nothing");
 						System.out.print("Choose: ");
 						choiceRemove = scanner.nextInt();
 						
@@ -132,6 +131,8 @@ public class Aims {
 							DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
 							UpdateStore.removeDVDFromStore(store, DVDRemoved);
 						}
+						
+						System.out.println();
 					}
 				} while(choiceUpdateStore != 0);
 				
@@ -171,6 +172,8 @@ public class Aims {
 					else if(choiceSeeCart == 4) {
 						SeeCurrentCart.placeOrder(cart);
 					}
+					
+					System.out.println();
 				} while(choiceSeeCart != 0);
 			}
 		} while(choice != 0);
