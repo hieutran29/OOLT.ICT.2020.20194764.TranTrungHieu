@@ -123,6 +123,22 @@ public class Cart {
 		return cost;
 	}
 	
+	public int removeDigitalVideoDisc(int removedID) {
+		int indexRemoved = -1;
+		for(int i = 0; i < itemsOrdered.size(); i++) {
+			if(itemsOrdered.get(i).ID() == removedID) {
+				indexRemoved = i;
+			}
+		}
+		
+		if(indexRemoved == -1) {
+			System.out.println("NO MATCHING ID FOUND");
+			return -1;
+		}
+		itemsOrdered.remove(indexRemoved);
+		return 0;
+	}
+	
 	/**
 	 * 
 	 * @param ID ID of the DVD to be searched
