@@ -16,7 +16,6 @@ import hust.soict.globalict.aims.store.Store.UpdateStore;
 
 
 public class Aims {
-
 	public static void main(String[] args) {
 		Cart cart = new Cart();
 		
@@ -42,6 +41,7 @@ public class Aims {
 		int choice = 0;
 		do {
 			Store.showMenu();
+			System.out.print("Choose: ");
 			choice = scanner.nextInt();
 			switch(choice) {
 			case 1:
@@ -50,19 +50,25 @@ public class Aims {
 				int choiceViewStore = 0;
 				do {
 					Store.ViewStore.menu();
+					System.out.print("Choose: ");
 					choiceViewStore = scanner.nextInt();
 					switch(choiceViewStore) {
 					case 1:
-						Store.ViewStore.seeDVD(store, dvd6);
+						DigitalVideoDisc discSee = DigitalVideoDisc.newDVD();
+						Store.ViewStore.seeDVD(store, discSee);
+						System.out.println();
 						break;
 					case 2:
-						Store.ViewStore.addDVDToCart(cart, dvd6);
+						DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
+						Store.ViewStore.addDVDToCart(cart, discAdd);
+						System.out.println();
 						break;
 					case 3:
 						cart.displayCart();
 						int choiceSeeCart = 0;
 						do {
 							SeeCurrentCart.menu();
+							System.out.print("Choose: ");
 							choiceSeeCart = scanner.nextInt();
 							switch(choiceSeeCart) {
 							case 1:
@@ -87,11 +93,13 @@ public class Aims {
 				int choiceUpdateStore = 0;
 				do {
 					UpdateStore.menu();
+					System.out.print("Choose: ");
 					choiceUpdateStore = scanner.nextInt();
 					
 					switch(choiceUpdateStore) {
 					case 1:
-						UpdateStore.addDVDToStore(store, dvd6);
+						DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
+						UpdateStore.addDVDToStore(store, discAdd);
 						break;
 					case 2:
 						UpdateStore.remvoveDVDFromStore(store, dvd6);
@@ -106,6 +114,7 @@ public class Aims {
 				do {
 					
 					SeeCurrentCart.menu();
+					System.out.print("Choose: ");
 					choiceSeeCart = scanner.nextInt();
 					switch(choiceSeeCart) {
 					case 1:
