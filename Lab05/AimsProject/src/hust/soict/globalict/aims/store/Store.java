@@ -66,6 +66,22 @@ public class Store {
 		itemsInStore.remove(indexRemoved);
 		return 0;
 	}
+	
+	/**
+	 * Search a DigitalVideoDisc object's detail
+	 * @param store	Store where the object is located
+	 * @param ID	ID of the object to be searched
+	 * @return	DigitalVideoDisc object that has ID matched to ID
+	 */
+	public DigitalVideoDisc searchByID(int ID) {
+		for(DigitalVideoDisc i : itemsInStore) {
+			if(i.ID() == ID) {
+				return i;
+			}
+		}
+		System.out.println("NO ID MATCHING FOUND");
+		return null;
+	}
 
 	public static void showMenu() {
 		System.out.println("AIMS: ");
@@ -104,15 +120,7 @@ public class Store {
 		 * @return	DigitalVideoDisc object that has ID matched to ID
 		 */
 		public static DigitalVideoDisc seeDVD(Store store, int ID) {
-			for(DigitalVideoDisc i : store.itemsInStore) {
-				if(i.ID() == ID) {
-					i.displayDetail();
-					System.out.println();
-					return i;
-				}
-			}
-			System.out.println("NO ID MATCHING FOUND");
-			return null;
+			return store.searchByID(ID);
 		}
 		
 		/**

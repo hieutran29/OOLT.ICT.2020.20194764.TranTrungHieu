@@ -91,9 +91,26 @@ public class Aims {
 				System.out.println();
 			}
 			else if(choiceViewStore == 2) {
-				DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
-				Store.ViewStore.addDVDFromStoreToCart(store, cart, discAdd);
+				System.out.println("1. Add By ID");
+				System.out.println("2. Add By DVD");
+				System.out.print("Choose: ");
+				int addMethod = scanner.nextInt();
 				System.out.println();
+				
+				DigitalVideoDisc discAdd = null;
+				if(addMethod == 1) {
+					System.out.printf("Enter ID: ");
+					int ID = scanner.nextInt();
+					discAdd = store.searchByID(ID);
+				}
+				else if(addMethod == 2) {
+					discAdd = DigitalVideoDisc.newDVD();
+				}
+				 
+				if(discAdd != null) {
+					Store.ViewStore.addDVDFromStoreToCart(store, cart, discAdd);
+					System.out.println();
+				}
 			}
 			else if(choiceViewStore == 3) {
 				seeCurrentCart();
