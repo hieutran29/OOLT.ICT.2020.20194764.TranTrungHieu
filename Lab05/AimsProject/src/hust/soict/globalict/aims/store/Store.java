@@ -97,17 +97,31 @@ public class Store {
 			System.out.println("Please choose a number: 0-1-2-3");
 		}
 		
-		public static void seeDVD(Store store, int ID) {
+		/**
+		 * See a DigitalVideoDisc object's detail
+		 * @param store	Store where the object is located
+		 * @param ID	ID of the object
+		 * @return	DigitalVideoDisc object that has ID matched to ID
+		 */
+		public static DigitalVideoDisc seeDVD(Store store, int ID) {
 			for(DigitalVideoDisc i : store.itemsInStore) {
 				if(i.ID() == ID) {
 					i.displayDetail();
 					System.out.println();
-					return;
+					return i;
 				}
 			}
 			System.out.println("NO ID MATCHING FOUND");
+			return null;
 		}
 		
+		/**
+		 * Add a DigitalVideoDisc from Store to Cart 
+		 * @param store Store which contains DigitalVideoDisc available to be added
+		 * @param cart	Cart to where DigitalVideoDis is added
+		 * @param disc	DigitalVideoDisc object that exists in Store
+		 * @return 0 if successful, -1 otherwise 
+		 */
 		public static int addDVDFromStoreToCart(Store store, Cart cart, DigitalVideoDisc disc) {
 			if(!store.exists(disc)) {
 				System.out.println("CANNOT ADD A NON-EXIST DVD IN STORE TO A CART");
@@ -125,16 +139,34 @@ public class Store {
 			System.out.println("0. Exit");
 		}
 		
-		public static void addDVDToStore(Store store, DigitalVideoDisc disc) {
-			store.addDVD(disc);
+		/**
+		 * Add a DigitalVideoDisc to a Store
+		 * @param store from where the DigitalVideoDisc is added
+		 * @param disc	the DigitalVideoDisc added to Store
+		 * @return 0 if successful, -1 otherwise
+		 */
+		public static int addDVDToStore(Store store, DigitalVideoDisc disc) {
+			return store.addDVD(disc);
 		}
 		
-		public static void removeDVDFromStore(Store store, DigitalVideoDisc disc) {
-			store.removeDVD(disc);
+		/**
+		 * Remove a DigitalVideoDisc from a Store
+		 * @param store	from where DigitalVideoDisc is removed
+		 * @param disc	the DigitalVideoDisc removed from store
+		 * @return 0 if successful, -1 otherwise
+		 */
+		public static int removeDVDFromStore(Store store, DigitalVideoDisc disc) {
+			return store.removeDVD(disc);
 		}
 		
-		public static void removeDVDFromStore(Store store, int ID) {
-			store.removeDVD(ID);
+		/**
+		 * Remove a DigitalVideoDisc from a Store
+		 * @param store	from where DigitalVideoDisc is removed
+		 * @param ID	ID of a DigitalVideoDisc removed from store
+		 * @return 0 if successful, -1 otherwise
+		 */
+		public static int removeDVDFromStore(Store store, int ID) {
+			return store.removeDVD(ID);
 		}
 	}
 	
@@ -151,58 +183,35 @@ public class Store {
 			System.out.println("Please choose a number: 0-1-2-3-4");
 		}
 		
-		public static void filterDVDs(Cart cart) {
-			Scanner scanner = new Scanner(System.in);
-			int filterChoice = 0;
-			do {
-				System.out.println("1. Filter by ID");
-				System.out.println("2. Filter by Title");
-				System.out.print("Choose: ");
-				filterChoice = scanner.nextInt();
-				if(filterChoice == 1) {
-					System.out.print("Enter ID: ");
-					int ID = scanner.nextInt();
-					DigitalVideoDisc found = cart.searchByID(ID);
-					if(found != null) {
-						found.displayDetail();
-					}
-					else {
-						System.out.println("NO DVD MATCHING");
-					}
-				}
-				else {
-					System.out.print("Enter Title: ");
-					scanner.nextLine();
-					String title = scanner.nextLine();
-					DigitalVideoDisc[] found = cart.searchByTitle(title);
-					if(found.length == 0) {
-						System.out.println("NO DVD MATCHING");
-					}
-					else {
-						for(DigitalVideoDisc f : found) {
-							f.displayDetail();
-							System.out.println();
-						}
-					}
-				}
-			} while(filterChoice != 1 && filterChoice != 2);
+		public static void filterDVDByID(Cart cart, int ID) {
+			DigitalVideoDisc found = cart.searchByID(ID);
+			if(found != null) {
+				found.displayDetail();
+			}
+			else {
+				System.out.println("NO DVD MATCHING");
+			}
 		}
 		
-		public static void sortDVDs(Cart cart) {
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("1. Sort by cost");
-			System.out.println("2. Sort by title");
-			System.out.println("Choose: ");
-			int sortType = scanner.nextInt();
-			
-			if(sortType == 1) {
-				cart.sortByCostDescending();
-				cart.printAllDVD();
+		public static void filterDVDByTitle(Cart cart, String title) {
+			DigitalVideoDisc[] found = cart.searchByTitle(title);
+			if(found.length == 0) {
+				System.out.println("NO DVD MATCHING");
 			}
-			else if(sortType == 2) {
-				cart.sortByTitle();
-				cart.printAllDVD();
+			else {
+				for(DigitalVideoDisc f : found) {
+					f.displayDetail();
+					System.out.println();
+				}
 			}
+		}
+		
+		public static void sortDVDByCost(Cart cart) {
+			cart.sortByCostDescending();
+		}
+		
+		public static void sortDVDByTitle(Cart cart) {
+			cart.sortByTitle();
 		}
 		
 		public static int removeDVD(Cart cart, DigitalVideoDisc disc) {
