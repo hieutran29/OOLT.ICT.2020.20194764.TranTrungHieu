@@ -76,7 +76,10 @@ public class Aims {
 				
 				System.out.println("\n-----------");
 				DigitalVideoDisc disc = Store.ViewStore.seeDVD(store, ID);
-				System.out.println("-----------\n");
+				if(disc != null) {
+					disc.displayDetail();
+				}
+				System.out.println("\n-----------\n");
 				
 				if(disc != null) {
 					int AddOrNot = 0;
