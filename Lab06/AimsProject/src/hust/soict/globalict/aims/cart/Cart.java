@@ -6,8 +6,6 @@ package hust.soict.globalict.aims.cart;
 
 import java.util.*;
 
-import javax.swing.*;
-
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.utils.DVDUtils;
 

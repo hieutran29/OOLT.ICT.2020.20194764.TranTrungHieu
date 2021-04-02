@@ -105,7 +105,7 @@ public class Store {
 		public static void menu() {
 			System.out.println("Options: ");
 			System.out.println("--------------------------------");
-			System.out.println("1. See a DVD�s details");
+			System.out.println("1. See a DVD detail");
 			System.out.println("2. Add a DVD to cart");
 			System.out.println("3. See current cart");
 			System.out.println("0. Exit");

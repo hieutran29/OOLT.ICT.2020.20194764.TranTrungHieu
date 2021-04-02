@@ -102,16 +102,15 @@ public class DigitalVideoDisc extends Media {
 	}
 	
 	public void playDVD() {
+		String message = "";
 		if(this.length() == 0) {
-			JOptionPane.showMessageDialog(null, "This DVD has length 0", 
-										  null, JOptionPane.ERROR_MESSAGE);	
+			message = "This DVD has length 0";
 		}
 		else {
-			String message = "Title: " + this.title() + "\n" +
+			message = "Title: " + this.title() + "\n" +
 					 		 "Length: " + this.length();
-			JOptionPane.showMessageDialog(null, message, "Play DVD", 
-										  JOptionPane.INFORMATION_MESSAGE);
 		}
+		System.out.println(message);
 	}
 	
 	public void displayDetail() {

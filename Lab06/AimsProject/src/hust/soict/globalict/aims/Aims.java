@@ -6,8 +6,6 @@ package hust.soict.globalict.aims;
 
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
