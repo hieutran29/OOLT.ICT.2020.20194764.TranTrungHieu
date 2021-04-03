@@ -31,11 +31,11 @@ public class Aims {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 90, 24f);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 100, 24f);
 
-		store.addDVD(dvd1);
-		store.addDVD(dvd2);
-		store.addDVD(dvd3);
-		store.addDVD(dvd4);
-		store.addDVD(dvd5);
+		store.addMedia(dvd1);
+		store.addMedia(dvd2);
+		store.addMedia(dvd3);
+		store.addMedia(dvd4);
+		store.addMedia(dvd5);
 		
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
@@ -60,7 +60,7 @@ public class Aims {
 	
 	
 	public static void viewStore() {
-		store.printDVDsInStore();
+		store.printMediasInStore();
 		
 		int choiceViewStore = 0;
 		do {
@@ -69,47 +69,36 @@ public class Aims {
 			choiceViewStore = scanner.nextInt();
 			
 			if(choiceViewStore == 1) {
-				System.out.print("Enter ID of DVD to see: ");
+				System.out.print("Enter ID of Media to see: ");
 				int ID = scanner.nextInt();
 				
 				System.out.println("\n-----------");
-				DigitalVideoDisc disc = Store.ViewStore.seeDVD(store, ID);
-				if(disc != null) {
-					disc.displayDetail();
+				Media media = Store.ViewStore.seeMedia(store, ID);
+				if(media != null) {
+					media.displayDetail();
 				}
 				System.out.println("\n-----------\n");
 				
-				if(disc != null) {
+				if(media != null) {
 					int AddOrNot = 0;
 					System.out.println("1. Add this DVD to Cart, or");
 					System.out.println("0. Do nothing, exit");
 					AddOrNot = scanner.nextInt();
 					if(AddOrNot == 1) {
-						ViewStore.addDVDFromStoreToCart(store, cart, disc);
+						ViewStore.addMediaFromStoreToCart(store, cart, media);
 					}
 				}
 				
 				System.out.println();
 			}
 			else if(choiceViewStore == 2) {
-				System.out.println("1. Add By ID");
-				System.out.println("2. Add By DVD");
-				System.out.print("Choose: ");
-				int addMethod = scanner.nextInt();
-				System.out.println();
-				
-				DigitalVideoDisc discAdd = null;
-				if(addMethod == 1) {
-					System.out.printf("Enter ID: ");
-					int ID = scanner.nextInt();
-					discAdd = store.searchByID(ID);
-				}
-				else if(addMethod == 2) {
-					discAdd = DigitalVideoDisc.newDVD();
-				}
+				System.out.printf("Enter ID: ");
+				int ID = scanner.nextInt();
+
+				Media mediaAdd = store.searchByID(ID);
 				 
-				if(discAdd != null) {
-					Store.ViewStore.addDVDFromStoreToCart(store, cart, discAdd);
+				if(mediaAdd != null) {
+					Store.ViewStore.addMediaFromStoreToCart(store, cart, mediaAdd);
 					System.out.println();
 				}
 			}
@@ -127,26 +116,45 @@ public class Aims {
 			choiceUpdateStore = scanner.nextInt();
 			
 			if(choiceUpdateStore == 1) {
-				DigitalVideoDisc discAdd = DigitalVideoDisc.newDVD();
-				UpdateStore.addDVDToStore(store, discAdd);
-				System.out.println();
+				String title = "", category = "";
+				float cost = 0.0f;
+
+				System.out.println("1. Add a book");
+				System.out.println("2. Add a DVD");
+				System.out.println("0. Exit");
+				System.out.print("Choose: ");
+				int choice = scanner.nextInt();
+				scanner.nextLine();
+
+				System.out.print("Title: "); title = scanner.nextLine();
+				System.out.print("Category: "); category = scanner.nextLine();
+				System.out.print("Cost: "); cost = scanner.nextFloat();
+				scanner.nextLine();
+
+				if(choice == 1) {
+					String content = "";
+					String authors = "";
+
+					System.out.print("List of authors (separated by ','): ");	
+					authors = scanner.nextLine();
+					System.out.print("Content: ");	content = scanner.nextLine();
+
+					UpdateStore.addMediaToStore(store, new Book(title, category, content, authors.split("\\W+"), cost));
+				}
+				else if(choice == 2) {
+					int length = 0;
+					String director = "";
+
+					System.out.print("\nDirector: ");	director = scanner.nextLine();
+					System.out.print("\nLength: ");		length = scanner.nextInt();
+
+					UpdateStore.addMediaToStore(store, new DigitalVideoDisc(title, category, director, length, cost));
+				}
 			}
 			else if(choiceUpdateStore == 2) {
-				int choiceRemove = 0;
-				System.out.println("1. Remove by ID, or");
-				System.out.println("2. Remove by DVD's information");
-				System.out.print("Choose: ");
-				choiceRemove = scanner.nextInt();
-				
-				if(choiceRemove == 1) {
-					System.out.print("Input Removed ID: ");
-					int ID = scanner.nextInt();
-					UpdateStore.removeDVDFromStore(store, ID);
-				}
-				else if(choiceRemove == 2) {
-					DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
-					UpdateStore.removeDVDFromStore(store, DVDRemoved);
-				}
+				System.out.print("Input Removed ID: ");
+				int ID = scanner.nextInt();
+				UpdateStore.removeMediaFromStore(store, ID);
 				
 				System.out.println();
 			}
@@ -172,13 +180,13 @@ public class Aims {
 				if(filterChoice == 1) {
 					System.out.print("Enter ID: ");
 					int ID = scanner.nextInt();
-					SeeCurrentCart.filterDVDByID(cart, ID);
+					SeeCurrentCart.filterMediaByID(cart, ID);
 				}
 				else {
 					System.out.print("Enter Title: ");
 					scanner.nextLine();
 					String title = scanner.nextLine();
-					SeeCurrentCart.filterDVDByTitle(cart, title);
+					SeeCurrentCart.filterMediaByTitle(cart, title);
 				}
 			}
 			else if(choiceSeeCart == 2) {
@@ -188,30 +196,18 @@ public class Aims {
 				int sortType = scanner.nextInt();
 				
 				if(sortType == 1) {
-					SeeCurrentCart.sortDVDByCost(cart);
+					SeeCurrentCart.sortMediaByCost(cart);
 					cart.printAllMedia();
 				}
 				else if(sortType == 2) {
-					SeeCurrentCart.sortDVDByTitle(cart);
+					SeeCurrentCart.sortMediaByTitle(cart);
 					cart.printAllMedia();
 				}
 			}
 			else if(choiceSeeCart == 3) {
-				int choiceRemove = 0;
-				System.out.println("1. Remove by ID, or");
-				System.out.println("2. Remove by DVD's information");
-				System.out.print("Choose: ");
-				choiceRemove = scanner.nextInt();
-				
-				if(choiceRemove == 1) {
-					System.out.print("Input Removed ID: ");
-					int ID = scanner.nextInt();
-					SeeCurrentCart.removeDVD(cart, ID);
-				}
-				else if(choiceRemove == 2) {
-					DigitalVideoDisc DVDRemoved = DigitalVideoDisc.newDVD();
-					SeeCurrentCart.removeDVD(cart, DVDRemoved);
-				}
+				System.out.print("Input Removed ID: ");
+				int ID = scanner.nextInt();
+				SeeCurrentCart.removeMedia(cart, ID);
 			}
 			else if(choiceSeeCart == 4) {
 				SeeCurrentCart.placeOrder(cart);

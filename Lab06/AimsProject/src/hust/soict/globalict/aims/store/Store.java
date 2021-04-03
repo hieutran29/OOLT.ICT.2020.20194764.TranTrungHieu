@@ -2,41 +2,40 @@ package hust.soict.globalict.aims.store;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.Media;
 
 public class Store {
-	private ArrayList<DigitalVideoDisc> itemsInStore;
+	private ArrayList<Media> itemsInStore;
 	
 	public Store() {
 		super();
-		itemsInStore = new ArrayList<DigitalVideoDisc> ();
+		itemsInStore = new ArrayList<Media> ();
 	}
 	
-	public boolean exists(DigitalVideoDisc disc) {
-		for(DigitalVideoDisc i : itemsInStore) {
-			if(i.compare(disc) == 0) {
+	public boolean exists(Media media) {
+		for(Media i : itemsInStore) {
+			if(i.equals(media) == 0) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public int addDVD(DigitalVideoDisc disc) {
-		this.itemsInStore.add(disc);
-		System.out.printf("Added %s to store\n", disc.title());
+	public int addMedia(Media media) {
+		this.itemsInStore.add(media);
+		System.out.printf("Added %s to store\n", media.title());
 		return 0;
 	}
 	
-	public int removeDVD(DigitalVideoDisc disc) {
-		Iterator<DigitalVideoDisc> iter = this.itemsInStore.iterator();
+	public int removeMedia(Media media) {
+		Iterator<Media> iter = this.itemsInStore.iterator();
 		
 		int countRemoved = 0;
 		while(iter.hasNext()) {
-			DigitalVideoDisc elem = iter.next();
-			if(elem.compare(disc) == 0) {
+			Media elem = iter.next();
+			if(elem.equals(media) == 0) {
 				iter.remove();
 				countRemoved++;
 				System.out.println("Remove ID" + elem.ID());
@@ -44,14 +43,14 @@ public class Store {
 		}
 		
 		if(countRemoved == 0) {
-			System.out.println("NO MATCHING DVD FOUND");
+			System.out.println("NO MATCHING Media FOUND");
 			return -1;
 		}
 		
 		return 0;
 	}
 	
-	public int removeDVD(int removedID) {
+	public int removeMedia(int removedID) {
 		int indexRemoved = -1;
 		for(int i = 0; i < itemsInStore.size(); i++) {
 			if(itemsInStore.get(i).ID() == removedID) {
@@ -68,13 +67,13 @@ public class Store {
 	}
 	
 	/**
-	 * Search a DigitalVideoDisc object's detail
+	 * Search a Media object's detail
 	 * @param store	Store where the object is located
 	 * @param ID	ID of the object to be searched
-	 * @return	DigitalVideoDisc object that has ID matched to ID
+	 * @return	Media object that has ID matched to ID
 	 */
-	public DigitalVideoDisc searchByID(int ID) {
-		for(DigitalVideoDisc i : itemsInStore) {
+	public Media searchByID(int ID) {
+		for(Media i : itemsInStore) {
 			if(i.ID() == ID) {
 				return i;
 			}
@@ -94,8 +93,8 @@ public class Store {
 		System.out.println("Please choose a number: 0-1-2-3");
 	}
 
-	public void printDVDsInStore() {
-		for(DigitalVideoDisc e : this.itemsInStore) {
+	public void printMediasInStore() {
+		for(Media e : this.itemsInStore) {
 			e.displayDetail();
 			System.out.println();
 		}
@@ -105,8 +104,8 @@ public class Store {
 		public static void menu() {
 			System.out.println("Options: ");
 			System.out.println("--------------------------------");
-			System.out.println("1. See a DVD detail");
-			System.out.println("2. Add a DVD to cart");
+			System.out.println("1. See a Media detail");
+			System.out.println("2. Add a Media to cart");
 			System.out.println("3. See current cart");
 			System.out.println("0. Exit");
 			System.out.println("--------------------------------");
@@ -114,67 +113,57 @@ public class Store {
 		}
 		
 		/**
-		 * See a DigitalVideoDisc object's detail
+		 * See a Media object's detail
 		 * @param store	Store where the object is located
 		 * @param ID	ID of the object
-		 * @return	DigitalVideoDisc object that has ID matched to ID
+		 * @return	Media object that has ID matched to ID
 		 */
-		public static DigitalVideoDisc seeDVD(Store store, int ID) {
+		public static Media seeMedia(Store store, int ID) {
 			return store.searchByID(ID);
 		}
 		
 		/**
-		 * Add a DigitalVideoDisc from Store to Cart 
-		 * @param store Store which contains DigitalVideoDisc available to be added
+		 * Add a Media from Store to Cart 
+		 * @param store Store which contains Media available to be added
 		 * @param cart	Cart to where DigitalVideoDis is added
-		 * @param disc	DigitalVideoDisc object that exists in Store
+		 * @param media	Media object that exists in Store
 		 * @return 0 if successful, -1 otherwise 
 		 */
-		public static int addDVDFromStoreToCart(Store store, Cart cart, DigitalVideoDisc disc) {
-			if(!store.exists(disc)) {
-				System.out.println("CANNOT ADD A NON-EXIST DVD IN STORE TO A CART");
+		public static int addMediaFromStoreToCart(Store store, Cart cart, Media media) {
+			if(!store.exists(media)) {
+				System.out.println("CANNOT ADD A NON-EXIST Media IN STORE TO A CART");
 				return -1;
 			}
-			return cart.addDigitalVideoDisc(disc);
+			return cart.addMedia(media);
 		}
 		
 	}
 	
 	public static class UpdateStore {
 		public static void menu() {
-			System.out.println("1. Add DVD to store");
-			System.out.println("2. Remove DVD from store");
+			System.out.println("1. Add Media to store");
+			System.out.println("2. Remove Media from store");
 			System.out.println("0. Exit");
 		}
 		
 		/**
-		 * Add a DigitalVideoDisc to a Store
-		 * @param store from where the DigitalVideoDisc is added
-		 * @param disc	the DigitalVideoDisc added to Store
+		 * Add a Media to a Store
+		 * @param store from where the Media is added
+		 * @param media	the Media added to Store
 		 * @return 0 if successful, -1 otherwise
 		 */
-		public static int addDVDToStore(Store store, DigitalVideoDisc disc) {
-			return store.addDVD(disc);
+		public static int addMediaToStore(Store store, Media media) {
+			return store.addMedia(media);
 		}
 		
 		/**
-		 * Remove a DigitalVideoDisc from a Store
-		 * @param store	from where DigitalVideoDisc is removed
-		 * @param disc	the DigitalVideoDisc removed from store
+		 * Remove a Media from a Store
+		 * @param store	from where Media is removed
+		 * @param ID	ID of a Media removed from store
 		 * @return 0 if successful, -1 otherwise
 		 */
-		public static int removeDVDFromStore(Store store, DigitalVideoDisc disc) {
-			return store.removeDVD(disc);
-		}
-		
-		/**
-		 * Remove a DigitalVideoDisc from a Store
-		 * @param store	from where DigitalVideoDisc is removed
-		 * @param ID	ID of a DigitalVideoDisc removed from store
-		 * @return 0 if successful, -1 otherwise
-		 */
-		public static int removeDVDFromStore(Store store, int ID) {
-			return store.removeDVD(ID);
+		public static int removeMediaFromStore(Store store, int ID) {
+			return store.removeMedia(ID);
 		}
 	}
 	
@@ -182,52 +171,48 @@ public class Store {
 		public static void menu() {
 			System.out.println("Options: ");
 			System.out.println("--------------------------------");
-			System.out.println("1. Filter DVDs in cart");
-			System.out.println("2. Sort DVDs in cart");
-			System.out.println("3. Remove DVD from cart");
+			System.out.println("1. Filter Medias in cart");
+			System.out.println("2. Sort Medias in cart");
+			System.out.println("3. Remove Media from cart");
 			System.out.println("4. Place order");
 			System.out.println("0. Exit");
 			System.out.println("--------------------------------");
 			System.out.println("Please choose a number: 0-1-2-3-4");
 		}
 		
-		public static void filterDVDByID(Cart cart, int ID) {
-			DigitalVideoDisc found = cart.searchByID(ID);
+		public static void filterMediaByID(Cart cart, int ID) {
+			Media found = cart.searchByID(ID);
 			if(found != null) {
 				found.displayDetail();
 			}
 			else {
-				System.out.println("NO DVD MATCHING");
+				System.out.println("NO Media MATCHING");
 			}
 		}
 		
-		public static void filterDVDByTitle(Cart cart, String title) {
-			DigitalVideoDisc[] found = cart.searchByTitle(title);
+		public static void filterMediaByTitle(Cart cart, String title) {
+			Media[] found = cart.searchByTitle(title);
 			if(found.length == 0) {
-				System.out.println("NO DVD MATCHING");
+				System.out.println("NO Media MATCHING");
 			}
 			else {
-				for(DigitalVideoDisc f : found) {
+				for(Media f : found) {
 					f.displayDetail();
 					System.out.println();
 				}
 			}
 		}
 		
-		public static void sortDVDByCost(Cart cart) {
+		public static void sortMediaByCost(Cart cart) {
 			cart.sortByCostDescending();
 		}
 		
-		public static void sortDVDByTitle(Cart cart) {
+		public static void sortMediaByTitle(Cart cart) {
 			cart.sortByTitle();
 		}
 		
-		public static int removeDVD(Cart cart, DigitalVideoDisc disc) {
-			return cart.removeDigitalVideoDisc(disc);
-		}
-		
-		public static int removeDVD(Cart cart, int ID) {
-			return cart.removeDigitalVideoDisc(ID);
+		public static int removeMedia(Cart cart, int ID) {
+			return cart.removeMedia(ID);
 		}
 		
 		public static void placeOrder(Cart cart) {
