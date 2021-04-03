@@ -1,6 +1,6 @@
 package hust.soict.globalict.test.store;
 
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.store.Store;
 
 public class StoreTest {
@@ -16,19 +16,31 @@ public class StoreTest {
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 100, 24f);
 		DigitalVideoDisc dvd6 = new DigitalVideoDisc("AAAA", "aaaa", "aaaa", 6, 100f);
 		
-		store.addDVD(dvd1);
-		store.addDVD(dvd2);
-		store.addDVD(dvd3);
-		store.addDVD(dvd4);
-		store.addDVD(dvd5);
-		store.addDVD(dvd6);
+		Book book1 = new Book("Dac Nhan Tam", "Giao duc", "", new String[] { "Dale Carnergie" }, 5f);
+		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
+		Book book3 = new Book("Lap trinh huong doi tuong", "Giao duc", "", new String[] { "" }, 2f);
+
+		store.addMedia(dvd1);
+		store.addMedia(dvd2);
+		store.addMedia(dvd3);
+		store.addMedia(dvd4);
+		store.addMedia(dvd5);
+		store.addMedia(dvd6);
+
+		store.addMedia(book1);
+		store.addMedia(book2);
+		store.addMedia(book3);
 		
-		System.out.println("Store before removing dvd6");
-		store.printDVDsInStore();
+		System.out.println("Store before removing id6");
+		store.printMediasInStore();
 		
-		store.removeDVD(dvd6);
-		System.out.println("Store after removing dvd6");
-		store.printDVDsInStore();
+		store.removeMedia(dvd6);
+		System.out.println("Store after removing id6");
+		store.printMediasInStore();
+
+		store.removeMedia(7);
+		System.out.println("Store after removing id7");
+		store.printMediasInStore();
 	}
 
 }
