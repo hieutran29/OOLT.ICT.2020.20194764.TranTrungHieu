@@ -10,7 +10,7 @@ import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.utils.MediaUtils;
 
 public class Cart {
-	public final static int MAX_NUMBER_ORDERED = 20;
+	public final static int MAX_NUMBER_ORDERED = 7;
 	private ArrayList<Media> itemsOrdered = new ArrayList<Media> ();
 
 	public Cart() {
@@ -18,12 +18,22 @@ public class Cart {
 	}
 
 	public int addMedia(Media media) {
+		if(this.itemsOrdered.size() + 1 > MAX_NUMBER_ORDERED) {
+			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
+								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
+			return -1;
+		}
         this.itemsOrdered.add(media);
         System.out.printf("Added %s to cart\n", media.title());
 		return 0;
 	}
 	
 	public int addMedia(Media ... mediaList) {
+		if(this.itemsOrdered.size() + mediaList.length > MAX_NUMBER_ORDERED) {
+			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
+								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
+			return -1;
+		}
 		for(int i = 0; i < mediaList.length; i++) {
 			this.itemsOrdered.add(mediaList[i]);
 			System.out.printf("Added %s to cart\n", mediaList[i].title());
@@ -32,6 +42,11 @@ public class Cart {
 	}
 
 	public int addMedia(Media dvd1, Media dvd2) {
+		if(this.itemsOrdered.size() + 2 > MAX_NUMBER_ORDERED) {
+			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
+								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
+			return -1;
+		}
 		this.itemsOrdered.add(dvd1);
 		this.itemsOrdered.add(dvd2);
 		System.out.printf("Added %s to cart\n", dvd1.title());
