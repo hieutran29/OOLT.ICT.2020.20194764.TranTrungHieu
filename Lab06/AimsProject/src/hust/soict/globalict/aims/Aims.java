@@ -4,13 +4,10 @@ package hust.soict.globalict.aims;
  */
 
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Book;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.store.Store;
 import hust.soict.globalict.aims.store.Store.SeeCurrentCart;
 import hust.soict.globalict.aims.store.Store.UpdateStore;
@@ -192,11 +189,11 @@ public class Aims {
 				
 				if(sortType == 1) {
 					SeeCurrentCart.sortDVDByCost(cart);
-					cart.printAllDVD();
+					cart.printAllMedia();
 				}
 				else if(sortType == 2) {
 					SeeCurrentCart.sortDVDByTitle(cart);
-					cart.printAllDVD();
+					cart.printAllMedia();
 				}
 			}
 			else if(choiceSeeCart == 3) {
