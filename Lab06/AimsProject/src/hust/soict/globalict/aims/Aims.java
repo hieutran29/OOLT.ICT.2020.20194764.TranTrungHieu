@@ -7,8 +7,7 @@ package hust.soict.globalict.aims;
 import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Book;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.store.Store;
 import hust.soict.globalict.aims.store.Store.SeeCurrentCart;
 import hust.soict.globalict.aims.store.Store.UpdateStore;
@@ -31,7 +30,7 @@ public class Aims {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 90, 24f);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 100, 24f);
-		
+
 		store.addDVD(dvd1);
 		store.addDVD(dvd2);
 		store.addDVD(dvd3);
@@ -190,11 +189,11 @@ public class Aims {
 				
 				if(sortType == 1) {
 					SeeCurrentCart.sortDVDByCost(cart);
-					cart.printAllDVD();
+					cart.printAllMedia();
 				}
 				else if(sortType == 2) {
 					SeeCurrentCart.sortDVDByTitle(cart);
-					cart.printAllDVD();
+					cart.printAllMedia();
 				}
 			}
 			else if(choiceSeeCart == 3) {

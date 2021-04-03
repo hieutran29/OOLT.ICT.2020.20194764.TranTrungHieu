@@ -3,14 +3,6 @@ package hust.soict.globalict.aims.media;
  * @author HieuTran
  */
 
-
-/**
- * Pleas note that, in this class, I removed all "get" prefix for "getter" methods.
- * In aspect of real world and of a real creature, a DVD cannot itself 
- * "get" any attribute and give to us. We are not "getting" anything from a DVD. 
- * All we do is asking a DVD to tell us its attribute.
- */
-
 import java.util.Scanner;
 
 
@@ -97,6 +89,8 @@ public class DigitalVideoDisc extends Media {
 				}
 			}
 		} while(choice != 0 || cost < 0);
+
+		scanner.close();
 		
 		return new DigitalVideoDisc(title, category, director, length, cost);
 	}
@@ -118,26 +112,14 @@ public class DigitalVideoDisc extends Media {
 											this.director(), this.length(), this.cost());
 	}
 	
-	public int compare(DigitalVideoDisc disc) {
-		if(title().compareToIgnoreCase(disc.title()) == 0 &&
-			category().compareToIgnoreCase(disc.category()) == 0 &&
-			director().compareToIgnoreCase(disc.director()) == 0 &&
-			length() == disc.length() && 
-			cost() == disc.cost()) {
-			return 0;
+	public int equals(DigitalVideoDisc disc) {
+		if(super.equals(disc) == 0) {
+			if(disc.length() == this.length() && disc.director() == this.director()) {
+				return 0;
+			}
 		}
 		return -1;
 	}
 	
-	public boolean search(String title) {
-		String[] wordsInSearchedTitle = title.split("\\s");
-		String[] wordsInDiscTitle = title().split("\\s");
-		for(String origin : wordsInDiscTitle) {
-			for(String searched : wordsInSearchedTitle)
-				if(origin.equalsIgnoreCase(searched) == true) {
-					return true;
-				}
-		}
-		return false;
-	}
+
 }

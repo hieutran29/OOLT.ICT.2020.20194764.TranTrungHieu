@@ -11,19 +11,19 @@ public class Media {
     private LocalDate dateAdded;
     private static int numberMedias = 0;
 
-    Media() {
+    public Media() {
         super();
         this.dateAdded = LocalDate.now();
         this.id = ++Media.numberMedias;
     }
 
-    Media(String title) {
+    public Media(String title) {
         this.title = title;
         this.dateAdded = LocalDate.now();
         this.id = ++Media.numberMedias;
     }
 
-    Media(String title, String category, float cost) {
+    public Media(String title, String category, float cost) {
         this.title = title;
         this.category = category;
         this.cost = cost;
@@ -46,4 +46,31 @@ public class Media {
     public float cost() {
         return this.cost;
     }
+
+
+    public int equals(Media media) {
+		if(title().compareToIgnoreCase(media.title()) == 0 &&
+			category().compareToIgnoreCase(media.category()) == 0 &&
+			cost() == media.cost()) {
+			return 0;
+		}
+		return -1;
+	}
+
+	public boolean search(String title) {
+		String[] wordsInSearchedTitle = title.split("\\s");
+		String[] wordsInDiscTitle = title().split("\\s");
+		for(String origin : wordsInDiscTitle) {
+			for(String searched : wordsInSearchedTitle)
+				if(origin.equalsIgnoreCase(searched) == true) {
+					return true;
+				}
+		}
+		return false;
+	}
+
+	public void displayDetail() {
+		System.out.printf("DVD - ID = %d - %s - %s - %.2f$", this.ID(), this.title(), 
+                            this.category(), this.cost());
+	}
 }

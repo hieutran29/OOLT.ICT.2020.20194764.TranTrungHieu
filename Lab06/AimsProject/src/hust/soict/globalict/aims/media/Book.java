@@ -1,19 +1,24 @@
 package hust.soict.globalict.aims.media;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
+    String content = "";
 
-    Book() {
+    public Book() {
         super();
     }
 
-    Book(String title, String category, float cost, String ... authors) {
+    public Book(String title, String category, String content, String[] authors, float cost) {
         super(title, category, cost);
+        this.content = content;
         this.authors.addAll(Arrays.asList(authors));
+    }
+
+    String content() {
+        return this.content;
     }
     
     public List<String> authors() {
@@ -36,5 +41,23 @@ public class Book extends Media {
         }
         authors.remove(authorName);
         return 0;
+    }
+
+    public void displayDetail() {
+        super.displayDetail();
+        Map<String, Integer> map = new HashMap<String,Integer> ();
+        String[] words = content.split(" ");
+        for(String w : words) {
+            if(!map.containsKey(w)) {
+                map.put(w, 1);
+            }
+            else {
+                map.put(w, map.get(w) + 1);
+            }
+        }
+        System.out.println();
+        for (Map.Entry<String, Integer> entry : map.entrySet())
+            System.out.println("\tToken = " + entry.getKey() +
+                             ", Frequency = " + entry.getValue());
     }
 }
