@@ -51,8 +51,8 @@ public class DigitalVideoDisc extends Media {
 	}
 	
 	public void displayDetail() {
-		System.out.printf("DVD - ID = %d - %s - %s - %s - %d - %.2f$", this.ID(), this.title(), this.category(),
-											this.director(), this.length(), this.cost());
+		System.out.printf("DVD - ID = %d - %s - %s - %s - %d - %.2f$ %s", this.ID(), this.title(), this.category(),
+								this.director(), this.length(), this.cost(), (this.isFree() ? "- free" : ""));
 	}
 	
 	public int equals(DigitalVideoDisc disc) {

@@ -9,6 +9,7 @@ public class Media {
     private String category = "";
     private float cost = 0.0f;
     private LocalDate dateAdded;
+    private boolean free = false;
     private static int numberMedias = 0;
 
     public Media() {
@@ -47,6 +48,16 @@ public class Media {
         return this.cost;
     }
 
+    public boolean isFree() {
+        return this.free;
+    }
+
+    public void setFree(boolean bool) {
+        this.free = bool;
+        if(bool == true) {
+            cost = 0;
+        }
+    }
 
     public int equals(Media media) {
 		if(title().compareToIgnoreCase(media.title()) == 0 &&
@@ -70,7 +81,7 @@ public class Media {
 	}
 
 	public void displayDetail() {
-		System.out.printf("DVD - ID = %d - %s - %s - %.2f$", this.ID(), this.title(), 
-                            this.category(), this.cost());
+		System.out.printf("DVD - ID = %d - %s - %s - %.2f$ %s", this.ID(), this.title(), 
+                            this.category(), this.cost(), (this.isFree() ? "- free" : ""));
 	}
 }
