@@ -58,8 +58,8 @@ public class Media {
 	}
 
 	public boolean search(String title) {
-		String[] wordsInSearchedTitle = title.split("\\s");
-		String[] wordsInDiscTitle = title().split("\\s");
+		String[] wordsInSearchedTitle = title.split("\\W+");
+		String[] wordsInDiscTitle = title().split("\\W+");
 		for(String origin : wordsInDiscTitle) {
 			for(String searched : wordsInSearchedTitle)
 				if(origin.equalsIgnoreCase(searched) == true) {

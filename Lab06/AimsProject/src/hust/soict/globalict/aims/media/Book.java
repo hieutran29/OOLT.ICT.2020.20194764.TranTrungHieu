@@ -46,7 +46,7 @@ public class Book extends Media {
     public void displayDetail() {
         super.displayDetail();
         Map<String, Integer> map = new HashMap<String,Integer> ();
-        String[] words = content.split(" ");
+        String[] words = content.split("\\W+");
         for(String w : words) {
             if(!map.containsKey(w)) {
                 map.put(w, 1);
