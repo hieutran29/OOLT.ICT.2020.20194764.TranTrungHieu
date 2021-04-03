@@ -56,6 +56,11 @@ public class Book extends Media {
             }
         }
         System.out.println();
+        System.out.print("\tAuthor: ");
+        for(String author : this.authors) {
+            System.out.print(author + ", ");
+        }
+        System.out.println();
         for (Map.Entry<String, Integer> entry : map.entrySet())
             System.out.println("\tToken = " + entry.getKey() +
                              ", Frequency = " + entry.getValue());

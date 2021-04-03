@@ -93,6 +93,26 @@ public class Cart {
 		}
 		return cost;
 	}
+
+	public Media getLuckyItem() {
+		List<Integer> ids = new ArrayList<Integer>();
+		int maxID = -1;
+
+		for(Media item : this.itemsOrdered) {
+			ids.add(item.ID());
+			maxID = Math.max(maxID, item.ID());
+		}
+
+		int luckyID = (int) (Math.random() * (double) (maxID + 1));
+		for(Media item : itemsOrdered) {
+			if(item.ID() == luckyID) {
+				item.setFree(true);
+				return item;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param ID ID of the DVD to be searched
