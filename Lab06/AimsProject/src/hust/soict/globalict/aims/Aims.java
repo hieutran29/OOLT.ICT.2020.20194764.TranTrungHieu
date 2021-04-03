@@ -31,15 +31,22 @@ public class Aims {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 90, 24f);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 100, 24f);
 
+		Book book1 = new Book("Dac Nhan Tam", "Giao duc", "", new String[] { "Dale Carnergie" }, 5f);
+		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
+		Book book3 = new Book("Lap trinh huong doi tuong", "Giao duc", "", new String[] { "" }, 2f);
+
 		store.addMedia(dvd1);
 		store.addMedia(dvd2);
 		store.addMedia(dvd3);
 		store.addMedia(dvd4);
 		store.addMedia(dvd5);
+
+		store.addMedia(book1, book2, book3);
 		
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
 		do {
+			System.out.println();
 			Store.showMenu();
 			System.out.print("Choose: ");
 			choice = scanner.nextInt();
@@ -64,6 +71,7 @@ public class Aims {
 		
 		int choiceViewStore = 0;
 		do {
+			System.out.println();
 			Store.ViewStore.menu();
 			System.out.print("Choose: ");
 			choiceViewStore = scanner.nextInt();
@@ -81,8 +89,9 @@ public class Aims {
 				
 				if(media != null) {
 					int AddOrNot = 0;
-					System.out.println("1. Add this DVD to Cart, or");
+					System.out.println("1. Add this Media to Cart, or");
 					System.out.println("0. Do nothing, exit");
+					System.out.print("Choose: ");
 					AddOrNot = scanner.nextInt();
 					if(AddOrNot == 1) {
 						ViewStore.addMediaFromStoreToCart(store, cart, media);
@@ -111,6 +120,7 @@ public class Aims {
 	public static void updateStore() {
 		int choiceUpdateStore = 0;
 		do {
+			System.out.println();
 			UpdateStore.menu();
 			System.out.print("Choose: ");
 			choiceUpdateStore = scanner.nextInt();
@@ -163,10 +173,12 @@ public class Aims {
 	}
 	
 	public static void seeCurrentCart() {
+		System.out.println();
 		cart.displayCart();
 		
 		int choiceSeeCart = 0;
 		do {
+			System.out.println();
 			SeeCurrentCart.menu();
 			System.out.print("Choose: ");
 			choiceSeeCart = scanner.nextInt();
@@ -192,7 +204,7 @@ public class Aims {
 			else if(choiceSeeCart == 2) {
 				System.out.println("1. Sort by cost");
 				System.out.println("2. Sort by title");
-				System.out.println("Choose: ");
+				System.out.print("Choose: ");
 				int sortType = scanner.nextInt();
 				
 				if(sortType == 1) {
@@ -210,6 +222,15 @@ public class Aims {
 				SeeCurrentCart.removeMedia(cart, ID);
 			}
 			else if(choiceSeeCart == 4) {
+				Media luckyItem = SeeCurrentCart.getLuckyItem(cart);
+				if(luckyItem == null) {
+					System.out.println("Good Luck Next Time :(");
+				}
+				else {
+					luckyItem.displayDetail();
+				}
+			}
+			else if(choiceSeeCart == 5) {
 				SeeCurrentCart.placeOrder(cart);
 			}
 			

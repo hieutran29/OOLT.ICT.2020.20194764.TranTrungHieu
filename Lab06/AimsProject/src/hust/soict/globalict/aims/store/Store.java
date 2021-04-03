@@ -28,6 +28,14 @@ public class Store {
 		System.out.printf("Added %s to store\n", media.title());
 		return 0;
 	}
+
+	public int addMedia(Media ... mediaList) {
+		for(int i = 0; i < mediaList.length; i++) {
+			this.itemsInStore.add(mediaList[i]);
+			System.out.printf("Added %s to store\n", mediaList[i].title());
+		}
+		return 0;
+	}
 	
 	public int removeMedia(Media media) {
 		Iterator<Media> iter = this.itemsInStore.iterator();
@@ -85,12 +93,11 @@ public class Store {
 	public static void showMenu() {
 		System.out.println("AIMS: ");
 		System.out.println("--------------------------------");
-		System.out.println("1. View store");
-		System.out.println("2. Update store");
-		System.out.println("3. See current cart");
-		System.out.println("0. Exit");
+		System.out.println("\t1. View store");
+		System.out.println("\t2. Update store");
+		System.out.println("\t3. See current cart");
+		System.out.println("\t0. Exit");
 		System.out.println("--------------------------------");
-		System.out.println("Please choose a number: 0-1-2-3");
 	}
 
 	public void printMediasInStore() {
@@ -102,14 +109,13 @@ public class Store {
 	
 	public static class ViewStore {
 		public static void menu() {
-			System.out.println("Options: ");
+			System.out.println("View Store: ");
 			System.out.println("--------------------------------");
-			System.out.println("1. See a Media detail");
-			System.out.println("2. Add a Media to cart");
-			System.out.println("3. See current cart");
-			System.out.println("0. Exit");
+			System.out.println("\t1. See a Media detail");
+			System.out.println("\t2. Add a Media to cart");
+			System.out.println("\t3. See current cart");
+			System.out.println("\t0. Exit");
 			System.out.println("--------------------------------");
-			System.out.println("Please choose a number: 0-1-2-3");
 		}
 		
 		/**
@@ -141,9 +147,12 @@ public class Store {
 	
 	public static class UpdateStore {
 		public static void menu() {
-			System.out.println("1. Add Media to store");
-			System.out.println("2. Remove Media from store");
-			System.out.println("0. Exit");
+			System.out.println("Update Store:");
+			System.out.println("--------------------------------");
+			System.out.println("\t1. Add Media to store");
+			System.out.println("\t2. Remove Media from store");
+			System.out.println("\t0. Exit");
+			System.out.println("--------------------------------");
 		}
 		
 		/**
@@ -169,25 +178,27 @@ public class Store {
 	
 	public static class SeeCurrentCart {
 		public static void menu() {
-			System.out.println("Options: ");
+			System.out.println("See Current Cart: ");
 			System.out.println("--------------------------------");
-			System.out.println("1. Filter Medias in cart");
-			System.out.println("2. Sort Medias in cart");
-			System.out.println("3. Remove Media from cart");
-			System.out.println("4. Place order");
-			System.out.println("0. Exit");
+			System.out.println("\t1. Filter Medias in cart");
+			System.out.println("\t2. Sort Medias in cart");
+			System.out.println("\t3. Remove Media from cart");
+			System.out.println("\t4. Get a lucky item from cart");
+			System.out.println("\t5. Place order");
+			System.out.println("\t0. Exit");
 			System.out.println("--------------------------------");
-			System.out.println("Please choose a number: 0-1-2-3-4");
 		}
 		
 		public static void filterMediaByID(Cart cart, int ID) {
 			Media found = cart.searchByID(ID);
+			System.out.println("\n----------");
 			if(found != null) {
 				found.displayDetail();
 			}
 			else {
 				System.out.println("NO Media MATCHING");
 			}
+			System.out.println("----------\n");
 		}
 		
 		public static void filterMediaByTitle(Cart cart, String title) {
@@ -213,6 +224,10 @@ public class Store {
 		
 		public static int removeMedia(Cart cart, int ID) {
 			return cart.removeMedia(ID);
+		}
+
+		public static Media getLuckyItem(Cart cart) {
+			return cart.getLuckyItem();
 		}
 		
 		public static void placeOrder(Cart cart) {
