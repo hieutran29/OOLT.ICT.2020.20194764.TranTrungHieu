@@ -7,11 +7,13 @@ package hust.soict.globalict.aims;
 import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.*;
+import hust.soict.globalict.aims.media.Book;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.store.Store;
-import hust.soict.globalict.aims.store.Store.SeeCurrentCart;
-import hust.soict.globalict.aims.store.Store.UpdateStore;
-import hust.soict.globalict.aims.store.Store.ViewStore;
+import hust.soict.globalict.aims.utils.SeeCurrentCart;
+import hust.soict.globalict.aims.utils.UpdateStore;
+import hust.soict.globalict.aims.utils.ViewStore;
 
 
 public class Aims {
@@ -33,7 +35,7 @@ public class Aims {
 
 		Book book1 = new Book("Dac Nhan Tam", "Giao duc", "", new String[] { "Dale Carnergie" }, 5f);
 		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
-		Book book3 = new Book("Lap trinh huong doi tuong", "Giao duc", "", new String[] { "" }, 2f);
+		Book book3 = new Book("Tu dien Anh-Viet", "Giao duc", "", new String[] { "Oxford", "NXB Giao Duc" }, 2f);
 
 		store.addMedia(dvd1);
 		store.addMedia(dvd2);
@@ -72,7 +74,7 @@ public class Aims {
 		int choiceViewStore = 0;
 		do {
 			System.out.println();
-			Store.ViewStore.menu();
+			ViewStore.menu();
 			System.out.print("Choose: ");
 			choiceViewStore = scanner.nextInt();
 			
@@ -81,7 +83,7 @@ public class Aims {
 				int ID = scanner.nextInt();
 				
 				System.out.println("\n-----------");
-				Media media = Store.ViewStore.seeMedia(store, ID);
+				Media media = ViewStore.seeMedia(store, ID);
 				if(media != null) {
 					media.displayDetail();
 				}
@@ -107,7 +109,7 @@ public class Aims {
 				Media mediaAdd = store.searchByID(ID);
 				 
 				if(mediaAdd != null) {
-					Store.ViewStore.addMediaFromStoreToCart(store, cart, mediaAdd);
+					ViewStore.addMediaFromStoreToCart(store, cart, mediaAdd);
 					System.out.println();
 				}
 			}
