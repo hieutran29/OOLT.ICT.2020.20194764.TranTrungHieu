@@ -89,6 +89,8 @@ public class DigitalVideoDisc extends Media {
 				}
 			}
 		} while(choice != 0 || cost < 0);
+
+		scanner.close();
 		
 		return new DigitalVideoDisc(title, category, director, length, cost);
 	}
@@ -110,8 +112,8 @@ public class DigitalVideoDisc extends Media {
 											this.director(), this.length(), this.cost());
 	}
 	
-	public int compare(DigitalVideoDisc disc) {
-		if(super.compare(disc) == 0) {
+	public int equals(DigitalVideoDisc disc) {
+		if(super.equals(disc) == 0) {
 			if(disc.length() == this.length() && disc.director() == this.director()) {
 				return 0;
 			}

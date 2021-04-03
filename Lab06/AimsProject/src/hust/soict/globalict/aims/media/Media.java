@@ -48,7 +48,7 @@ public class Media {
     }
 
 
-    public int compare(Media media) {
+    public int equals(Media media) {
 		if(title().compareToIgnoreCase(media.title()) == 0 &&
 			category().compareToIgnoreCase(media.category()) == 0 &&
 			cost() == media.cost()) {

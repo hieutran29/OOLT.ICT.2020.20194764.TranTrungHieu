@@ -7,7 +7,6 @@ package hust.soict.globalict.aims.cart;
 import java.util.*;
 
 import hust.soict.globalict.aims.media.*;
-import hust.soict.globalict.aims.utils.DVDUtils;
 import hust.soict.globalict.aims.utils.MediaUtils;
 
 public class Cart {
@@ -57,7 +56,7 @@ public class Cart {
 			int countRemoved = 0;
 			while(iter.hasNext()) {
 				Media elem = iter.next();
-				if(elem.compare(media) == 0) {
+				if(elem.equals(media) == 0) {
 					System.out.println("Remove ID" + elem.ID());
 					iter.remove();
 					countRemoved += 1;
@@ -174,15 +173,12 @@ public class Cart {
 	 */
 	public void displayCart() {
 		// comparator function
-		Comparator<Media> DVDComparator = new Comparator<Media>() {
+		Comparator<Media> comparator = new Comparator<Media>() {
 			@Override
 			public int compare(Media media1, Media media2) {
 				int compareByTitle = MediaUtils.compareByTitle(media1, media2);
 				if(compareByTitle == 0) {
 					int compareByCost = MediaUtils.compareByCost(media1, media2);
-					if(compareByCost == 0) {
-						return media2.length() - media1.length();
-					}
 					return -compareByCost;
 				}
 				return compareByTitle;
@@ -190,7 +186,7 @@ public class Cart {
 		};
 		@SuppressWarnings("unchecked")
 		ArrayList<Media> allMedias = (ArrayList<Media>) itemsOrdered.clone();
-		Collections.sort(allMedias, DVDComparator);
+		Collections.sort(allMedias, comparator);
 		
 		System.out.println("*********CART*********");
 		System.out.println("Ordered Items:");
@@ -207,7 +203,7 @@ public class Cart {
 		this.itemsOrdered.clear();
 	}
 	
-	public void printAllDVD() {
+	public void printAllMedia() {
 		// for debugging
 		for(Media media : this.itemsOrdered) {
 			media.displayDetail();
