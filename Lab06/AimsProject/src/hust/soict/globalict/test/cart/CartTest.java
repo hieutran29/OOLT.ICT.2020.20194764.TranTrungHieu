@@ -1,7 +1,9 @@
 package hust.soict.globalict.test.cart;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.Media;
 
 public class CartTest {
 	public static void SUCC_FAIL_MSG(String message, int flag) {
@@ -23,28 +25,32 @@ public class CartTest {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("DDDD", "dddd", "dddd", 4, 7.1f);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("EEEE", "eeee", "eeee", 5, 3.3f);
 		DigitalVideoDisc dvd6 = new DigitalVideoDisc("FFFF", "ffff", "ffff", 6, 2.5f);
+
+		Book book1 = new Book("Dac Nhan Tam", "Giao duc", "", new String[] { "Dale Carnergie" }, 5f);
+		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
+		Book book3 = new Book("Lap trinh huong doi tuong", "Giao duc", "", new String[] { "" }, 2f);
 		
-		int testRemoveWhenEmpty = cart.removeDigitalVideoDisc(dvd1);
+		int testRemoveWhenEmpty = cart.removeMedia(dvd1);
 		SUCC_FAIL_MSG("Remove When Empty", testRemoveWhenEmpty);
 		System.out.println();
 		
-		int testAdding = cart.addDigitalVideoDisc(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6);
+		int testAdding = cart.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6, book1, book2, book3);
 		SUCC_FAIL_MSG("Adding To Cart", testAdding);
 		System.out.println();
 		
 		cart.displayCart();
 		System.out.println();
 		
-		int testRemoveDVD6 = cart.removeDigitalVideoDisc(dvd6);
+		int testRemoveDVD6 = cart.removeMedia(dvd6);
 		SUCC_FAIL_MSG("Remove DVD6", testRemoveDVD6);
 		System.out.println();
 		
-		float totalCostAfterRemoveDVD6 = cart.totalCost();
-		if(totalCostAfterRemoveDVD6 == 26.3f) {
-			SUCC_FAIL_MSG("Cost After Remove DVD6 = 26.3", 0);
+		float totalCostAfterRemoveID6 = cart.totalCost();
+		if(totalCostAfterRemoveID6 == 38.3f) {
+			SUCC_FAIL_MSG("Cost After Remove ID6 = 38.3", 0);
 		}
-		else if(totalCostAfterRemoveDVD6 != 26.3f) {
-			SUCC_FAIL_MSG("Cost After Remove DVD6 = 26.3", -1);
+		else if(totalCostAfterRemoveID6 != 38.3f) {
+			SUCC_FAIL_MSG("Cost After Remove ID6 = 38.3", -1);
 		}
 		System.out.println();
 		
@@ -54,18 +60,20 @@ public class CartTest {
 		
 		cart.sortByCostAscending();
 		System.out.println("Sort Cart By Cost Ascending:");
-		cart.printAllDVD();
+		cart.printAllMedia();
+		System.out.println();
 		
 		cart.sortByCostDescending();
 		System.out.println("Sort Cart By Cost Descending:");
-		cart.printAllDVD();
+		cart.printAllMedia();
+		System.out.println();
 		
 		cart.sortByTitle();
 		System.out.println("Sort Cart by Title:");
-		cart.printAllDVD();
+		cart.printAllMedia();
 		System.out.println();
 		
-		DigitalVideoDisc testSearchID3 = cart.searchByID(3);
+		Media testSearchID3 = cart.searchByID(3);
 		if(testSearchID3 != null) {
 			System.out.println("Search ID 3:");
 			testSearchID3.displayDetail();
@@ -77,16 +85,33 @@ public class CartTest {
 			SUCC_FAIL_MSG("Search ID 3", -1);
 		}
 		
-		DigitalVideoDisc testSearchID6 = cart.searchByID(6);
+		Media testSearchID6 = cart.searchByID(6);
 		if(testSearchID6 != null) {
 			System.out.println("Search ID 6:");
 			testSearchID3.displayDetail();
-			SUCC_FAIL_MSG("Search ID 6", 0);
+			SUCC_FAIL_MSG("Search ID 6 FOUND", -1);
 		}
 		else {
-			SUCC_FAIL_MSG("Search ID 6", -1);
+			SUCC_FAIL_MSG("Search ID 6 NOT FOUND", 0);
 		
 		}
+
+		int testRemoveID8 = cart.removeMedia(8);
+		SUCC_FAIL_MSG("Remove ID8", testRemoveID8);
+		System.out.println();
+		
+		float totalCostAfterRemoveID8 = cart.totalCost();
+		if(totalCostAfterRemoveID8 == 33.3f) {
+			SUCC_FAIL_MSG("Cost After Remove ID8 = 33.3", 0);
+		}
+		else if(totalCostAfterRemoveID8 != 33.3f) {
+			SUCC_FAIL_MSG("Cost After Remove ID8 = 33.3", -1);
+		}
+		System.out.println();
+		
+		System.out.println("Cart After Remove ID8:");
+		cart.displayCart();
+		System.out.println();
 		
 	}
 
