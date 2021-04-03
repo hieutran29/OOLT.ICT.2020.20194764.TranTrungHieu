@@ -10,7 +10,7 @@ import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.utils.MediaUtils;
 
 public class Cart {
-	public final static int MAX_NUMBER_ORDERED = 7;
+	public final static int MAX_NUMBER_ORDERED = 20;
 	private ArrayList<Media> itemsOrdered = new ArrayList<Media> ();
 
 	public Cart() {
