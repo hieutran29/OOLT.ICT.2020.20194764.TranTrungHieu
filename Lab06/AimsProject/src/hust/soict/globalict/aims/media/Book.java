@@ -7,11 +7,11 @@ public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
     String content = "";
 
-    Book() {
+    public Book() {
         super();
     }
 
-    Book(String title, String category, String content, String[] authors, float cost) {
+    public Book(String title, String category, String content, String[] authors, float cost) {
         super(title, category, cost);
         this.content = content;
         this.authors.addAll(Arrays.asList(authors));
@@ -44,6 +44,7 @@ public class Book extends Media {
     }
 
     public void displayDetail() {
+        super.displayDetail();
         Map<String, Integer> map = new HashMap<String,Integer> ();
         String[] words = content.split(" ");
         for(String w : words) {
@@ -54,5 +55,9 @@ public class Book extends Media {
                 map.put(w, map.get(w) + 1);
             }
         }
+        System.out.println();
+        for (Map.Entry<String, Integer> entry : map.entrySet())
+            System.out.println("\tToken = " + entry.getKey() +
+                             ", Frequency = " + entry.getValue());
     }
 }
