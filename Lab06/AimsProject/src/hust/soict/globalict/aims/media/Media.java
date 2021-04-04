@@ -60,6 +60,11 @@ public class Media {
     }
 
     public int equals(Media media) {
+        if(media == null) {
+            System.out.println("ERROR: Cannot compare to NULL object");
+            return -1;
+        }
+
 		if(title().compareToIgnoreCase(media.title()) == 0 &&
 			category().compareToIgnoreCase(media.category()) == 0 &&
 			cost() == media.cost()) {
