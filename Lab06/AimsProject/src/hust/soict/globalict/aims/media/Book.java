@@ -17,12 +17,30 @@ public class Book extends Media {
         this.authors.addAll(Arrays.asList(authors));
     }
 
+    public Book(String title, String category, String content, List<String> authors, float cost) {
+        super(title, category, cost);
+        this.content = content;
+        this.authors.addAll(authors);
+    }
+
     String content() {
         return this.content;
     }
     
     public List<String> authors() {
         return this.authors;
+    }
+
+    public Book clone() {
+		int oldNumberMedias = Media.numberMedias;
+        Book book = new Book(this.title(), this.category(), this.content, this.authors(), this.cost());
+        
+        book.id = this.ID();
+        book.dateAdded = this.dateAdded;
+        book.free = this.free;
+        
+        Media.numberMedias = oldNumberMedias;
+        return book;
     }
 
     public int addAuthor(String authorName) {
