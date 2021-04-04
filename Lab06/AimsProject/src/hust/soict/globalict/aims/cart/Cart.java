@@ -18,6 +18,10 @@ public class Cart {
 	}
 
 	public int addMedia(Media media) {
+		if(media == null) {
+			System.out.println("ERROR: Cannot add a NULL object. Object is ignored");
+			return -1;
+		}
 		if(this.itemsOrdered.size() + 1 > MAX_NUMBER_ORDERED) {
 			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
 								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
@@ -29,28 +33,51 @@ public class Cart {
 	}
 	
 	public int addMedia(Media ... mediaList) {
-		if(this.itemsOrdered.size() + mediaList.length > MAX_NUMBER_ORDERED) {
+		int countNullObjects = 0;
+		for(Media media : mediaList) {
+			if(media == null) {
+				countNullObjects += 1;
+			}
+		}
+
+		if(this.itemsOrdered.size() + (mediaList.length - countNullObjects) > MAX_NUMBER_ORDERED) {
 			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
 								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
 			return -1;
 		}
+
 		for(int i = 0; i < mediaList.length; i++) {
-			this.itemsOrdered.add(mediaList[i]);
-			System.out.printf("Added %s to cart\n", mediaList[i].title());
+			if(mediaList[i] != null) {
+				this.itemsOrdered.add(mediaList[i]);
+				System.out.printf("Added %s to cart\n", mediaList[i].title());
+			}
 		}
+		System.out.printf("Added %d objects to cart; Ignored %d NULL objects",
+							mediaList.length - countNullObjects, countNullObjects);
 		return 0;
 	}
 
-	public int addMedia(Media dvd1, Media dvd2) {
-		if(this.itemsOrdered.size() + 2 > MAX_NUMBER_ORDERED) {
+	public int addMedia(Media media1, Media media2) {
+		int countNullObjects = 0;
+		countNullObjects = (media1 != null ? 0 : 1) + (media2 != null ? 0 : 1);
+
+		if(this.itemsOrdered.size() + (2 - countNullObjects) > MAX_NUMBER_ORDERED) {
 			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
 								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
 			return -1;
 		}
-		this.itemsOrdered.add(dvd1);
-		this.itemsOrdered.add(dvd2);
-		System.out.printf("Added %s to cart\n", dvd1.title());
-		System.out.printf("Added %s to cart\n", dvd2.title());
+
+		if(media1 != null) {
+			this.itemsOrdered.add(media1);
+			System.out.printf("Added %s to cart\n", media1.title());
+		}
+		if(media2 != null) {
+			this.itemsOrdered.add(media2);
+			System.out.printf("Added %s to cart\n", media2.title());
+		}
+
+		System.out.printf("Added %d media(s) to cart; Ignored %d NULL objects\n",
+							2 - countNullObjects, countNullObjects);
 		return 0;
 	}
 
@@ -61,6 +88,10 @@ public class Cart {
 	 * @return 0 if successful, -1 if failed
 	 */
 	public int removeMedia(Media media) {
+		if(media == null) {
+			System.out.println("ERROR: Object = NULL");
+			return -1;
+		}
 		if(this.itemsOrdered.size() <= 0) {
 			System.out.println("Your order is empty!");
 			return -1;

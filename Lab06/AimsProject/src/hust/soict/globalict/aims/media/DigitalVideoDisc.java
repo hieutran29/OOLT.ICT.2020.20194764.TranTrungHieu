@@ -56,6 +56,11 @@ public class DigitalVideoDisc extends Media {
 	}
 	
 	public int equals(DigitalVideoDisc disc) {
+		if(disc == null) {
+			System.out.println("ERROR: Cannot compare to NULL objects");
+			return -1;
+		}
+
 		if(super.equals(disc) == 0) {
 			if(disc.length() == this.length() && disc.director() == this.director()) {
 				return 0;

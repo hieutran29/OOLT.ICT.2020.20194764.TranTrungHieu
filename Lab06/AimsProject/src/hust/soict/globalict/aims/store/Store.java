@@ -24,20 +24,37 @@ public class Store {
 	}
 	
 	public int addMedia(Media media) {
+		if(media == null) {
+			System.out.println("ERROR: media = NULL");
+			return -1;
+		}
 		this.itemsInStore.add(media);
 		System.out.printf("Added %s to store\n", media.title());
 		return 0;
 	}
 
 	public int addMedia(Media ... mediaList) {
+		int countNullObjects = 0;
 		for(int i = 0; i < mediaList.length; i++) {
-			this.itemsInStore.add(mediaList[i]);
-			System.out.printf("Added %s to store\n", mediaList[i].title());
+			if(mediaList[i] != null) {
+				this.itemsInStore.add(mediaList[i]);
+				System.out.printf("Added %s to store\n", mediaList[i].title());
+			}
+			else {
+				countNullObjects += 1;
+			}
 		}
+		System.out.printf("Added %d objects to store; Ignored %d NULL objects",
+							mediaList.length - countNullObjects, countNullObjects);
 		return 0;
 	}
 	
 	public int removeMedia(Media media) {
+		if(media == null) {
+			System.out.println("ERROR: Object = NULL");
+			return -1;
+		}
+
 		Iterator<Media> iter = this.itemsInStore.iterator();
 		
 		int countRemoved = 0;
