@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 
 public class Media {
-    private int id = 0;
-    private String title = "";
-    private String category = "";
-    private float cost = 0.0f;
-    private LocalDate dateAdded;
-    private boolean free = false;
-    private static int numberMedias = 0;
+    protected int id = 0;
+    protected String title = "";
+    protected String category = "";
+    protected float cost = 0.0f;
+    protected LocalDate dateAdded;
+    protected boolean free = false;
+    public static int numberMedias = 0;
 
     public Media() {
         super();
@@ -59,6 +59,18 @@ public class Media {
         }
     }
 
+    public Media clone() {
+		int oldNumberMedias = Media.numberMedias;
+        Media media = new Media(this.title(), this.category(), this.cost());
+        
+        media.id = this.id;
+        media.dateAdded = this.dateAdded;
+        media.free = this.free;
+        
+        Media.numberMedias = oldNumberMedias;
+        return media;
+    }
+
     public int equals(Media media) {
         if(media == null) {
             System.out.println("ERROR: Cannot compare to NULL object");
@@ -86,7 +98,7 @@ public class Media {
 	}
 
 	public void displayDetail() {
-		System.out.printf("DVD - ID = %d - %s - %s - %.2f$ %s", this.ID(), this.title(), 
+		System.out.printf("Media - ID = %d - %s - %s - %.2f$ %s", this.ID(), this.title(), 
                             this.category(), this.cost(), (this.isFree() ? "- free" : ""));
 	}
 }

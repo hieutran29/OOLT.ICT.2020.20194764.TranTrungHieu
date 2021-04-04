@@ -27,7 +27,7 @@ public class Cart {
 								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
 			return -1;
 		}
-        this.itemsOrdered.add(media);
+        this.itemsOrdered.add(media.clone());
         System.out.printf("Added %s to cart\n", media.title());
 		return 0;
 	}
@@ -48,7 +48,7 @@ public class Cart {
 
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null) {
-				this.itemsOrdered.add(mediaList[i]);
+				this.itemsOrdered.add(mediaList[i].clone());
 				System.out.printf("Added %s to cart\n", mediaList[i].title());
 			}
 		}
@@ -68,11 +68,11 @@ public class Cart {
 		}
 
 		if(media1 != null) {
-			this.itemsOrdered.add(media1);
+			this.itemsOrdered.add(media1.clone());
 			System.out.printf("Added %s to cart\n", media1.title());
 		}
 		if(media2 != null) {
-			this.itemsOrdered.add(media2);
+			this.itemsOrdered.add(media2.clone());
 			System.out.printf("Added %s to cart\n", media2.title());
 		}
 

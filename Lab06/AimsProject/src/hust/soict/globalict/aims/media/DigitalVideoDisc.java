@@ -54,6 +54,18 @@ public class DigitalVideoDisc extends Media {
 		System.out.printf("DVD - ID = %d - %s - %s - %s - %d - %.2f$ %s", this.ID(), this.title(), this.category(),
 								this.director(), this.length(), this.cost(), (this.isFree() ? "- free" : ""));
 	}
+
+	public DigitalVideoDisc clone() {
+		int oldNumberMedias = Media.numberMedias;
+		DigitalVideoDisc disc = new DigitalVideoDisc(this.title(), this.category(), this.director(), this.length(), this.cost());
+
+		disc.dateAdded = this.dateAdded;
+		disc.free = this.free;
+		disc.id = this.id;
+
+		Media.numberMedias = oldNumberMedias;
+		return disc;
+	}
 	
 	public int equals(DigitalVideoDisc disc) {
 		if(disc == null) {
