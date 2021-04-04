@@ -37,6 +37,9 @@ public class Aims {
 		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
 		Book book3 = new Book("Tu dien Anh-Viet", "Giao duc", "", new String[] { "Oxford", "NXB Giao Duc" }, 2f);
 
+		cart.addMedia(dvd1);
+		cart.addMedia(dvd1);
+
 		store.addMedia(dvd1);
 		store.addMedia(dvd2);
 		store.addMedia(dvd3);
