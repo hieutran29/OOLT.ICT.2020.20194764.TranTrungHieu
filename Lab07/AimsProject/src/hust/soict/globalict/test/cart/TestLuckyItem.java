@@ -26,7 +26,7 @@ public class TestLuckyItem {
         }
         else {
             System.out.println("Lucky Item:");
-            luckyItem.displayDetail();
+            System.out.println(luckyItem.getDetail());
             System.out.println();
         }
         cart.displayCart();

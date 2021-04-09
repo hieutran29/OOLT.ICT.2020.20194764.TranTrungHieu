@@ -61,8 +61,7 @@ public class Book extends Media {
         return 0;
     }
 
-    public void displayDetail() {
-        super.displayDetail();
+    public String getDetail() {
         Map<String, Integer> map = new HashMap<String,Integer> ();
         String[] words = content.split("\\W+");
         for(String w : words) {
@@ -73,14 +72,26 @@ public class Book extends Media {
                 map.put(w, map.get(w) + 1);
             }
         }
-        System.out.println();
-        System.out.print("\tAuthor: ");
+
+        StringBuffer ret = new StringBuffer();
+        ret.append("[ID = " + this.ID()  + "]" + " " +
+                    "[" + this.title()    + "]" + " " + 
+                    "[" + this.category() + "]" + " ");
+
+        ret.append("[");
         for(String author : this.authors) {
-            System.out.print(author + ", ");
+            ret.append(author);
         }
-        System.out.println();
-        for (Map.Entry<String, Integer> entry : map.entrySet())
-            System.out.println("\tToken = " + entry.getKey() +
-                             ", Frequency = " + entry.getValue());
+        ret.append("] ");  
+        
+        ret.append("[");
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            ret.append(entry.getKey() + ": " + entry.getValue() + ", ");
+        }
+        ret.append("] ");
+
+        ret.append("[" + this.cost() + "]");
+
+        return ret.toString();
     }
 }

@@ -16,7 +16,7 @@ public class Store {
 	
 	public boolean exists(Media media) {
 		for(Media i : itemsInStore) {
-			if(i.equals(media) == 0) {
+			if(i.equals(media)) {
 				return true;
 			}
 		}
@@ -54,22 +54,13 @@ public class Store {
 			System.out.println("ERROR: Object = NULL");
 			return -1;
 		}
-
-		Iterator<Media> iter = this.itemsInStore.iterator();
 		
-		int countRemoved = 0;
-		while(iter.hasNext()) {
-			Media elem = iter.next();
-			if(elem.equals(media) == 0) {
-				iter.remove();
-				countRemoved++;
-				System.out.println("Remove ID" + elem.ID());
-			}
-		}
-		
-		if(countRemoved == 0) {
-			System.out.println("NO MATCHING Media FOUND");
+		if(this.itemsInStore.size() <= 0) {
+			System.out.println("Store is empty!");
 			return -1;
+		}
+		if(this.itemsInStore.size() > 0) {
+			this.itemsInStore.remove(media);
 		}
 		
 		return 0;
@@ -119,7 +110,7 @@ public class Store {
 
 	public void printMediasInStore() {
 		for(Media e : this.itemsInStore) {
-			e.displayDetail();
+			System.out.println(e.getDetail());
 			System.out.println();
 		}
 	}
