@@ -20,7 +20,7 @@ public class SeeCurrentCart {
         Media found = cart.searchByID(ID);
         System.out.println("\n----------");
         if(found != null) {
-            found.displayDetail();
+            found.getDetail();
         }
         else {
             System.out.println("NO Media MATCHING");
@@ -35,7 +35,7 @@ public class SeeCurrentCart {
         }
         else {
             for(Media f : found) {
-                f.displayDetail();
+                f.getDetail();
                 System.out.println();
             }
         }

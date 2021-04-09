@@ -61,8 +61,6 @@ public abstract class Media {
 
     public abstract Media clone();
 
-    public abstract int equals(Media media);
-
 	public boolean search(String title) {
 		String[] wordsInSearchedTitle = title.split("\\W+");
 		String[] wordsInDiscTitle = title().split("\\W+");
