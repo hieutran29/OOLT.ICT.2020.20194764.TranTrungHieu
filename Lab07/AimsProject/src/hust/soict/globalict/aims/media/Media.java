@@ -61,20 +61,6 @@ public abstract class Media {
 
     public abstract Media clone();
 
-    public int equals(Media media) {
-        if(media == null) {
-            System.out.println("ERROR: Cannot compare to NULL object");
-            return -1;
-        }
-
-		if( title().equalsIgnoreCase(media.title()) &&
-			category().equalsIgnoreCase(media.category())&&
-			cost() == media.cost()) {
-			return 0;
-		}
-		return -1;
-	}
-
 	public boolean search(String title) {
 		String[] wordsInSearchedTitle = title.split("\\W+");
 		String[] wordsInDiscTitle = title().split("\\W+");
