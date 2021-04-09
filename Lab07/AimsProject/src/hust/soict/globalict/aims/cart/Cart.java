@@ -92,27 +92,12 @@ public class Cart {
 			System.out.println("ERROR: Object = NULL");
 			return -1;
 		}
+
 		if(this.itemsOrdered.size() <= 0) {
 			System.out.println("Your order is empty!");
 			return -1;
 		}
-		else {
-			Iterator<Media> iter = this.itemsOrdered.iterator();
-			
-			int countRemoved = 0;
-			while(iter.hasNext()) {
-				Media elem = iter.next();
-				if(elem.equals(media) == 0) {
-					System.out.println("Remove ID" + elem.ID());
-					iter.remove();
-					countRemoved += 1;
-				}
-			}
-			if(countRemoved == 0) {
-				System.out.println(media.title() + ": not found");
-				return -1;
-			}
-		}
+		this.itemsOrdered.remove(media);
 		return 0;
 	}
 	
@@ -258,7 +243,7 @@ public class Cart {
 		System.out.println("Ordered Items:");
 		for(int i = 0; i < allMedias.size(); i++) {
 			System.out.print((i + 1) + ". ");
-			allMedias.get(i).displayDetail();
+			System.out.println(allMedias.get(i).getDetail());
 			System.out.println();
 		}	
 		System.out.println("Total cost: " + this.totalCost());
@@ -272,7 +257,7 @@ public class Cart {
 	public void printAllMedia() {
 		// for debugging
 		for(Media media : this.itemsOrdered) {
-			media.displayDetail();
+			System.out.println(media.getDetail());
 			System.out.println();
 		}
 	}

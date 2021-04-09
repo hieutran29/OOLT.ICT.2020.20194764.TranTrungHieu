@@ -85,7 +85,7 @@ public class Aims {
 				System.out.println("\n-----------");
 				Media media = ViewStore.seeMedia(store, ID);
 				if(media != null) {
-					media.displayDetail();
+					System.out.println(media.getDetail());
 				}
 				System.out.println("\n-----------\n");
 				
@@ -229,7 +229,7 @@ public class Aims {
 					System.out.println("Good Luck Next Time :(");
 				}
 				else {
-					luckyItem.displayDetail();
+					System.out.println(luckyItem.getDetail());
 				}
 			}
 			else if(choiceSeeCart == 5) {
