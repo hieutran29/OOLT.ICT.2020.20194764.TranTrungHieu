@@ -1,7 +1,7 @@
 package hust.soict.globalict.aims.utils;
 
-import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.cart.Cart;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class SeeCurrentCart {
     public static void menu() {
@@ -20,7 +20,7 @@ public class SeeCurrentCart {
         Media found = cart.searchByID(ID);
         System.out.println("\n----------");
         if(found != null) {
-            found.getDetail();
+            System.out.println(found.getDetail());
         }
         else {
             System.out.println("NO Media MATCHING");
@@ -35,7 +35,7 @@ public class SeeCurrentCart {
         }
         else {
             for(Media f : found) {
-                f.getDetail();
+                System.out.println(f.getDetail());
                 System.out.println();
             }
         }

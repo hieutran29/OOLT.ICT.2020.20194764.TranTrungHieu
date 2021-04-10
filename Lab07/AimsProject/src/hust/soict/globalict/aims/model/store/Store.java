@@ -1,10 +1,8 @@
-package hust.soict.globalict.aims.store;
+package hust.soict.globalict.aims.model.store;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class Store {
 	private ArrayList<Media> itemsInStore;

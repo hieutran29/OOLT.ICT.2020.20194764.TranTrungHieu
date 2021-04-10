@@ -1,8 +1,8 @@
 package hust.soict.globalict.test.disc;
 
-import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Media;
-import hust.soict.globalict.aims.media.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.model.cart.Cart;
+import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class DiscTest {
 	public static void main(String[] args) {

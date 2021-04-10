@@ -1,9 +1,9 @@
-package hust.soict.globalict.aims.media.book;
+package hust.soict.globalict.aims.model.book;
 
 import java.util.*;
 import java.util.List;
 
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class Book extends Media {
     private List<String> authors = new ArrayList<String>();

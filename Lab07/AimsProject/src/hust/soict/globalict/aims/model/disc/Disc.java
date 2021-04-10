@@ -1,6 +1,6 @@
-package hust.soict.globalict.aims.media.disc;
+package hust.soict.globalict.aims.model.disc;
 
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public abstract class Disc extends Media implements Playable {
 	protected String director = "";

@@ -1,4 +1,4 @@
-package hust.soict.globalict.aims.media;
+package hust.soict.globalict.aims.model.media;
 
 import java.time.LocalDate;
 
