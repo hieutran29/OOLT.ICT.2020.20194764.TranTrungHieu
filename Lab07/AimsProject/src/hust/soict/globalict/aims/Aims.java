@@ -114,7 +114,7 @@ public class Aims {
 				}
 			}
 			else if(choiceViewStore == 3) {
-				seeCurrentCart();
+				cart.displayCart();
 			}
 		} while(choiceViewStore != 0);
 	}
