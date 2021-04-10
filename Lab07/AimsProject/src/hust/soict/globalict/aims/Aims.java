@@ -15,9 +15,9 @@ import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
 import hust.soict.globalict.aims.model.disc.Track;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
-import hust.soict.globalict.aims.utils.SeeCurrentCart;
-import hust.soict.globalict.aims.utils.UpdateStore;
-import hust.soict.globalict.aims.utils.ViewStore;
+import hust.soict.globalict.aims.view.SeeCartMenu;
+import hust.soict.globalict.aims.view.UpdateStoreMenu;
+import hust.soict.globalict.aims.view.ViewStoreMenu;
 
 
 public class Aims {
@@ -97,7 +97,7 @@ public class Aims {
 		int choiceViewStore = 0;
 		do {
 			System.out.println();
-			ViewStore.menu();
+			ViewStoreMenu.menu();
 			System.out.print("Choose: ");
 			choiceViewStore = scanner.nextInt();
 			
@@ -106,7 +106,7 @@ public class Aims {
 				int ID = scanner.nextInt();
 				
 				System.out.println("\n-----------");
-				Media media = ViewStore.seeMedia(store, ID);
+				Media media = ViewStoreMenu.seeMedia(store, ID);
 				if(media != null) {
 					System.out.println(media.getDetail());
 				}
@@ -119,7 +119,7 @@ public class Aims {
 					System.out.print("Choose: ");
 					AddOrNot = scanner.nextInt();
 					if(AddOrNot == 1) {
-						ViewStore.addMediaFromStoreToCart(store, cart, media);
+						ViewStoreMenu.addMediaFromStoreToCart(store, cart, media);
 					}
 				}
 				
@@ -132,7 +132,7 @@ public class Aims {
 				Media mediaAdd = store.searchByID(ID);
 				 
 				if(mediaAdd != null) {
-					ViewStore.addMediaFromStoreToCart(store, cart, mediaAdd);
+					ViewStoreMenu.addMediaFromStoreToCart(store, cart, mediaAdd);
 					System.out.println();
 				}
 			}
@@ -143,7 +143,7 @@ public class Aims {
 				System.out.print("Enter ID to play: ");
 				int ID = scanner.nextInt();
 				System.out.println();
-				ViewStore.play(store, ID);
+				ViewStoreMenu.play(store, ID);
 			}
 		} while(choiceViewStore != 0);
 	}
@@ -152,7 +152,7 @@ public class Aims {
 		int choiceUpdateStore = 0;
 		do {
 			System.out.println();
-			UpdateStore.menu();
+			UpdateStoreMenu.menu();
 			System.out.print("Choose: ");
 			choiceUpdateStore = scanner.nextInt();
 			
@@ -180,7 +180,7 @@ public class Aims {
 					authors = scanner.nextLine();
 					System.out.print("Content: ");	content = scanner.nextLine();
 
-					UpdateStore.addMediaToStore(store, new Book(title, category, content, authors.split("\\W+"), cost));
+					UpdateStoreMenu.addMediaToStore(store, new Book(title, category, content, authors.split("\\W+"), cost));
 				}
 				else if(choice == 2) {
 					int length = 0;
@@ -189,13 +189,13 @@ public class Aims {
 					System.out.print("\nDirector: ");	director = scanner.nextLine();
 					System.out.print("\nLength: ");		length = scanner.nextInt();
 
-					UpdateStore.addMediaToStore(store, new DigitalVideoDisc(title, category, director, length, cost));
+					UpdateStoreMenu.addMediaToStore(store, new DigitalVideoDisc(title, category, director, length, cost));
 				}
 			}
 			else if(choiceUpdateStore == 2) {
 				System.out.print("Input Removed ID: ");
 				int ID = scanner.nextInt();
-				UpdateStore.removeMediaFromStore(store, ID);
+				UpdateStoreMenu.removeMediaFromStore(store, ID);
 				
 				System.out.println();
 			}
@@ -210,7 +210,7 @@ public class Aims {
 		int choiceSeeCart = 0;
 		do {
 			System.out.println();
-			SeeCurrentCart.menu();
+			SeeCartMenu.menu();
 			System.out.print("Choose: ");
 			choiceSeeCart = scanner.nextInt();
 			
@@ -223,13 +223,13 @@ public class Aims {
 				if(filterChoice == 1) {
 					System.out.print("Enter ID: ");
 					int ID = scanner.nextInt();
-					SeeCurrentCart.filterMediaByID(cart, ID);
+					SeeCartMenu.filterMediaByID(cart, ID);
 				}
 				else {
 					System.out.print("Enter Title: ");
 					scanner.nextLine();
 					String title = scanner.nextLine();
-					SeeCurrentCart.filterMediaByTitle(cart, title);
+					SeeCartMenu.filterMediaByTitle(cart, title);
 				}
 			}
 			else if(choiceSeeCart == 2) {
@@ -239,21 +239,21 @@ public class Aims {
 				int sortType = scanner.nextInt();
 				
 				if(sortType == 1) {
-					SeeCurrentCart.sortMediaByCost(cart);
+					SeeCartMenu.sortMediaByCost(cart);
 					cart.printAllMedia();
 				}
 				else if(sortType == 2) {
-					SeeCurrentCart.sortMediaByTitle(cart);
+					SeeCartMenu.sortMediaByTitle(cart);
 					cart.printAllMedia();
 				}
 			}
 			else if(choiceSeeCart == 3) {
 				System.out.print("Input Removed ID: ");
 				int ID = scanner.nextInt();
-				SeeCurrentCart.removeMedia(cart, ID);
+				SeeCartMenu.removeMedia(cart, ID);
 			}
 			else if(choiceSeeCart == 4) {
-				Media luckyItem = SeeCurrentCart.getLuckyItem(cart);
+				Media luckyItem = SeeCartMenu.getLuckyItem(cart);
 				if(luckyItem == null) {
 					System.out.println("Good Luck Next Time :(");
 				}
@@ -262,7 +262,7 @@ public class Aims {
 				}
 			}
 			else if(choiceSeeCart == 5) {
-				SeeCurrentCart.placeOrder(cart);
+				SeeCartMenu.placeOrder(cart);
 			}
 			
 			System.out.println();

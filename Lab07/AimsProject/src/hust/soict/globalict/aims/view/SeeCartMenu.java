@@ -1,9 +1,9 @@
-package hust.soict.globalict.aims.utils;
+package hust.soict.globalict.aims.view;
 
 import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.media.Media;
 
-public class SeeCurrentCart {
+public class SeeCartMenu {
     public static void menu() {
         System.out.println("See Current Cart: ");
         System.out.println("--------------------------------");

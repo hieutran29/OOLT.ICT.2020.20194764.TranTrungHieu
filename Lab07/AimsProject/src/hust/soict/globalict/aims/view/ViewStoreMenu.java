@@ -1,11 +1,11 @@
-package hust.soict.globalict.aims.utils;
+package hust.soict.globalict.aims.view;
 
 import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
 
-public class ViewStore {
+public class ViewStoreMenu {
     public static void menu() {
         System.out.println("View Store: ");
         System.out.println("--------------------------------");
