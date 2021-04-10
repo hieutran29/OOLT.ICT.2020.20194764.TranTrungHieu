@@ -84,12 +84,12 @@ public class CD extends Disc {
     @Override
     public String getDetail() {
         StringBuffer ret = new StringBuffer("[ID = " + this.ID()  + "]" + " " +
-                                            "[" + this.title()    + "]" + " " + 
-                                            "[" + this.category() + "]" + " " +
-                                            "[" + this.director() + "]" + " " +
-                                            "[" + this.artist()   + "]" + " " +
-                                            "[" + this.length()   + "]" + " " +
-                                            "[" + this.cost()     + "$]" + " ");
+                                            "[Title = " + this.title()    + "]" + " " + 
+                                            "[Category = " + this.category() + "]" + " " +
+                                            "[Director = " + this.director() + "]" + " " +
+                                            "[Artist = " + this.artist()   + "]" + " " +
+                                            "[Length = " + this.length()   + "]" + " " +
+                                            "[Cost = " + this.cost()     + "$]" + " ");
         for(Track t : tracks) {
             ret.append("\n\tTrack: " + t.title() + ", Length: " + t.length());
         }
