@@ -4,7 +4,7 @@ package hust.soict.globalict.aims.media;
  */
 
 
-public class DigitalVideoDisc extends Disc {
+public class DigitalVideoDisc extends Disc implements Playable {
 	
 	public DigitalVideoDisc() {
 		super();
@@ -37,5 +37,15 @@ public class DigitalVideoDisc extends Disc {
 
 		Media.numberMedias = oldNumberMedias;
 		return disc;
+	}
+
+	@Override
+	public void play() {
+		if(this.length() <= 0) {
+			System.out.printf("DVD %s cannot be played!! Length <= 0", this.title());
+		}
+		else {
+			System.out.printf("[Play DVD: %s, Length: %d]\n", this.title(), this.length());
+		}
 	}
 }

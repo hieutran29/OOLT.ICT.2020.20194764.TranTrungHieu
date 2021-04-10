@@ -2,7 +2,7 @@ package hust.soict.globalict.aims.media;
 
 import java.util.ArrayList;
 
-public class CD extends Disc {
+public class CD extends Disc implements Playable {
     private String artist = "";
     private ArrayList<Track> tracks = new ArrayList<Track>();
 
@@ -71,5 +71,13 @@ public class CD extends Disc {
         }
         System.out.println("Track is not existed");
         return -1;
+    }
+
+    @Override
+    public void play() {
+        System.out.println("Playing CD: " + this.title());
+        for(Track t : tracks) {
+            t.play();
+        }
     }
 }
