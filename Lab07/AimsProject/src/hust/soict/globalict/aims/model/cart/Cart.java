@@ -138,7 +138,7 @@ public class Cart {
 			maxID = Math.max(maxID, item.ID());
 		}
 
-		int luckyID = (int) (Math.random() * (double) (maxID + 1));
+		int luckyID = (int) (Math.random() * (double) maxID) + 1;
 		for(Media item : itemsOrdered) {
 			if(item.ID() == luckyID) {
 				item.setFree(true);
