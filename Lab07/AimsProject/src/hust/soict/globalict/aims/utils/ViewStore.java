@@ -2,6 +2,7 @@ package hust.soict.globalict.aims.utils;
 
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.media.disc.*;
 import hust.soict.globalict.aims.store.Store;
 
 public class ViewStore {
@@ -11,6 +12,7 @@ public class ViewStore {
         System.out.println("\t1. See a Media detail");
         System.out.println("\t2. Add a Media to cart");
         System.out.println("\t3. See current cart");
+        System.out.println("\t4. Play a Media");
         System.out.println("\t0. Exit");
         System.out.println("--------------------------------");
     }
@@ -38,5 +40,23 @@ public class ViewStore {
             return -1;
         }
         return cart.addMedia(media);
+    }
+
+    public static void play(Store store, int ID) {
+        Media media = store.searchByID(ID);
+        if(media == null) {
+            System.out.println("NO MATCHING ID FOUND");
+            return;
+        }
+
+        String className = media.getClass().getSimpleName();
+        if(className.equals("Book")) {
+            System.out.println("Cannot play a book");
+            return;
+        }
+        else {
+            Disc disc = (Disc) media;
+            disc.play();
+        }
     }
 }
