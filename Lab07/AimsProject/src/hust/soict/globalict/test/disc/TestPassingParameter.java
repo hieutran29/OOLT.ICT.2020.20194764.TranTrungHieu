@@ -1,5 +1,5 @@
 package hust.soict.globalict.test.disc;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.disc.DigitalVideoDisc;
 
 
 

@@ -1,6 +1,7 @@
 package hust.soict.globalict.test.store;
 
-import hust.soict.globalict.aims.media.*;
+import hust.soict.globalict.aims.media.book.Book;
+import hust.soict.globalict.aims.media.disc.DigitalVideoDisc;
 import hust.soict.globalict.aims.store.Store;
 
 public class StoreTest {
