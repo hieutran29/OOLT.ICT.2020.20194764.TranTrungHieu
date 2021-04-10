@@ -1,7 +1,5 @@
 package hust.soict.globalict.aims.view;
 
-import hust.soict.globalict.aims.model.media.Media;
-import hust.soict.globalict.aims.model.store.Store;
 
 public class UpdateStoreMenu {
     public static void menu() {
