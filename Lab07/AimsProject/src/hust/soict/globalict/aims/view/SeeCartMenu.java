@@ -1,12 +1,9 @@
 package hust.soict.globalict.aims.view;
 
-import hust.soict.globalict.aims.model.cart.Cart;
-import hust.soict.globalict.aims.model.media.Media;
-
 public class SeeCartMenu {
     public static void menu() {
-        System.out.println("See Current Cart: ");
         System.out.println("--------------------------------");
+        System.out.println("See Current Cart: ");
         System.out.println("\t1. Filter Medias in cart");
         System.out.println("\t2. Sort Medias in cart");
         System.out.println("\t3. Remove Media from cart");
@@ -15,50 +12,8 @@ public class SeeCartMenu {
         System.out.println("\t0. Exit");
         System.out.println("--------------------------------");
     }
-    
-    public static void filterMediaByID(Cart cart, int ID) {
-        Media found = cart.searchByID(ID);
-        System.out.println("\n----------");
-        if(found != null) {
-            System.out.println(found.getDetail());
-        }
-        else {
-            System.out.println("NO Media MATCHING");
-        }
-        System.out.println("----------\n");
-    }
-    
-    public static void filterMediaByTitle(Cart cart, String title) {
-        Media[] found = cart.searchByTitle(title);
-        if(found.length == 0) {
-            System.out.println("NO Media MATCHING");
-        }
-        else {
-            for(Media f : found) {
-                System.out.println(f.getDetail());
-                System.out.println();
-            }
-        }
-    }
-    
-    public static void sortMediaByCost(Cart cart) {
-        cart.sortByCostDescending();
-    }
-    
-    public static void sortMediaByTitle(Cart cart) {
-        cart.sortByTitle();
-    }
-    
-    public static int removeMedia(Cart cart, int ID) {
-        return cart.removeMedia(ID);
-    }
 
-    public static Media getLuckyItem(Cart cart) {
-        return cart.getLuckyItem();
-    }
-    
-    public static void placeOrder(Cart cart) {
-        System.out.println("An order is created");
-        cart.clear();
-    }
+    public static int maxChoice() {
+		return 5;
+	}
 }
