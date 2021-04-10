@@ -44,7 +44,7 @@ public class Store {
 				countNullObjects += 1;
 			}
 		}
-		System.out.printf("Added %d objects to store; Ignored %d NULL objects",
+		System.out.printf("Added %d objects to store; Ignored %d NULL objects\n",
 							mediaList.length - countNullObjects, countNullObjects);
 		return 0;
 	}

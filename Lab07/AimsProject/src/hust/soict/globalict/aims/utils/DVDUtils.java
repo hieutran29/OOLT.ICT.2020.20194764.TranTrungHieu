@@ -2,7 +2,7 @@ package hust.soict.globalict.aims.utils;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.disc.DigitalVideoDisc;
 
 
 public class DVDUtils {
