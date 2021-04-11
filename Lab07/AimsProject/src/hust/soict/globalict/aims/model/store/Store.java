@@ -1,10 +1,8 @@
-package hust.soict.globalict.aims.store;
+package hust.soict.globalict.aims.model.store;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class Store {
 	private ArrayList<Media> itemsInStore;
@@ -99,13 +97,7 @@ public class Store {
 	}
 
 	public static void showMenu() {
-		System.out.println("AIMS: ");
-		System.out.println("--------------------------------");
-		System.out.println("\t1. View store");
-		System.out.println("\t2. Update store");
-		System.out.println("\t3. See current cart");
-		System.out.println("\t0. Exit");
-		System.out.println("--------------------------------");
+
 	}
 
 	public void printMediasInStore() {

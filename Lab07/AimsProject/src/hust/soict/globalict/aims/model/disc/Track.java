@@ -1,4 +1,4 @@
-package hust.soict.globalict.aims.media.disc;
+package hust.soict.globalict.aims.model.disc;
 
 public class Track implements Playable {
     private String title = "";

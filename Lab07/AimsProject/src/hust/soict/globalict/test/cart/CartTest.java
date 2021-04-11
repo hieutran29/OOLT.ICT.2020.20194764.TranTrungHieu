@@ -1,9 +1,9 @@
 package hust.soict.globalict.test.cart;
 
-import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Media;
-import hust.soict.globalict.aims.media.book.Book;
-import hust.soict.globalict.aims.media.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.model.book.Book;
+import hust.soict.globalict.aims.model.cart.Cart;
+import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class CartTest {
 	public static void SUCC_FAIL_MSG(String message, int flag) {

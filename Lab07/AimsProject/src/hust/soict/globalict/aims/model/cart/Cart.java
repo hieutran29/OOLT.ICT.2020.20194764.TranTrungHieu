@@ -1,12 +1,16 @@
-package hust.soict.globalict.aims.cart;
+package hust.soict.globalict.aims.model.cart;
 /**
  * @author HieuTran
  */
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-import hust.soict.globalict.aims.media.*;
+import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
 
 public class Cart {
@@ -134,7 +138,7 @@ public class Cart {
 			maxID = Math.max(maxID, item.ID());
 		}
 
-		int luckyID = (int) (Math.random() * (double) (maxID + 1));
+		int luckyID = (int) (Math.random() * (double) maxID) + 1;
 		for(Media item : itemsOrdered) {
 			if(item.ID() == luckyID) {
 				item.setFree(true);

@@ -1,8 +1,8 @@
 package hust.soict.globalict.test.store;
 
-import hust.soict.globalict.aims.media.book.Book;
-import hust.soict.globalict.aims.media.disc.DigitalVideoDisc;
-import hust.soict.globalict.aims.store.Store;
+import hust.soict.globalict.aims.model.book.Book;
+import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.model.store.Store;
 
 public class StoreTest {
 

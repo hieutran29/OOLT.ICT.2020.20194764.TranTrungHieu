@@ -3,7 +3,7 @@ package hust.soict.globalict.aims.utils;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class MediaUtils {
 	public static int compareByCost(Media dvd1, Media dvd2) {

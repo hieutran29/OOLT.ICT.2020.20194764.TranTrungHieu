@@ -1,8 +1,8 @@
-package hust.soict.globalict.aims.media.disc;
+package hust.soict.globalict.aims.model.disc;
 
 import java.util.ArrayList;
 
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class CD extends Disc {
     private String artist = "";
@@ -79,6 +79,21 @@ public class CD extends Disc {
         }
         System.out.println("Track is not existed");
         return -1;
+    }
+
+    @Override
+    public String getDetail() {
+        StringBuffer ret = new StringBuffer("[ID = " + this.ID()  + "]" + " " +
+                                            "[Title = " + this.title()    + "]" + " " + 
+                                            "[Category = " + this.category() + "]" + " " +
+                                            "[Director = " + this.director() + "]" + " " +
+                                            "[Artist = " + this.artist()   + "]" + " " +
+                                            "[Length = " + this.length()   + "]" + " " +
+                                            "[Cost = " + this.cost()     + "$]" + " ");
+        for(Track t : tracks) {
+            ret.append("\n\tTrack: " + t.title() + ", Length: " + t.length());
+        }
+        return ret.toString();
     }
 
     @Override

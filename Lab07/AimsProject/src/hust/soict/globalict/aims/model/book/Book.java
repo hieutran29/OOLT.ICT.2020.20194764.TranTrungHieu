@@ -1,9 +1,9 @@
-package hust.soict.globalict.aims.media.book;
+package hust.soict.globalict.aims.model.book;
 
 import java.util.*;
 import java.util.List;
 
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
@@ -77,12 +77,12 @@ public class Book extends Media {
 
         StringBuffer ret = new StringBuffer();
         ret.append("[ID = " + this.ID()  + "]" + " " +
-                    "[" + this.title()    + "]" + " " + 
-                    "[" + this.category() + "]" + " ");
+                    "[Title = " + this.title()    + "]" + " " + 
+                    "[Category = " + this.category() + "]" + " ");
 
-        ret.append("[");
+        ret.append("[Author = ");
         for(String author : this.authors) {
-            ret.append(author);
+            ret.append(author + ", ");
         }
         ret.append("] ");  
         
@@ -92,7 +92,7 @@ public class Book extends Media {
         }
         ret.append("] ");
 
-        ret.append("[" + this.cost() + "]");
+        ret.append("[Cost = " + this.cost() + "]");
 
         return ret.toString();
     }

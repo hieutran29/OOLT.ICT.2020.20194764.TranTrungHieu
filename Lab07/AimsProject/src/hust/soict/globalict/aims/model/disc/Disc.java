@@ -1,6 +1,6 @@
-package hust.soict.globalict.aims.media.disc;
+package hust.soict.globalict.aims.model.disc;
 
-import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.model.media.Media;
 
 public abstract class Disc extends Media implements Playable {
 	protected String director = "";
@@ -56,11 +56,11 @@ public abstract class Disc extends Media implements Playable {
     @Override
     public String getDetail() {
         return  "[ID = " + this.ID()  + "]" + " " +
-				"[" + this.title()    + "]" + " " + 
-				"[" + this.category() + "]" + " " +
-				"[" + this.director() + "]" + " " +
-				"[" + this.length()   + "]" + " " +
-				"[" + this.cost()     + "$]" + " ";
+				"[Title = " + this.title()    + "]" + " " + 
+				"[Category = " + this.category() + "]" + " " +
+				"[Director = " + this.director() + "]" + " " +
+				"[Length = " + this.length()   + "]" + " " +
+				"[Cost = " + this.cost()     + "$]" + " ";
     }
 
     public abstract Disc clone();
