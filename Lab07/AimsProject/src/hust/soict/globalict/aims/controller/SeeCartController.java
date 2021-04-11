@@ -68,6 +68,10 @@ public class SeeCartController extends Controller {
                     message(luckyItem.getDetail());
                 }
             }
+            else if(choice == 5) {
+                cartDB.cart.clear();
+                System.out.println("An order is created");
+            }
             else if(choice == 0) {
                 return;
             }
