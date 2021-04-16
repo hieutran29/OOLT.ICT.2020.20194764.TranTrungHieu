@@ -26,6 +26,18 @@ public class Track implements Playable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Track) {
+            Track track = (Track) obj;
+            if(track.title == this.title &&
+                track.length == this.length) {
+                    return true;
+                }
+        }
+        return false;
+    }
+
+    @Override
     public void play() {
         if(this.length() <= 0) {
 			System.out.printf("Track %s cannot be played!! Length <= 0", this.title());

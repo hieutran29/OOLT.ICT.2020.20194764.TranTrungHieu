@@ -61,6 +61,17 @@ public abstract class Media {
 
     public abstract Media clone();
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Media) {
+            Media media = (Media) obj;
+            if(media.id == this.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 	public boolean search(String title) {
 		String[] wordsInSearchedTitle = title.split("\\W+");
 		String[] wordsInDiscTitle = title().split("\\W+");
