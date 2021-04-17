@@ -6,11 +6,11 @@ import java.util.Comparator;
 import hust.soict.globalict.aims.model.media.Media;
 
 public class MediaUtils {
-	public static int compareByCost(Media dvd1, Media dvd2) {
-		if(dvd1.cost() < dvd2.cost()) {
+	public static int compareByCost(Media o1, Media o2) {
+		if(o1.cost() < o2.cost()) {
 			return -1;
 		}
-		else if(dvd1.cost() > dvd2.cost()) {
+		else if(o1.cost() > o2.cost()) {
 			return 1;
 		}
 		else {
@@ -18,8 +18,8 @@ public class MediaUtils {
 		}
 	}
 	
-	public static int compareByTitle(Media dvd1, Media dvd2) {
-		return dvd1.title().compareToIgnoreCase(dvd2.title());
+	public static int compareByTitle(Media o1, Media o2) {
+		return o1.title().compareToIgnoreCase(o2.title());
 	}
 	
 	public static Media[] sortByCost(Media[] disc) {
