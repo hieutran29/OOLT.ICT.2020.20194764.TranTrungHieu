@@ -176,31 +176,11 @@ public class Cart {
 	
 	public void sortByCostDescending() {
 		// using lambda expression
-		this.itemsOrdered.sort(new Comparator<Media> () {
-			public int compare(Media media1, Media media2) {
-				int compareByCost = -MediaUtils.compareByCost(media1, media2);
-				if(compareByCost == 0) {
-					return MediaUtils.compareByTitle(media1, media2);
-				}
-				else {
-					return compareByCost;
-				}
-			}
-		});
+		this.itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
 	}
 
 	public void sortByTitle() {
-		this.itemsOrdered.sort(new Comparator<Media> () {
-			public int compare(Media media1, Media media2) {
-				int compareByTitle = MediaUtils.compareByTitle(media1, media2);
-				if(compareByTitle == 0) {
-					return -MediaUtils.compareByCost(media1, media2);
-				}
-				else {
-					return compareByTitle;
-				}
-			}
-		});
+		this.itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
 	}
 	
 	/**
