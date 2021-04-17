@@ -36,23 +36,6 @@ public abstract class Disc extends Media implements Playable {
 		return this.length;
 	}
 
-	public int equals(Disc disc) {
-		if(disc == null) {
-			System.out.println("ERROR: Cannot compare to NULL objects");
-			return -1;
-		}
-
-		if( this.title().equalsIgnoreCase(disc.title()) &&
-			this.category().equalsIgnoreCase(disc.category()) &&
-			this.length() == disc.length() &&
-            this.director().equalsIgnoreCase(disc.director()) &&
-			this.cost() == disc.cost()) {
-
-			return 0;
-        }
-		return -1;
-	}
-
     @Override
     public String toString() {
         return  "[ID = " + this.ID()  + "]" + " " +
