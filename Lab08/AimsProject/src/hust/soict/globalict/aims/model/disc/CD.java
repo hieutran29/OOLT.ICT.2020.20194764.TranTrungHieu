@@ -39,22 +39,13 @@ public class CD extends Disc {
         return totalLength;
     }
 
-    public boolean exists(Track track) {
-        for(Track t : this.tracks) {
-            if(t.equals(track)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public int addTrack(Track track) {
         if(track == null) {
             System.out.println("ERROR: Track is NULL");
             return -1;
         }
 
-        if(!exists(track)) {
+        if(!tracks.contains(track)) {
             this.tracks.add(track);
             return 0;
         }
@@ -73,7 +64,7 @@ public class CD extends Disc {
             return -1;
         }
 
-        if(exists(track)) {
+        if(tracks.contains(track)) {
             this.tracks.remove(track);
             return 0;
         }
