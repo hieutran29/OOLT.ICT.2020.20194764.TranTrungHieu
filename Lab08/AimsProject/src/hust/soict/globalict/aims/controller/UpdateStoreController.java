@@ -37,61 +37,63 @@ public class UpdateStoreController extends Controller {
 				int choiceAdd = scanner.nextInt();
 				scanner.nextLine();
 
-				Message.printMessage("Title: ", Message.MESSAGE_QUESTION); title = scanner.nextLine();
-				Message.printMessage("Category: ", Message.MESSAGE_QUESTION); category = scanner.nextLine();
-				Message.printMessage("Cost: ", Message.MESSAGE_QUESTION); cost = scanner.nextFloat();
-				scanner.nextLine();
+                if(choiceAdd != 0) {
+                    Message.printMessage("Title: ", Message.MESSAGE_QUESTION); title = scanner.nextLine();
+                    Message.printMessage("Category: ", Message.MESSAGE_QUESTION); category = scanner.nextLine();
+                    Message.printMessage("Cost: ", Message.MESSAGE_QUESTION); cost = scanner.nextFloat();
+                    scanner.nextLine();
 
-				if(choiceAdd == 1) {
-					String content = "";
-					String authors = "";
+                    if(choiceAdd == 1) {
+                        String content = "";
+                        String authors = "";
 
-					Message.printMessage("List of authors (separated by ','): ", Message.MESSAGE_QUESTION);	
-					authors = scanner.nextLine();
-					Message.printMessage("Content: ", Message.MESSAGE_QUESTION);	
-                    content = scanner.nextLine();
-                    
-					storeDB.store.addMedia(new Book(title, category, content, authors.split("\\W+"), cost));
-				}
-				else if(choiceAdd == 2) {
-					int length = 0;
-					String director = "";
+                        Message.printMessage("List of authors (separated by ','): ", Message.MESSAGE_QUESTION);	
+                        authors = scanner.nextLine();
+                        Message.printMessage("Content: ", Message.MESSAGE_QUESTION);	
+                        content = scanner.nextLine();
+                        
+                        storeDB.store.addMedia(new Book(title, category, content, authors.split("\\W+"), cost));
+                    }
+                    else if(choiceAdd == 2) {
+                        int length = 0;
+                        String director = "";
 
-					Message.printMessage("Director: ", Message.MESSAGE_QUESTION);
-                    director = scanner.nextLine();
-					Message.printMessage("Length: ", Message.MESSAGE_QUESTION);
-                    length = scanner.nextInt();
+                        Message.printMessage("Director: ", Message.MESSAGE_QUESTION);
+                        director = scanner.nextLine();
+                        Message.printMessage("Length: ", Message.MESSAGE_QUESTION);
+                        length = scanner.nextInt();
 
-					storeDB.store.addMedia(new DigitalVideoDisc(title, category, director, length, cost));
-				}
-                else if(choiceAdd == 3) {
-                    String director = "";
-                    String artist = "";
-                    ArrayList<Track> tracks = new ArrayList<Track>();
-                    String trackName = "";
-                    int trackLength = 0;
+                        storeDB.store.addMedia(new DigitalVideoDisc(title, category, director, length, cost));
+                    }
+                    else if(choiceAdd == 3) {
+                        String director = "";
+                        String artist = "";
+                        ArrayList<Track> tracks = new ArrayList<Track>();
+                        String trackName = "";
+                        int trackLength = 0;
 
-                    Message.printMessage("Director: ", Message.MESSAGE_QUESTION);
-                    director = scanner.nextLine();
-                    Message.printMessage("Artist: ", Message.MESSAGE_QUESTION);
-                    artist = scanner.nextLine();
+                        Message.printMessage("Director: ", Message.MESSAGE_QUESTION);
+                        director = scanner.nextLine();
+                        Message.printMessage("Artist: ", Message.MESSAGE_QUESTION);
+                        artist = scanner.nextLine();
 
-                    char confirm_add_more_track;
-                    do {
-                        Message.printMessage("Track Name: ", Message.MESSAGE_QUESTION);
-                        trackName = scanner.nextLine();
-                        Message.printMessage("Track Length: ", Message.MESSAGE_QUESTION);
-                        trackLength = Integer.parseInt(scanner.nextLine());
+                        char confirm_add_more_track;
+                        do {
+                            Message.printMessage("Track Name: ", Message.MESSAGE_QUESTION);
+                            trackName = scanner.nextLine();
+                            Message.printMessage("Track Length: ", Message.MESSAGE_QUESTION);
+                            trackLength = Integer.parseInt(scanner.nextLine());
 
-                        Message.printMessage("Do you want to add more track? (y/n): ", Message.MESSAGE_QUESTION);
-                        confirm_add_more_track = scanner.next().charAt(0);
+                            Message.printMessage("Do you want to add more track? (y/n): ", Message.MESSAGE_QUESTION);
+                            confirm_add_more_track = scanner.next().charAt(0);
 
-                        scanner.nextLine();
+                            scanner.nextLine();
 
-                        tracks.add(new Track(trackName, trackLength));
-                    } while(confirm_add_more_track == 'y');
+                            tracks.add(new Track(trackName, trackLength));
+                        } while(confirm_add_more_track == 'y');
 
-                    storeDB.store.addMedia(new CD(title, category, director, artist, tracks, cost));
+                        storeDB.store.addMedia(new CD(title, category, director, artist, tracks, cost));
+                    }
                 }
             }
             else if(choice == 2) {
