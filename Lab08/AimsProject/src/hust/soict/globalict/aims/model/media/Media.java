@@ -2,8 +2,10 @@ package hust.soict.globalict.aims.model.media;
 
 import java.time.LocalDate;
 
+import hust.soict.globalict.aims.utils.MediaUtils;
 
-public abstract class Media {
+
+public abstract class Media implements Comparable<Media> {
     protected int id = 0;
     protected String title = "";
     protected String category = "";
@@ -70,6 +72,16 @@ public abstract class Media {
             }
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Media o) {
+        int compareByTitle = MediaUtils.compareByTitle(this, o);
+        if(compareByTitle == 0) {
+            int compareByCost = MediaUtils.compareByCost(this, o);
+            return -compareByCost;
+        }
+        return compareByTitle;
     }
 
 	public boolean search(String title) {

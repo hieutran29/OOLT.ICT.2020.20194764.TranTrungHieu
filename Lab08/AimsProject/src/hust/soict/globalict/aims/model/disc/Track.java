@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.model.disc;
 
-public class Track implements Playable {
+public class Track implements Playable, Comparable<Track> {
     private String title = "";
     private int length = 0;
 
@@ -45,5 +45,14 @@ public class Track implements Playable {
 		else {
 			System.out.printf("[Play Track: %s, Length: %d]\n", this.title(), this.length());
 		}
+    }
+
+    @Override
+    public int compareTo(Track o) {
+        int compareByTitle = this.title.compareToIgnoreCase(o.title);
+        if(compareByTitle == 0) {
+            return o.length - this.length; 
+        }
+        return 0;
     }
 }
