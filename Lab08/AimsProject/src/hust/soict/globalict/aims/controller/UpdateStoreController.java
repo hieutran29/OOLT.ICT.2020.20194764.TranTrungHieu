@@ -6,6 +6,7 @@ import hust.soict.globalict.aims.model.book.Book;
 import hust.soict.globalict.aims.model.disc.CD;
 import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
 import hust.soict.globalict.aims.model.disc.Track;
+import hust.soict.globalict.aims.view.Message;
 import hust.soict.globalict.aims.view.UpdateStoreMenu;
 
 public class UpdateStoreController extends Controller {
@@ -18,36 +19,36 @@ public class UpdateStoreController extends Controller {
     public void start() {
         int choice;
         do {
-            System.out.println();
+            Message.printMessage("\n", Message.MESSAGE_PLAIN);
             menu();
 
-            System.out.print("Enter choice: ");
+            Message.printMessage("Enter choice: ", Message.MESSAGE_QUESTION);
             choice = scanner.nextInt();
 
             if(choice == 1) {
                 String title = "", category = "";
 				float cost = 0.0f;
 
-				System.out.println("1. Add a book");
-				System.out.println("2. Add a DVD");
-                System.out.println("3. Add a CD");
-				System.out.println("0. Exit");
-				System.out.print("Choose: ");
+				Message.printMessage("1. Add a book\n", Message.MESSAGE_PLAIN);
+				Message.printMessage("2. Add a DVD\n", Message.MESSAGE_PLAIN);
+                Message.printMessage("3. Add a CD\n", Message.MESSAGE_PLAIN);
+				Message.printMessage("0. Exit\n", Message.MESSAGE_PLAIN);
+				Message.printMessage("Choose: ", Message.MESSAGE_PLAIN);
 				int choiceAdd = scanner.nextInt();
 				scanner.nextLine();
 
-				System.out.print("Title: "); title = scanner.nextLine();
-				System.out.print("Category: "); category = scanner.nextLine();
-				System.out.print("Cost: "); cost = scanner.nextFloat();
+				Message.printMessage("Title: ", Message.MESSAGE_QUESTION); title = scanner.nextLine();
+				Message.printMessage("Category: ", Message.MESSAGE_QUESTION); category = scanner.nextLine();
+				Message.printMessage("Cost: ", Message.MESSAGE_QUESTION); cost = scanner.nextFloat();
 				scanner.nextLine();
 
 				if(choiceAdd == 1) {
 					String content = "";
 					String authors = "";
 
-					System.out.print("List of authors (separated by ','): ");	
+					Message.printMessage("List of authors (separated by ','): ", Message.MESSAGE_QUESTION);	
 					authors = scanner.nextLine();
-					System.out.print("Content: ");	
+					Message.printMessage("Content: ", Message.MESSAGE_QUESTION);	
                     content = scanner.nextLine();
                     
 					storeDB.store.addMedia(new Book(title, category, content, authors.split("\\W+"), cost));
@@ -56,8 +57,10 @@ public class UpdateStoreController extends Controller {
 					int length = 0;
 					String director = "";
 
-					System.out.print("Director: ");	    director = scanner.nextLine();
-					System.out.print("Length: ");		length = scanner.nextInt();
+					Message.printMessage("Director: ", Message.MESSAGE_QUESTION);
+                    director = scanner.nextLine();
+					Message.printMessage("Length: ", Message.MESSAGE_QUESTION);
+                    length = scanner.nextInt();
 
 					storeDB.store.addMedia(new DigitalVideoDisc(title, category, director, length, cost));
 				}
@@ -68,19 +71,19 @@ public class UpdateStoreController extends Controller {
                     String trackName = "";
                     int trackLength = 0;
 
-                    System.out.print("Director: ");
+                    Message.printMessage("Director: ", Message.MESSAGE_QUESTION);
                     director = scanner.nextLine();
-                    System.out.print("Artist: ");
+                    Message.printMessage("Artist: ", Message.MESSAGE_QUESTION);
                     artist = scanner.nextLine();
 
                     char confirm_add_more_track;
                     do {
-                        System.out.print("Track Name: ");
+                        Message.printMessage("Track Name: ", Message.MESSAGE_QUESTION);
                         trackName = scanner.nextLine();
-                        System.out.print("Track Length: ");
+                        Message.printMessage("Track Length: ", Message.MESSAGE_QUESTION);
                         trackLength = Integer.parseInt(scanner.nextLine());
 
-                        System.out.print("Do you want to add more track? (y/n): ");
+                        Message.printMessage("Do you want to add more track? (y/n): ", Message.MESSAGE_QUESTION);
                         confirm_add_more_track = scanner.next().charAt(0);
 
                         scanner.nextLine();
@@ -92,17 +95,10 @@ public class UpdateStoreController extends Controller {
                 }
             }
             else if(choice == 2) {
-				System.out.print("Input Removed ID: ");
+				Message.printMessage("Input Removed ID: ", Message.MESSAGE_QUESTION);
 				int ID = scanner.nextInt();
 				storeDB.store.removeMedia(ID);
             }
-            else if(choice == 0) {
-                break;
-            }
-            else {
-                message("ERROR: Choice invalid");
-            }
-
-        } while(choice >= 0 && choice <= UpdateStoreMenu.maxChoice());
+        } while(choice != 0);
     }
 }

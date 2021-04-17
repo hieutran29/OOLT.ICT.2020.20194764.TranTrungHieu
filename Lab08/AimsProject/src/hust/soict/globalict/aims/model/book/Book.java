@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.List;
 
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.Message;
 
 public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
@@ -47,7 +48,7 @@ public class Book extends Media {
 
     public int addAuthor(String authorName) {
         if(authors.contains(authorName)) {
-            System.out.println("Author already existed!!");
+            Message.printMessage("Author already existed!!\n", Message.MESSAGE_ERROR);
             return -1;
         }
         this.authors.add(authorName);
@@ -56,7 +57,7 @@ public class Book extends Media {
 
     public int removeAuthor(String authorName) {
         if(!authors.contains(authorName)) {
-            System.out.println("Author does not exist in list");
+            Message.printMessage("Author does not exist in list\n", Message.MESSAGE_ERROR);
             return -1;
         }
         authors.remove(authorName);

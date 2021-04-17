@@ -1,5 +1,7 @@
 package hust.soict.globalict.aims.model.disc;
 
+import hust.soict.globalict.aims.view.Message;
+
 public class Track implements Playable, Comparable<Track> {
     private String title = "";
     private int length = 0;
@@ -40,10 +42,10 @@ public class Track implements Playable, Comparable<Track> {
     @Override
     public void play() {
         if(this.length() <= 0) {
-			System.out.printf("Track %s cannot be played!! Length <= 0", this.title());
+			Message.printMessage("Track " + this.title() + " cannot be played!! Length <= 0\n", Message.MESSAGE_ERROR);
 		}
 		else {
-			System.out.printf("[Play Track: %s, Length: %d]\n", this.title(), this.length());
+			Message.printMessage("\t[Play Track: " + this.title() + ", Length: " + this.length() +"]", Message.MESSAGE_PLAIN);
 		}
     }
 

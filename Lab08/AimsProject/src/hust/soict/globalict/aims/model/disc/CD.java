@@ -3,6 +3,7 @@ package hust.soict.globalict.aims.model.disc;
 import java.util.ArrayList;
 
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.Message;
 
 public class CD extends Disc {
     private String artist = "";
@@ -41,7 +42,7 @@ public class CD extends Disc {
 
     public int addTrack(Track track) {
         if(track == null) {
-            System.out.println("ERROR: Track is NULL");
+            Message.printMessage("Track is NULL\n", Message.MESSAGE_ERROR);
             return -1;
         }
 
@@ -49,18 +50,18 @@ public class CD extends Disc {
             this.tracks.add(track);
             return 0;
         }
-        System.out.println("Track is already existed");
+        Message.printMessage("Track is already existed\n", Message.MESSAGE_ERROR);
         return -1;
     }
 
     public int removeTrack(Track track) {
         if(track == null) {
-            System.out.println("ERROR: Track is NULL");
+            Message.printMessage("ERROR: Track is NULL\n", Message.MESSAGE_ERROR);
             return -1;
         }
 
         if(this.tracks.size() <= 0) {
-            System.out.println("CD is empty");
+            Message.printMessage("CD is empty\n", Message.MESSAGE_ERROR);
             return -1;
         }
 
@@ -68,7 +69,7 @@ public class CD extends Disc {
             this.tracks.remove(track);
             return 0;
         }
-        System.out.println("Track is not existed");
+        Message.printMessage("Track is not existed\n", Message.MESSAGE_ERROR);
         return -1;
     }
 
@@ -89,9 +90,10 @@ public class CD extends Disc {
 
     @Override
     public void play() {
-        System.out.println("Playing CD: " + this.title());
+        Message.printMessage("Playing CD: " + this.title(), Message.MESSAGE_PLAIN);
         for(Track t : tracks) {
             t.play();
+            Message.printMessage("\n", Message.MESSAGE_PLAIN);
         }
     }
 

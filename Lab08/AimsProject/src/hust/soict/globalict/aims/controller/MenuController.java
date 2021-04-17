@@ -1,6 +1,7 @@
 package hust.soict.globalict.aims.controller;
 
 import hust.soict.globalict.aims.view.MainMenu;
+import hust.soict.globalict.aims.view.Message;
 
 public class MenuController extends Controller {
     private ViewStoreController viewStore = new ViewStoreController();
@@ -17,10 +18,10 @@ public class MenuController extends Controller {
     public void start() {
         int choice;
         do {
-            System.out.println();
+            Message.printMessage("\n", Message.MESSAGE_PLAIN);
             menu();
 
-            System.out.print("Enter choice: ");
+            Message.printMessage("Enter choice: ", Message.MESSAGE_QUESTION);
             choice = scanner.nextInt();
 
             if(choice == 1) {
@@ -31,7 +32,7 @@ public class MenuController extends Controller {
                 updateStore.start();
             }
             else if(choice == 3) {
-                System.out.println();
+                Message.printMessage("\n", Message.MESSAGE_PLAIN);
                 cartDB.cart.displayCart();
                 seeCart.start();
             }
@@ -39,16 +40,12 @@ public class MenuController extends Controller {
                 end();
                 break;
             }
-            else {
-                message("ERROR: Choice invalid");
-            }
-
         } while(choice != 0);
     }
 
     private final void end() {
         scanner.close();
-        System.out.println("Good bye!");
+        Message.printMessage("Good bye!", Message.MESSAGE_NOTIFICATION);
     }
 
 }

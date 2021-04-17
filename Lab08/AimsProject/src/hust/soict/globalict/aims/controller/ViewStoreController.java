@@ -4,6 +4,7 @@ import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
+import hust.soict.globalict.aims.view.Message;
 import hust.soict.globalict.aims.view.ViewStoreMenu;
 
 public class ViewStoreController extends Controller {
@@ -16,28 +17,28 @@ public class ViewStoreController extends Controller {
     public void start() {
         int choice;
         do {
-            System.out.println();
+            Message.printMessage("\n", Message.MESSAGE_PLAIN);
             menu();
 
             System.out.print("Enter choice: ");
             choice = scanner.nextInt();
 
             if(choice == 1) {
-                System.out.print("Enter ID of Media to see: ");
+                Message.printMessage("Enter ID of Media to see: ", Message.MESSAGE_QUESTION);
 				int ID = scanner.nextInt();
 				
-				System.out.println("\n-----------");
+				Message.printMessage("-----------\n", Message.MESSAGE_PLAIN);
 				Media media = seeMedia(storeDB.store, ID);
 				if(media != null) {
-					System.out.println(media.toString());
+					Message.printMessage(media.toString(), Message.MESSAGE_PLAIN);
 				}
-				System.out.println("\n-----------\n");
+				Message.printMessage("\n-----------\n", Message.MESSAGE_PLAIN);
 				
 				if(media != null) {
 					int AddOrNot = 0;
-					System.out.println("1. Add this Media to Cart, or");
-					System.out.println("0. Do nothing, exit");
-					System.out.print("Choose: ");
+					Message.printMessage("1. Add this Media to Cart, or\n", Message.MESSAGE_PLAIN);
+					Message.printMessage("0. Do nothing, exit\n", Message.MESSAGE_PLAIN);
+				    Message.printMessage("Choose: ", Message.MESSAGE_PLAIN);
 					AddOrNot = scanner.nextInt();
 					if(AddOrNot == 1) {
 						addMediaFromStoreToCart(storeDB.store, cartDB.cart, media);
@@ -45,7 +46,7 @@ public class ViewStoreController extends Controller {
 				}
             }
             else if(choice == 2) {
-				System.out.printf("Enter ID: ");
+				Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
 				int ID = scanner.nextInt();
 
 				Media mediaAdd = storeDB.store.searchByID(ID);
@@ -58,19 +59,12 @@ public class ViewStoreController extends Controller {
                 cartDB.cart.displayCart();
             }
             else if(choice == 4) {
-				System.out.print("Enter ID to play: ");
+				Message.printMessage("Enter ID to play: ", Message.MESSAGE_QUESTION);
 				int ID = scanner.nextInt();
 				scanner.nextLine();
 				play(storeDB.store, ID);
             }
-            else if(choice == 0) {
-                break;
-            }
-            else {
-                message("ERROR: Choice invalid");
-            }
-
-        } while(choice >= 0 && choice <= ViewStoreMenu.maxChoice());
+        } while(choice != 0);
     }
 
     /**
@@ -92,7 +86,7 @@ public class ViewStoreController extends Controller {
      */
     private int addMediaFromStoreToCart(Store store, Cart cart, Media media) {
         if(!store.exists(media)) {
-            System.out.println("CANNOT ADD A NON-EXIST Media IN STORE TO A CART");
+            Message.printMessage("Media not existed in store", Message.MESSAGE_ERROR);
             return -1;
         }
         return cart.addMedia(media);
@@ -101,13 +95,13 @@ public class ViewStoreController extends Controller {
     private void play(Store store, int ID) {
         Media media = store.searchByID(ID);
         if(media == null) {
-            System.out.println("NO MATCHING ID FOUND");
+            Message.printMessage("NO MATCHING ID FOUND", Message.MESSAGE_ERROR);
             return;
         }
 
         String className = media.getClass().getSimpleName();
         if(className.equals("Book")) {
-            System.out.println("Cannot play a book");
+            Message.printMessage("Cannot play a book", Message.MESSAGE_ERROR);
             return;
         }
         else {

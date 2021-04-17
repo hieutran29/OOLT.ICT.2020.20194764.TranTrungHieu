@@ -10,10 +10,6 @@ public abstract class Controller {
     protected static StoreDB storeDB = new StoreDB();
     protected static CartDB cartDB = new CartDB();
 
-    public static void message(String msg) {
-        System.out.println(msg);
-    }
-
     public abstract void start();
     public abstract void menu();
 }

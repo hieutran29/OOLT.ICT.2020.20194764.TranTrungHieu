@@ -12,6 +12,7 @@ import java.util.List;
 
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
+import hust.soict.globalict.aims.view.Message;
 
 public class Cart {
 	public final static int MAX_NUMBER_ORDERED = 20;
@@ -23,45 +24,34 @@ public class Cart {
 
 	public int addMedia(Media media) {
 		if(media == null) {
-			System.out.println("ERROR: Cannot add a NULL object. Object is ignored");
+			Message.printMessage("Object is NULL\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 		if(this.itemsOrdered.size() + 1 > MAX_NUMBER_ORDERED) {
-			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
-								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
+			Message.printMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
 			return -1;
 		}
 		if(itemsOrdered.contains(media)) {
-			System.out.println("ERROR: Media existed in cart");
+			Message.printMessage("Object existed in cart\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
         this.itemsOrdered.add(media.clone());
-        System.out.printf("Added %s to cart\n", media.title());
+        Message.printMessage("Add " + media.title() + " to cart\n", Message.MESSAGE_NOTIFICATION);
 		return 0;
 	}
 	
 	public int addMedia(Media ... mediaList) {
-		int countNullObjects = 0;
-		for(Media media : mediaList) {
-			if(media == null) {
-				countNullObjects += 1;
-			}
-		}
-
-		if(this.itemsOrdered.size() + (mediaList.length - countNullObjects) > MAX_NUMBER_ORDERED) {
-			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
-								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
+		if(this.itemsOrdered.size() + mediaList.length > MAX_NUMBER_ORDERED) {
+			Message.printMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
 			return -1;
 		}
 
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsOrdered.contains(mediaList[i])) {
 				this.itemsOrdered.add(mediaList[i].clone());
-				System.out.printf("Added %s to cart\n", mediaList[i].title());
+				Message.printMessage("Add " + mediaList[i].title() + " to cart\n", Message.MESSAGE_NOTIFICATION);
 			}
 		}
-		System.out.printf("Added %d objects to cart; Ignored %d NULL objects",
-							mediaList.length - countNullObjects, countNullObjects);
 		return 0;
 	}
 
@@ -73,12 +63,12 @@ public class Cart {
 	 */
 	public int removeMedia(Media media) {
 		if(media == null) {
-			System.out.println("ERROR: Object = NULL");
+			Message.printMessage("Object is NULL\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 
 		if(this.itemsOrdered.size() <= 0) {
-			System.out.println("Your order is empty!");
+			Message.printMessage("Cart is empty\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 		this.itemsOrdered.remove(media);
@@ -94,7 +84,7 @@ public class Cart {
 		}
 		
 		if(indexRemoved == -1) {
-			System.out.println("NO MATCHING ID FOUND");
+			Message.printMessage("No matching ID\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 		itemsOrdered.remove(indexRemoved);
@@ -203,15 +193,15 @@ public class Cart {
 		ArrayList<Media> allMedias = (ArrayList<Media>) itemsOrdered.clone();
 		Collections.sort(allMedias, comparator);
 		
-		System.out.println("*********CART*********");
-		System.out.println("Ordered Items:");
+		Message.printMessage("*********CART*********\n", Message.MESSAGE_PLAIN);
+		Message.printMessage("Ordered Items:\n", Message.MESSAGE_PLAIN);
 		for(int i = 0; i < allMedias.size(); i++) {
 			System.out.print((i + 1) + ". ");
-			System.out.println(allMedias.get(i).toString());
-			System.out.println();
-		}	
-		System.out.println("Total cost: " + this.totalCost());
-		System.out.println("******************");
+			Message.printMessage(allMedias.get(i).toString(), Message.MESSAGE_PLAIN);
+			Message.printMessage("\n", Message.MESSAGE_PLAIN);
+		}
+		Message.printMessage("Total cost: " + this.totalCost() + "\n", Message.MESSAGE_PLAIN);
+		Message.printMessage("******************\n", Message.MESSAGE_PLAIN);
 	}
 	
 	public void clear() {
@@ -221,8 +211,8 @@ public class Cart {
 	public void printAllMedia() {
 		// for debugging
 		for(Media media : this.itemsOrdered) {
-			System.out.println(media.toString());
-			System.out.println();
+			Message.printMessage(media.toString(), Message.MESSAGE_PLAIN);
+			Message.printMessage("\n", Message.MESSAGE_PLAIN);
 		}
 	}
 }

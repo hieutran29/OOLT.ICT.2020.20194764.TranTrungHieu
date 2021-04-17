@@ -2,6 +2,7 @@ package hust.soict.globalict.aims.controller;
 
 import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.Message;
 import hust.soict.globalict.aims.view.SeeCartMenu;
 
 public class SeeCartController extends Controller {
@@ -14,33 +15,33 @@ public class SeeCartController extends Controller {
     public void start() {
         int choice;
         do {
-            System.out.println();
+            Message.printMessage("\n", Message.MESSAGE_PLAIN);
             menu();
 
             System.out.print("Enter choice: ");
             choice = scanner.nextInt();
 
             if(choice == 1) {
-                System.out.println("1. Filter by ID");
-				System.out.println("2. Filter by Title");
+                Message.printMessage("1. Filter by ID", Message.MESSAGE_PLAIN);
+				Message.printMessage("2. Filter by Title", Message.MESSAGE_PLAIN);
 				System.out.print("Choose: ");
 				int filterChoice = scanner.nextInt();
 				
                 if(filterChoice == 1) {
-                    System.out.print("Enter ID: ");
+                    Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
                     int ID = scanner.nextInt();
 					filterMediaByID(cartDB.cart, ID);
                 }
                 else if(filterChoice == 2) {
-                    System.out.print("Enter Title: ");
+                    Message.printMessage("Enter Title: ", Message.MESSAGE_QUESTION);
                     scanner.nextLine();
                     String title = scanner.nextLine();
 					filterMediaByTitle(cartDB.cart, title);
                 }
             }
             else if(choice == 2) {
-				System.out.println("1. Sort by cost");
-				System.out.println("2. Sort by title");
+				Message.printMessage("1. Sort by cost", Message.MESSAGE_PLAIN);
+				Message.printMessage("2. Sort by title", Message.MESSAGE_PLAIN);
 				System.out.print("Choose: ");
 				int sortType = scanner.nextInt();
 				
@@ -54,7 +55,7 @@ public class SeeCartController extends Controller {
 				}
             }
             else if(choice == 3) {
-				System.out.print("Input Removed ID: ");
+				Message.printMessage("Input Removed ID: ", Message.MESSAGE_QUESTION);
 				int ID = scanner.nextInt();
 				cartDB.cart.removeMedia(ID);
             }
@@ -62,47 +63,41 @@ public class SeeCartController extends Controller {
                 Media luckyItem = cartDB.cart.getLuckyItem();
 
                 if(luckyItem == null) {
-                    message("GOOD LUCK NEXT TIME :(");
+                    Message.printMessage("Good luck next time\n", Message.MESSAGE_NOTIFICATION);
                 }
                 else {
-                    message(luckyItem.toString());
+                    Message.printMessage("Free: " + luckyItem.toString(), Message.MESSAGE_NOTIFICATION);
                 }
             }
             else if(choice == 5) {
                 cartDB.cart.clear();
-                System.out.println("An order is created");
-            }
-            else if(choice == 0) {
-                return;
-            }
-            else {
-                message("ERROR: Choice invalid");
+                Message.printMessage("An order is created", Message.MESSAGE_NOTIFICATION);
             }
 
-        } while(choice >= 0 && choice <= SeeCartMenu.maxChoice());
+        } while(choice != 0);
     }
 
     private void filterMediaByID(Cart cart, int ID) {
         Media found = cart.searchByID(ID);
-        System.out.println("\n----------");
+        Message.printMessage("\n----------\n", Message.MESSAGE_PLAIN);
         if(found != null) {
-            System.out.println(found.toString());
+            Message.printMessage(found.toString(), Message.MESSAGE_PLAIN);
         }
         else {
-            System.out.println("NO Media MATCHING");
+            Message.printMessage("No media matching", Message.MESSAGE_ERROR);
         }
-        System.out.println("----------\n");
+        Message.printMessage("\n----------\n", Message.MESSAGE_PLAIN);
     }
     
     private void filterMediaByTitle(Cart cart, String title) {
         Media[] found = cart.searchByTitle(title);
         if(found.length == 0) {
-            System.out.println("NO Media MATCHING");
+            Message.printMessage("No media matching", Message.MESSAGE_ERROR);
         }
         else {
             for(Media f : found) {
-                System.out.println(f.toString());
-                System.out.println();
+                Message.printMessage(f.toString(), Message.MESSAGE_PLAIN);
+                Message.printMessage("\n", Message.MESSAGE_PLAIN);
             }
         }
     }
