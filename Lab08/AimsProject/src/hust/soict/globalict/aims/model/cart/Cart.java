@@ -31,6 +31,10 @@ public class Cart {
 								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
 			return -1;
 		}
+		if(itemsOrdered.contains(media)) {
+			System.out.println("ERROR: Media existed in cart");
+			return -1;
+		}
         this.itemsOrdered.add(media.clone());
         System.out.printf("Added %s to cart\n", media.title());
 		return 0;
@@ -51,37 +55,13 @@ public class Cart {
 		}
 
 		for(int i = 0; i < mediaList.length; i++) {
-			if(mediaList[i] != null) {
+			if(mediaList[i] != null && !itemsOrdered.contains(mediaList[i])) {
 				this.itemsOrdered.add(mediaList[i].clone());
 				System.out.printf("Added %s to cart\n", mediaList[i].title());
 			}
 		}
 		System.out.printf("Added %d objects to cart; Ignored %d NULL objects",
 							mediaList.length - countNullObjects, countNullObjects);
-		return 0;
-	}
-
-	public int addMedia(Media media1, Media media2) {
-		int countNullObjects = 0;
-		countNullObjects = (media1 != null ? 0 : 1) + (media2 != null ? 0 : 1);
-
-		if(this.itemsOrdered.size() + (2 - countNullObjects) > MAX_NUMBER_ORDERED) {
-			System.out.printf("Cannot add more media!! You have %d order(s) left\n", 
-								MAX_NUMBER_ORDERED - this.itemsOrdered.size());
-			return -1;
-		}
-
-		if(media1 != null) {
-			this.itemsOrdered.add(media1.clone());
-			System.out.printf("Added %s to cart\n", media1.title());
-		}
-		if(media2 != null) {
-			this.itemsOrdered.add(media2.clone());
-			System.out.printf("Added %s to cart\n", media2.title());
-		}
-
-		System.out.printf("Added %d media(s) to cart; Ignored %d NULL objects\n",
-							2 - countNullObjects, countNullObjects);
 		return 0;
 	}
 

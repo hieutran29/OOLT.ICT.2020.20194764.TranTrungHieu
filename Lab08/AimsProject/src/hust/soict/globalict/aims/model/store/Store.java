@@ -26,6 +26,10 @@ public class Store {
 			System.out.println("ERROR: media = NULL");
 			return -1;
 		}
+		if(itemsInStore.contains(media)) {
+			System.out.println("ERROR: Media existed in cart");
+			return -1;
+		}
 		this.itemsInStore.add(media.clone());
 		System.out.printf("Added %s to store\n", media.title());
 		return 0;
@@ -34,7 +38,7 @@ public class Store {
 	public int addMedia(Media ... mediaList) {
 		int countNullObjects = 0;
 		for(int i = 0; i < mediaList.length; i++) {
-			if(mediaList[i] != null) {
+			if(mediaList[i] != null && !itemsInStore.contains(mediaList[i])) {
 				this.itemsInStore.add(mediaList[i].clone());
 				System.out.printf("Added %s to store\n", mediaList[i].title());
 			}
