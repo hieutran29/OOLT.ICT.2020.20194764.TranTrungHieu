@@ -1,7 +1,10 @@
 package hust.soict.globalict.aims.model.media;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
+import hust.soict.globalict.aims.utils.MediaComparatorByCostTitle;
+import hust.soict.globalict.aims.utils.MediaComparatorByTitleCost;
 import hust.soict.globalict.aims.utils.MediaUtils;
 
 
@@ -13,6 +16,11 @@ public abstract class Media implements Comparable<Media> {
     protected LocalDate dateAdded;
     protected boolean free = false;
     public static int numberMedias = 0;
+
+    public static final Comparator<Media> COMPARE_BY_TITLE_COST 
+                    = new MediaComparatorByTitleCost();
+    public static final Comparator<Media> COMPARE_BY_COST_TITLE
+                    = new MediaComparatorByCostTitle();
 
     public Media() {
         super();
