@@ -100,10 +100,6 @@ public class Store {
 		return null;
 	}
 
-	public static void showMenu() {
-
-	}
-
 	public void printMediasInStore() {
 		for(Media e : this.itemsInStore) {
 			System.out.println(e.toString());
