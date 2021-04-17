@@ -22,44 +22,30 @@ public class SeeCartController extends Controller {
             choice = scanner.nextInt();
 
             if(choice == 1) {
-                Message.printMessage("1. Filter by ID", Message.MESSAGE_PLAIN);
-				Message.printMessage("2. Filter by Title", Message.MESSAGE_PLAIN);
-				System.out.print("Choose: ");
-				int filterChoice = scanner.nextInt();
-				
-                if(filterChoice == 1) {
-                    Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
-                    int ID = scanner.nextInt();
-					filterMediaByID(cartDB.cart, ID);
-                }
-                else if(filterChoice == 2) {
-                    Message.printMessage("Enter Title: ", Message.MESSAGE_QUESTION);
-                    scanner.nextLine();
-                    String title = scanner.nextLine();
-					filterMediaByTitle(cartDB.cart, title);
-                }
+                Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
+                int ID = scanner.nextInt();
+                filterMediaByID(cartDB.cart, ID);
             }
             else if(choice == 2) {
-				Message.printMessage("1. Sort by cost", Message.MESSAGE_PLAIN);
-				Message.printMessage("2. Sort by title", Message.MESSAGE_PLAIN);
-				System.out.print("Choose: ");
-				int sortType = scanner.nextInt();
-				
-				if(sortType == 1) {
-					cartDB.cart.sortByCostDescending();
-					cartDB.cart.printAllMedia();
-				}
-				else if(sortType == 2) {
-					cartDB.cart.sortByTitle();
-					cartDB.cart.printAllMedia();
-				}
+                Message.printMessage("Enter Title: ", Message.MESSAGE_QUESTION);
+                scanner.nextLine();
+                String title = scanner.nextLine();
+                filterMediaByTitle(cartDB.cart, title);
             }
             else if(choice == 3) {
+                cartDB.cart.sortByCostDescending();
+                cartDB.cart.printAllMedia();
+            }
+            else if(choice == 4) {
+                cartDB.cart.sortByTitle();
+                cartDB.cart.printAllMedia();
+            }
+            else if(choice == 5) {
 				Message.printMessage("Input Removed ID: ", Message.MESSAGE_QUESTION);
 				int ID = scanner.nextInt();
 				cartDB.cart.removeMedia(ID);
             }
-            else if(choice == 4) {
+            else if(choice == 6) {
                 Media luckyItem = cartDB.cart.getLuckyItem();
 
                 if(luckyItem == null) {
@@ -69,7 +55,7 @@ public class SeeCartController extends Controller {
                     Message.printMessage("Free: " + luckyItem.toString(), Message.MESSAGE_NOTIFICATION);
                 }
             }
-            else if(choice == 5) {
+            else if(choice == 7) {
                 cartDB.cart.clear();
                 Message.printMessage("An order is created", Message.MESSAGE_NOTIFICATION);
             }
