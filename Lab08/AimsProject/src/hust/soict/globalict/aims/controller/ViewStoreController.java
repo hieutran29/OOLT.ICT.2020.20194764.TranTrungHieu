@@ -85,7 +85,7 @@ public class ViewStoreController extends Controller {
      * @return 0 if successful, -1 otherwise 
      */
     private int addMediaFromStoreToCart(Store store, Cart cart, Media media) {
-        if(!store.exists(media)) {
+        if(!store.contains(media)) {
             Message.printMessage("Media not existed in store", Message.MESSAGE_ERROR);
             return -1;
         }

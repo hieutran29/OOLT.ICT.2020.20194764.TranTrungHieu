@@ -11,14 +11,9 @@ public class Store {
 		super();
 		itemsInStore = new ArrayList<Media> ();
 	}
-	
-	public boolean exists(Media media) {
-		for(Media i : itemsInStore) {
-			if(i.equals(media)) {
-				return true;
-			}
-		}
-		return false;
+
+	public boolean contains(Media media) {
+		return itemsInStore.contains(media);
 	}
 	
 	public int addMedia(Media media) {
