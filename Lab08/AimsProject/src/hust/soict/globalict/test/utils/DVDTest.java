@@ -39,7 +39,7 @@ public class DVDTest {
 									{dvd1, dvd2, dvd3, dvd4, dvd5});
 		System.out.println("Sort by cost:");
 		for(int i = 0; i < sorted.length; i++) {
-			System.out.println(sorted[i].getDetail());
+			System.out.println(sorted[i].toString());
 			System.out.println();
 		}
 		System.out.println();
@@ -48,7 +48,7 @@ public class DVDTest {
 				{dvd1, dvd2, dvd3, dvd4, dvd5});
 		System.out.println("Sort by title:");
 		for(int i = 0; i < sorted.length; i++) {
-			System.out.println(sorted[i].getDetail());
+			System.out.println(sorted[i].toString());
 			System.out.println();
 		}
 	}

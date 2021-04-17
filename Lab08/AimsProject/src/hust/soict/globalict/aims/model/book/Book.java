@@ -63,7 +63,8 @@ public class Book extends Media {
         return 0;
     }
 
-    public String getDetail() {
+    @Override
+    public String toString() {
         Map<String, Integer> map = new HashMap<String,Integer> ();
         String[] words = content.split("\\W+");
         for(String w : words) {

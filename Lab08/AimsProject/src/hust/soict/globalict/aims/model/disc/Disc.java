@@ -54,7 +54,7 @@ public abstract class Disc extends Media implements Playable {
 	}
 
     @Override
-    public String getDetail() {
+    public String toString() {
         return  "[ID = " + this.ID()  + "]" + " " +
 				"[Title = " + this.title()    + "]" + " " + 
 				"[Category = " + this.category() + "]" + " " +

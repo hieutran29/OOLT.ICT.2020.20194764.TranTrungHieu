@@ -65,7 +65,7 @@ public class SeeCartController extends Controller {
                     message("GOOD LUCK NEXT TIME :(");
                 }
                 else {
-                    message(luckyItem.getDetail());
+                    message(luckyItem.toString());
                 }
             }
             else if(choice == 5) {
@@ -86,7 +86,7 @@ public class SeeCartController extends Controller {
         Media found = cart.searchByID(ID);
         System.out.println("\n----------");
         if(found != null) {
-            System.out.println(found.getDetail());
+            System.out.println(found.toString());
         }
         else {
             System.out.println("NO Media MATCHING");
@@ -101,7 +101,7 @@ public class SeeCartController extends Controller {
         }
         else {
             for(Media f : found) {
-                System.out.println(f.getDetail());
+                System.out.println(f.toString());
                 System.out.println();
             }
         }

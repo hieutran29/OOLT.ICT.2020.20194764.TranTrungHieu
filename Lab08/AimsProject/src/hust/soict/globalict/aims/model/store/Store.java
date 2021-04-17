@@ -102,7 +102,7 @@ public class Store {
 
 	public void printMediasInStore() {
 		for(Media e : this.itemsInStore) {
-			System.out.println(e.getDetail());
+			System.out.println(e.toString());
 			System.out.println();
 		}
 	}

@@ -82,7 +82,7 @@ public class CD extends Disc {
     }
 
     @Override
-    public String getDetail() {
+    public String toString() {
         StringBuffer ret = new StringBuffer("[ID = " + this.ID()  + "]" + " " +
                                             "[Title = " + this.title()    + "]" + " " + 
                                             "[Category = " + this.category() + "]" + " " +

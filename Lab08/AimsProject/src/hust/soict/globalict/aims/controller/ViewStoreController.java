@@ -29,7 +29,7 @@ public class ViewStoreController extends Controller {
 				System.out.println("\n-----------");
 				Media media = seeMedia(storeDB.store, ID);
 				if(media != null) {
-					System.out.println(media.getDetail());
+					System.out.println(media.toString());
 				}
 				System.out.println("\n-----------\n");
 				

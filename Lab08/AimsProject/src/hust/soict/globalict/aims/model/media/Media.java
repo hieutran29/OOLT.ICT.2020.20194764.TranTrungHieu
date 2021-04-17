@@ -104,5 +104,6 @@ public abstract class Media implements Comparable<Media> {
 		return false;
 	}
 
-	public abstract String getDetail();
+    @Override
+    public abstract String toString();
 }

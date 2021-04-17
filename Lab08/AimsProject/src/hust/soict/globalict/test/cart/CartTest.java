@@ -76,7 +76,7 @@ public class CartTest {
 		Media testSearchID3 = cart.searchByID(3);
 		if(testSearchID3 != null) {
 			System.out.println("Search ID 3:");
-			System.out.println(testSearchID3.getDetail());
+			System.out.println(testSearchID3.toString());
 			System.out.println();
 			SUCC_FAIL_MSG("Search ID 3", 0);
 		}
@@ -88,7 +88,7 @@ public class CartTest {
 		Media testSearchID6 = cart.searchByID(6);
 		if(testSearchID6 != null) {
 			System.out.println("Search ID 6:");
-			System.out.println(testSearchID3.getDetail());
+			System.out.println(testSearchID3.toString());
 			SUCC_FAIL_MSG("Search ID 6 FOUND", -1);
 		}
 		else {

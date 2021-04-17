@@ -50,7 +50,7 @@ public class TestComparatorCostTitle {
         System.out.println("-----------");
         System.out.println("After sorted: ");
         for(Media media : collection) {
-            System.out.println(media.getDetail());
+            System.out.println(media.toString());
         }
         System.out.println("-----------");
     }

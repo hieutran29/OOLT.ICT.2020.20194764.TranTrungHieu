@@ -247,7 +247,7 @@ public class Cart {
 		System.out.println("Ordered Items:");
 		for(int i = 0; i < allMedias.size(); i++) {
 			System.out.print((i + 1) + ". ");
-			System.out.println(allMedias.get(i).getDetail());
+			System.out.println(allMedias.get(i).toString());
 			System.out.println();
 		}	
 		System.out.println("Total cost: " + this.totalCost());
@@ -261,7 +261,7 @@ public class Cart {
 	public void printAllMedia() {
 		// for debugging
 		for(Media media : this.itemsOrdered) {
-			System.out.println(media.getDetail());
+			System.out.println(media.toString());
 			System.out.println();
 		}
 	}
