@@ -39,7 +39,7 @@ public class StoreDB {
 
 		Book book1 = new Book("Dac Nhan Tam", "Giao duc", "", new String[] { "Dale Carnergie" }, 5f);
 		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
-		Book book3 = new Book("Tu dien Anh-Viet", "Giao duc", "", new String[] { "Oxford", "NXB Giao Duc" }, 2f);
+		Book book3 = new Book("Tu dien Anh-Viet", "Giao duc", "Translate English words to Vietnamese", new String[] { "Oxford", "NXB Giao Duc" }, 2f);
 
 		store.addMedia(dvd1);
 		store.addMedia(dvd2);

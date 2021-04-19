@@ -1,14 +1,15 @@
 package hust.soict.globalict.aims.model.book;
 
 import java.util.*;
-import java.util.List;
 
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.Message;
 
 public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
-    String content = "";
+    private String content = "";
+    private List<String> contentTokens = new ArrayList<String> ();
+    private Map<String, Integer> wordFrequency = new HashMap<String, Integer> ();
 
     public Book() {
         super();
@@ -18,12 +19,14 @@ public class Book extends Media {
         super(title, category, cost);
         this.content = content;
         this.authors.addAll(Arrays.asList(authors));
+        processContent();
     }
 
     public Book(String title, String category, String content, List<String> authors, float cost) {
         super(title, category, cost);
         this.content = content;
         this.authors.addAll(authors);
+        processContent();
     }
 
     String content() {
@@ -64,19 +67,33 @@ public class Book extends Media {
         return 0;
     }
 
-    @Override
-    public String toString() {
-        Map<String, Integer> map = new HashMap<String,Integer> ();
-        String[] words = content.split("\\W+");
-        for(String w : words) {
-            if(!map.containsKey(w)) {
-                map.put(w, 1);
-            }
-            else {
-                map.put(w, map.get(w) + 1);
-            }
+    private void processContent() {
+        if(content.isEmpty()) {
+            return;
         }
 
+        // clear old data
+        contentTokens.clear();
+        wordFrequency.clear();
+
+        // process new data
+        contentTokens = Arrays.asList(content.split("\\W+"));
+        contentTokens.sort( (String s1, String s2) -> {
+            return s1.compareToIgnoreCase(s2);
+        });
+
+        for(String w : contentTokens) {
+            if(!wordFrequency.containsKey(w)) {
+                wordFrequency.put(w, 1);
+            }
+            else {
+                wordFrequency.put(w, wordFrequency.get(w) + 1);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
         StringBuffer ret = new StringBuffer();
         ret.append("[ID = " + this.ID()  + "]" + " " +
                     "[Title = " + this.title()    + "]" + " " + 
@@ -86,15 +103,15 @@ public class Book extends Media {
         for(String author : this.authors) {
             ret.append(author + ", ");
         }
-        ret.append("] ");  
-        
-        ret.append("[");
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            ret.append(entry.getKey() + ": " + entry.getValue() + ", ");
-        }
         ret.append("] ");
 
-        ret.append("[Cost = " + this.cost() + "]");
+        ret.append("[Cost = " + this.cost() + "] ");
+
+        ret.append("[\n");
+        for(Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+            ret.append("\t" + entry.getKey() + ": " + entry.getValue() + "\n");
+        }
+        ret.append("Total tokens: " + contentTokens.size() + "]");
 
         return ret.toString();
     }
