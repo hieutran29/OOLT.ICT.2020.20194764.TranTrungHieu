@@ -11,6 +11,10 @@ public class Store {
 		super();
 		itemsInStore = new ArrayList<Media> ();
 	}
+	
+	public ArrayList<Media> getItemsInStore() {
+		return this.itemsInStore;
+	}
 
 	public boolean contains(Media media) {
 		return itemsInStore.contains(media);

@@ -1,6 +1,8 @@
 package hust.soict.globalict.aims;
 
 import hust.soict.globalict.aims.controller.MenuController;
+import hust.soict.globalict.aims.data.StoreDB;
+import hust.soict.globalict.aims.view.viewstore.StoreScreen;
 
 /**
  * @author HieuTran
@@ -9,8 +11,8 @@ import hust.soict.globalict.aims.controller.MenuController;
 
 public class Aims {
 	public static void main(String[] args) {
-		MenuController menuController = new MenuController();
-		menuController.start();
+		StoreDB storeDB = new StoreDB();
+		new StoreScreen(storeDB.store);
 	}
 
 }
