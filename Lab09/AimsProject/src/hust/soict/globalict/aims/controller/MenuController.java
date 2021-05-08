@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.controller;
 
-import hust.soict.globalict.aims.view.MainMenu;
+import hust.soict.globalict.aims.view.MainView;
 import hust.soict.globalict.aims.view.Message;
 
 public class MenuController extends Controller {
@@ -10,7 +10,7 @@ public class MenuController extends Controller {
 
     @Override
     public void menu() {
-        MainMenu.menu();
+        MainView.menu();
         
     }
 
