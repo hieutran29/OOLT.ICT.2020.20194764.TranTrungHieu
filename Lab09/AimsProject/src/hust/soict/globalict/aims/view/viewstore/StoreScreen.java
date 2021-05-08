@@ -22,26 +22,20 @@ import javax.swing.JPanel;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
 
-public class StoreScreen extends JFrame {
+public class StoreScreen extends JPanel {
 	private Store store;
 	
 	public StoreScreen(Store store) {
 		this.store = store;
-		Container cp = this.getContentPane();
-		cp.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		
-		cp.add(createNorth(), BorderLayout.NORTH);
-		cp.add(createCenter(), BorderLayout.CENTER);
-		
-		this.setTitle("View Store");
-		this.setSize(1920, 1080);
-		this.setVisible(true);
+		this.add(createNorth(), BorderLayout.NORTH);
+		this.add(createCenter(), BorderLayout.CENTER);
 	}
 	
 	private JPanel createNorth() {
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
-		north.add(createMenuBar());
 		north.add(createHeader());
 		return north;
 	}
@@ -77,26 +71,5 @@ public class StoreScreen extends JFrame {
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
 		return header;
-	}
-
-
-	private JMenuBar createMenuBar() {
-		JMenuBar menuBar = new JMenuBar();
-		
-		JMenu options = new JMenu("Options");
-		
-		JMenu updateStore = new JMenu("Update Store");
-		String[] updateStoreChoices = {"Add Book", "Add DVD", "Add CD"};
-		for(int i = 0; i < updateStoreChoices.length; i++) {
-			updateStore.add(new JMenuItem(updateStoreChoices[i]));
-		}
-
-		options.add(updateStore);
-		options.add(new JMenuItem("View Store"));
-		options.add(new JMenuItem("View Cart"));
-		
-		menuBar.add(options);
-		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
-		return menuBar;
 	}
 }
