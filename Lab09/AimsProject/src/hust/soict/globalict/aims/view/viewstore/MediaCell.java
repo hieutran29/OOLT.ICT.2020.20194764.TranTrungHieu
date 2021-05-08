@@ -72,7 +72,6 @@ class MediaCell extends JPanel implements ActionListener {
 			((ViewStoreController) controller).addMediaFromStoreToCart(media);
 		}
 		else if(e.getSource() == playButton) {
-			System.out.println("YEssss");
 			((ViewStoreController) controller).play(media);
 		}
 	}
