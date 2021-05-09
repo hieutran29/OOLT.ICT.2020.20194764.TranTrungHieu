@@ -15,6 +15,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import hust.soict.globalict.aims.model.store.Store;
+import hust.soict.globalict.aims.view.updatestore.AddBookToStore;
+import hust.soict.globalict.aims.view.updatestore.AddCDToStore;
+import hust.soict.globalict.aims.view.updatestore.AddDVDToStore;
+import hust.soict.globalict.aims.view.updatestore.AddItemToStore;
 import hust.soict.globalict.aims.view.viewstore.StoreScreen;
 
 
@@ -24,12 +28,15 @@ public class MainView extends JFrame implements ActionListener {
 	
 	private JPanel greetingPanel;
 	private StoreScreen viewStoreScreen;
-//	private JPanel updateStoreScreen;
+	private AddItemToStore addBookScreen, addDVDScreen, addCDScreen;
 //	private JPanel viewCartScreen;
 	
-	public MainView(Store store) {
+	public MainView() {
 		cp = this.getContentPane();
-		this.viewStoreScreen = new StoreScreen(store);
+		this.viewStoreScreen = new StoreScreen();
+		this.addBookScreen = new AddBookToStore();
+		this.addDVDScreen = new AddDVDToStore();
+		this.addCDScreen = new AddCDToStore();
 		
 		JPanel greetingPanel = new JPanel();
 		JLabel greetings = new JLabel("Welcome to AIMS Store");
@@ -42,10 +49,13 @@ public class MainView extends JFrame implements ActionListener {
 		
 		cp.add(greetingPanel, "Greeting");
 		cp.add(viewStoreScreen, "View Store");
-//		cp.add(udpateStoreScreen, "Update Store");
+		cp.add(addBookScreen, "Add Book");
+		cp.add(addDVDScreen, "Add DVD");
+		cp.add(addCDScreen, "Add CD");
 //		cp.add(viewCartScreen, "View Cart");
 		
 		this.setJMenuBar(createMenuBar());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("View Store");
 		this.setSize(1024, 768);
 		this.setVisible(true);
@@ -82,14 +92,6 @@ public class MainView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
-		if(actionCommand.equals("View Store")) {
-			cardLayout.show(cp, "View Store");
-		}
-		else if(actionCommand.equals("Update Store")) {
-			
-		}
-		else if(actionCommand.equals("View Cart")) {
-			
-		}
+		cardLayout.show(cp, actionCommand);
 	}
 }

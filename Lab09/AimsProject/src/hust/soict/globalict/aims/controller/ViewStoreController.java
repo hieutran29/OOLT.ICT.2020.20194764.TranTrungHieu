@@ -5,6 +5,7 @@ import java.awt.Container;
 import javax.swing.JDialog;
 
 import hust.soict.globalict.aims.data.CartDB;
+import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
@@ -13,8 +14,10 @@ import hust.soict.globalict.aims.view.Message;
 public class ViewStoreController extends Controller {
 	Container container;
 	
-	public ViewStoreController(Container container) {
+	public ViewStoreController(Container container/*, Store store, Cart cart*/) {
 		this.container = container;
+//		this.store = store;
+//		this.cart = cart;
 	}
     /**
      * See a Media object's detail
@@ -33,7 +36,7 @@ public class ViewStoreController extends Controller {
      * @return 0 if successful, -1 otherwise 
      */
     public void addMediaFromStoreToCart(Media media) {
-        int result = cartDB.cart.addMedia(media);
+        int result = CartDB.cart.addMedia(media);
         if(result == -1) {
         	System.out.println("Error while adding media to cart");
         }

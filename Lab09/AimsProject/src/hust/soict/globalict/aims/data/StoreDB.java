@@ -10,7 +10,7 @@ import hust.soict.globalict.aims.model.disc.Track;
 import hust.soict.globalict.aims.model.store.Store;
 
 public class StoreDB {
-	public Store store = new Store();
+	public static Store store = new Store();
 
     public StoreDB() {
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);

@@ -19,14 +19,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.globalict.aims.data.StoreDB;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
 
 public class StoreScreen extends JPanel {
-	private Store store;
-	
-	public StoreScreen(Store store) {
-		this.store = store;
+	public StoreScreen() {
 		this.setLayout(new BorderLayout());
 		
 		this.add(createNorth(), BorderLayout.NORTH);
@@ -44,7 +42,7 @@ public class StoreScreen extends JPanel {
 		JPanel center = new JPanel();
 		center.setLayout(new GridLayout(3, 3, 2, 2));
 		
-		ArrayList<Media> mediaInStore = store.getItemsInStore();
+		ArrayList<Media> mediaInStore = StoreDB.store.getItemsInStore();
 		for(int i = 0; i < 9; i++) {
 			MediaCell cell = new MediaCell(mediaInStore.get(i));
 			center.add(cell);
