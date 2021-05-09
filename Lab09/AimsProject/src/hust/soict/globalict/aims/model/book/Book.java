@@ -14,6 +14,13 @@ public class Book extends Media {
     public Book() {
         super();
     }
+    
+    public Book(String title, String category, String content, String author, float cost) {
+        super(title, category, cost);
+        this.content = content;
+        this.authors.add(author);
+        processContent();
+    }
 
     public Book(String title, String category, String content, String[] authors, float cost) {
         super(title, category, cost);
