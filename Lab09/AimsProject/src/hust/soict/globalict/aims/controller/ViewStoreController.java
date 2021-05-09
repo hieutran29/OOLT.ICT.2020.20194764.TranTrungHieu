@@ -36,7 +36,7 @@ public class ViewStoreController extends Controller {
      * @return 0 if successful, -1 otherwise 
      */
     public void addMediaFromStoreToCart(Media media) {
-        int result = CartDB.cart.addMedia(media);
+        int result = cart.addMedia(media);
         if(result == -1) {
         	System.out.println("Error while adding media to cart");
         }

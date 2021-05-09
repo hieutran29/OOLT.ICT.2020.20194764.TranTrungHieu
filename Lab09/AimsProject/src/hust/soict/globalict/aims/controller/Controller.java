@@ -9,4 +9,6 @@ import hust.soict.globalict.aims.model.store.Store;
 
 public abstract class Controller {
     protected static Scanner scanner = new Scanner(System.in);
+    protected static Store store = StoreDB.store;
+    protected static Cart cart = CartDB.cart;
 }
