@@ -36,7 +36,7 @@ public class Cart {
 			return -1;
 		}
         this.itemsOrdered.add(media.clone());
-        Message.printMessage("Add " + media.title() + " to cart\n", Message.MESSAGE_NOTIFICATION);
+        Message.printMessage("Add " + media.title() + " to cart\n", Message.MESSAGE_INFORMATION);
 		return 0;
 	}
 	
@@ -49,7 +49,7 @@ public class Cart {
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsOrdered.contains(mediaList[i])) {
 				this.itemsOrdered.add(mediaList[i].clone());
-				Message.printMessage("Add " + mediaList[i].title() + " to cart\n", Message.MESSAGE_NOTIFICATION);
+				Message.printMessage("Add " + mediaList[i].title() + " to cart\n", Message.MESSAGE_INFORMATION);
 			}
 		}
 		return 0;

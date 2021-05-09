@@ -1,6 +1,7 @@
 package hust.soict.globalict.aims.model.disc;
 
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.Message;
 
 /**
  * @author HieuTran
@@ -32,10 +33,11 @@ public class DigitalVideoDisc extends Disc {
 	@Override
 	public void play() {
 		if(this.length() <= 0) {
-			System.out.printf("DVD %s cannot be played!! Length <= 0", this.title());
+			Message.displayMessage("DVD cannot be played!! Length <= 0", Message.MESSAGE_ERROR);
 		}
 		else {
-			System.out.printf("[Play DVD: %s, Length: %d]\n", this.title(), this.length());
+			String message = "DVD: " + this.title() + ", Length: " + this.length();
+			Message.displayMessage(message, Message.MESSAGE_INFORMATION);
 		}
 	}
 

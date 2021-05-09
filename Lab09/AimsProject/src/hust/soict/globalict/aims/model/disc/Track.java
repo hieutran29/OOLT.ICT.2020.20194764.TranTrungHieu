@@ -42,10 +42,10 @@ public class Track implements Playable, Comparable<Track> {
     @Override
     public void play() {
         if(this.length() <= 0) {
-			Message.printMessage("Track " + this.title() + " cannot be played!! Length <= 0\n", Message.MESSAGE_ERROR);
+			Message.displayMessage("Track " + this.title() + " cannot be played!! Length <= 0\n", Message.MESSAGE_ERROR);
 		}
 		else {
-			Message.printMessage("\t[Play Track: " + this.title() + ", Length: " + this.length() +"]", Message.MESSAGE_PLAIN);
+			Message.displayMessage("\t[Play Track: " + this.title() + ", Length: " + this.length() +"]", Message.MESSAGE_PLAIN);
 		}
     }
 

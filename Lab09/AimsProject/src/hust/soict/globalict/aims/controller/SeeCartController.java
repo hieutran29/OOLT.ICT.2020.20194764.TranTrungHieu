@@ -50,15 +50,15 @@ public class SeeCartController extends Controller {
                 Media luckyItem = cart.getLuckyItem();
 
                 if(luckyItem == null) {
-                    Message.printMessage("Good luck next time\n", Message.MESSAGE_NOTIFICATION);
+                    Message.printMessage("Good luck next time\n", Message.MESSAGE_INFORMATION);
                 }
                 else {
-                    Message.printMessage("Free: " + luckyItem.toString(), Message.MESSAGE_NOTIFICATION);
+                    Message.printMessage("Free: " + luckyItem.toString(), Message.MESSAGE_INFORMATION);
                 }
             }
             else if(choice == 8) {
                 cart.clear();
-                Message.printMessage("An order is created", Message.MESSAGE_NOTIFICATION);
+                Message.printMessage("An order is created", Message.MESSAGE_INFORMATION);
             }
 
         } while(choice != 0);

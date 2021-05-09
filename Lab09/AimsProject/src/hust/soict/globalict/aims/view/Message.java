@@ -1,41 +1,38 @@
 package hust.soict.globalict.aims.view;
 
 import java.awt.Container;
+import java.awt.Frame;
 import java.awt.Window;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Message {
-    private static String error = "ERROR";
-    private static String notification = "NOTIFICATION";
-    private static String warning = "WARNING";
-    private static String question = "QUESTION";
-    private static String plain = "";
+	static JOptionPane optionPane = new JOptionPane();
 
-    public static int MESSAGE_ERROR = 1;
-    public static int MESSAGE_NOTIFICATION = 2;
-    public static int MESSAGE_WARNING = 3;
-    public static int MESSAGE_QUESTION = 4;
-    public static int MESSAGE_PLAIN = 5;
+    public static int MESSAGE_PLAIN = -1;
+    public static int MESSAGE_ERROR = 0;
+    public static int MESSAGE_INFORMATION = 1;
+    public static int MESSAGE_WARNING = 2;
+    public static int MESSAGE_QUESTION = 3;
 
     private static String messageType(int type) {
         String messageType = "";
         if(type == MESSAGE_ERROR) {
-            messageType = error;
+            messageType = "ERROR";
         }
-        else if(type == MESSAGE_NOTIFICATION) {
-            messageType = notification;
+        else if(type == MESSAGE_INFORMATION) {
+            messageType = "INFORMATION";
         }
         else if(type == MESSAGE_WARNING) {
-            messageType = warning;
+            messageType = "WARNING";
         }
         else if(type == MESSAGE_QUESTION) {
-            messageType = question;
+            messageType = "QUESTION";
         }
         else if(type == MESSAGE_PLAIN) {
-            return plain;
+            return "PLAIN";
         }
         return "<" + messageType + ">";
     }
@@ -50,13 +47,7 @@ public class Message {
         }
     }
     
-    public static void displayMessage(Container container, String title, String message) {
-    	JDialog dialog = new JDialog((Window) container);
-    	JLabel label = new JLabel(message);
-    	
-    	dialog.setTitle(title);
-    	dialog.add(label);
-    	dialog.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
-    	dialog.setVisible(true);
+    public static void displayMessage(String message, int type) {
+        optionPane.showMessageDialog(null, message, null, type);
     }
 }

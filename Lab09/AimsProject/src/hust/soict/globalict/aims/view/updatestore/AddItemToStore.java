@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import hust.soict.globalict.aims.controller.Controller;
 import hust.soict.globalict.aims.controller.UpdateStoreController;
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.Message;
 import hust.soict.globalict.aims.view.layout.Body;
 import hust.soict.globalict.aims.view.layout.Footer;
 import hust.soict.globalict.aims.view.layout.Header;
@@ -53,7 +54,10 @@ public abstract class AddItemToStore extends JPanel implements Header, Body, Foo
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((UpdateStoreController) controller).addMediaToStore(getItem());
+				int result = ((UpdateStoreController) controller).addMediaToStore(getItem());
+				if(result != -1) {
+					confirmAddItem();
+				}
 			}
 			
 		});
@@ -65,4 +69,7 @@ public abstract class AddItemToStore extends JPanel implements Header, Body, Foo
 		return footer;
 	}
 
+	protected void confirmAddItem() {
+		Message.displayMessage("Add " + titleTF.getText() + " successfully", Message.MESSAGE_INFORMATION);
+	}
 }

@@ -90,10 +90,9 @@ public class CD extends Disc {
 
     @Override
     public void play() {
-        Message.printMessage("Playing CD: " + this.title(), Message.MESSAGE_PLAIN);
+        Message.displayMessage("Playing CD: " + this.title(), Message.MESSAGE_PLAIN);
         for(Track t : tracks) {
             t.play();
-            Message.printMessage("\n", Message.MESSAGE_PLAIN);
         }
     }
 

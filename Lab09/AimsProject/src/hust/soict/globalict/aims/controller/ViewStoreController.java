@@ -38,24 +38,20 @@ public class ViewStoreController extends Controller {
     public void addMediaFromStoreToCart(Media media) {
         int result = cart.addMedia(media);
         if(result == -1) {
-        	System.out.println("Error while adding media to cart");
+        	Message.displayMessage("Error while adding media to cart", Message.MESSAGE_ERROR);
         }
         else {
-        	System.out.println("Adding media to cart successfully");
+        	Message.displayMessage("Adding media to cart successfully", Message.MESSAGE_PLAIN);
         }
     }
 
     public void play(Media media) {
         if(media instanceof Disc) {
         	Disc disc = (Disc) media;
-        	String message = "Title: " + disc.title() + "\t" 
-        					+ "Length: " + disc.length();
-//        	Message.displayMessage(container, media.title(), message);
-        	System.out.println(message);
+        	disc.play();
         }
         else {
-//        	Message.displayMessage(container, "Error", "Cannot play a non-disc");
-        	System.out.println("Cannot play a non-disc");
+        	Message.displayMessage("Cannot play a non-disc", Message.MESSAGE_ERROR);
         }
     }
 }
