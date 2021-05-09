@@ -27,4 +27,11 @@ public abstract class AddDiscToStore extends AddItemToStore {
 
 	@Override
 	public abstract String getTypeOfAddedProduct();
+	
+	@Override
+	public void clearInput() {
+		super.clearInput();
+		directorTF.setText("");
+		lengthTF.setText("");
+	}
 }

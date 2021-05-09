@@ -66,4 +66,10 @@ public class AddBookToStore extends AddItemToStore {
 		return "Book";
 	}
 
+	@Override
+	public void clearInput() {
+		super.clearInput();
+		this.authorTF.setText("");
+		this.contentTF.setText("");
+	}
 }

@@ -96,6 +96,13 @@ public class AddCDToStore extends AddDiscToStore {
 	public String getTypeOfAddedProduct() {
 		return "CD";
 	}
+	
+	@Override
+	public void clearInput() {
+		super.clearInput();
+		artistTF.setText("");
+		tracksTF.setText("");
+	}
 
 	
 	private class MyButtonListener implements ActionListener {

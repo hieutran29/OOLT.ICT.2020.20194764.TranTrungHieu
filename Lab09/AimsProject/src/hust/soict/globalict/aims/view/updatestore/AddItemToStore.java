@@ -62,11 +62,25 @@ public abstract class AddItemToStore extends JPanel implements Header, Body, Foo
 			
 		});
 		
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton("Clear");
+		cancelButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clearInput();
+			}
+				
+		});
 		
 		footer.add(cancelButton);
 		footer.add(insertButton);
 		return footer;
+	}
+	
+	public void clearInput() {
+		titleTF.setText("");
+		categoryTF.setText("");
+		costTF.setText("");
 	}
 
 	protected void confirmAddItem() {
