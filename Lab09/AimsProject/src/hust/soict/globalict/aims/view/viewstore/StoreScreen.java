@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -19,6 +21,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.globalict.aims.controller.Controller;
+import hust.soict.globalict.aims.controller.SeeCartController;
 import hust.soict.globalict.aims.data.StoreDB;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
@@ -58,9 +62,18 @@ public class StoreScreen extends JPanel {
 		headerTitle.setFont(new Font(headerTitle.getFont().getName(), Font.PLAIN, 50));
 		headerTitle.setForeground(Color.cyan);
 		
-		JButton viewCart = new JButton("View Cart");
-		viewCart.setPreferredSize(new Dimension(100, 50));
+		JButton viewCart = new JButton("See Cart");
+		viewCart.setPreferredSize(new Dimension(150, 50));
 		viewCart.setMaximumSize(new Dimension(150, 50));
+		viewCart.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controller controller = new SeeCartController();
+				((SeeCartController) controller).start();
+			}
+			
+		});
 		
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(headerTitle);
