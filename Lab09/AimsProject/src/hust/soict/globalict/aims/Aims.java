@@ -16,7 +16,7 @@ public class Aims {
 	public static void main(String[] args) {
 		StoreDB storeDB = new StoreDB();
 //		new StoreScreen(storeDB.store);
-		new MainView(storeDB.store);
+		new MainView();
 	}
 
 }
