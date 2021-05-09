@@ -3,15 +3,13 @@ package hust.soict.globalict.aims.controller;
 import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.Message;
-import hust.soict.globalict.aims.view.SeeCartMenu;
+import hust.soict.globalict.aims.view.seecart.SeeCartScreen;
 
 public class SeeCartController extends Controller {
-    @Override
     public void menu() {
-        SeeCartMenu.menu();
+        SeeCartScreen.menu();
     }
 
-    @Override
     public void start() {
         int choice;
         do {
@@ -22,31 +20,34 @@ public class SeeCartController extends Controller {
             choice = scanner.nextInt();
 
             if(choice == 1) {
-                Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
-                int ID = scanner.nextInt();
-                filterMediaByID(cartDB.cart, ID);
+            	cart.displayCart();
             }
             else if(choice == 2) {
+                Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
+                int ID = scanner.nextInt();
+                filterMediaByID(cart, ID);
+            }
+            else if(choice == 3) {
                 Message.printMessage("Enter Title: ", Message.MESSAGE_QUESTION);
                 scanner.nextLine();
                 String title = scanner.nextLine();
-                filterMediaByTitle(cartDB.cart, title);
-            }
-            else if(choice == 3) {
-                cartDB.cart.sortByCostDescending();
-                cartDB.cart.printAllMedia();
+                filterMediaByTitle(cart, title);
             }
             else if(choice == 4) {
-                cartDB.cart.sortByTitle();
-                cartDB.cart.printAllMedia();
+                cart.sortByCostDescending();
+                cart.printAllMedia();
             }
             else if(choice == 5) {
-				Message.printMessage("Input Removed ID: ", Message.MESSAGE_QUESTION);
-				int ID = scanner.nextInt();
-				cartDB.cart.removeMedia(ID);
+                cart.sortByTitle();
+                cart.printAllMedia();
             }
             else if(choice == 6) {
-                Media luckyItem = cartDB.cart.getLuckyItem();
+				Message.printMessage("Input Removed ID: ", Message.MESSAGE_QUESTION);
+				int ID = scanner.nextInt();
+				cart.removeMedia(ID);
+            }
+            else if(choice == 7) {
+                Media luckyItem = cart.getLuckyItem();
 
                 if(luckyItem == null) {
                     Message.printMessage("Good luck next time\n", Message.MESSAGE_NOTIFICATION);
@@ -55,8 +56,8 @@ public class SeeCartController extends Controller {
                     Message.printMessage("Free: " + luckyItem.toString(), Message.MESSAGE_NOTIFICATION);
                 }
             }
-            else if(choice == 7) {
-                cartDB.cart.clear();
+            else if(choice == 8) {
+                cart.clear();
                 Message.printMessage("An order is created", Message.MESSAGE_NOTIFICATION);
             }
 

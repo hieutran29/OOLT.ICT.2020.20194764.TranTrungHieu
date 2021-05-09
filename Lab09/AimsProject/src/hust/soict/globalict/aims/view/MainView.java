@@ -14,7 +14,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.globalict.aims.controller.Controller;
+import hust.soict.globalict.aims.controller.SeeCartController;
 import hust.soict.globalict.aims.model.store.Store;
+import hust.soict.globalict.aims.view.seecart.SeeCartScreen;
 import hust.soict.globalict.aims.view.updatestore.AddBookToStore;
 import hust.soict.globalict.aims.view.updatestore.AddCDToStore;
 import hust.soict.globalict.aims.view.updatestore.AddDVDToStore;
@@ -26,10 +29,9 @@ public class MainView extends JFrame implements ActionListener {
 	private CardLayout cardLayout = new CardLayout();
 	Container cp;
 	
-	private JPanel greetingPanel;
 	private StoreScreen viewStoreScreen;
 	private AddItemToStore addBookScreen, addDVDScreen, addCDScreen;
-//	private JPanel viewCartScreen;
+	private SeeCartScreen seeCartScreen;
 	
 	public MainView() {
 		cp = this.getContentPane();
@@ -37,6 +39,7 @@ public class MainView extends JFrame implements ActionListener {
 		this.addBookScreen = new AddBookToStore();
 		this.addDVDScreen = new AddDVDToStore();
 		this.addCDScreen = new AddCDToStore();
+		this.seeCartScreen = new SeeCartScreen();
 		
 		JPanel greetingPanel = new JPanel();
 		JLabel greetings = new JLabel("Welcome to AIMS Store");
@@ -52,7 +55,7 @@ public class MainView extends JFrame implements ActionListener {
 		cp.add(addBookScreen, "Add Book");
 		cp.add(addDVDScreen, "Add DVD");
 		cp.add(addCDScreen, "Add CD");
-//		cp.add(viewCartScreen, "View Cart");
+		cp.add(seeCartScreen, "See Cart");
 		
 		this.setJMenuBar(createMenuBar());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +83,7 @@ public class MainView extends JFrame implements ActionListener {
 		viewStoreItem.addActionListener(this);
 		options.add(viewStoreItem);
 		
-		JMenuItem viewCartItem = new JMenuItem("View Cart");
+		JMenuItem viewCartItem = new JMenuItem("See Cart");
 		viewCartItem.addActionListener(this);
 		options.add(viewCartItem);
 		
@@ -93,5 +96,9 @@ public class MainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
 		cardLayout.show(cp, actionCommand);
+		if(actionCommand.equals("See Cart")) {
+			Controller controller = new SeeCartController();
+			((SeeCartController) controller).start();
+		}
 	}
 }
