@@ -14,9 +14,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import hust.soict.globalict.aims.controller.Controller;
-import hust.soict.globalict.aims.controller.SeeCartController;
-import hust.soict.globalict.aims.model.store.Store;
 import hust.soict.globalict.aims.view.seecart.SeeCartScreen;
 import hust.soict.globalict.aims.view.updatestore.AddBookToStore;
 import hust.soict.globalict.aims.view.updatestore.AddCDToStore;
@@ -96,9 +93,5 @@ public class MainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
 		cardLayout.show(cp, actionCommand);
-		if(actionCommand.equals("See Cart")) {
-			Controller controller = new SeeCartController();
-			((SeeCartController) controller).start();
-		}
 	}
 }

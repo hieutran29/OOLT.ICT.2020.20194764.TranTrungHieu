@@ -1,91 +1,123 @@
 package hust.soict.globalict.aims.controller;
 
-import hust.soict.globalict.aims.model.cart.Cart;
+import javax.swing.JOptionPane;
+
+import hust.soict.globalict.aims.model.disc.Disc;
+import hust.soict.globalict.aims.model.disc.Playable;
 import hust.soict.globalict.aims.model.media.Media;
-import hust.soict.globalict.aims.view.Message;
-import hust.soict.globalict.aims.view.seecart.SeeCartScreen;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SeeCartController extends Controller {
-    public void menu() {
-        SeeCartScreen.menu();
-    }
+	private FloatProperty total = new SimpleFloatProperty(0f);
+	
+    @FXML
+    private Button playButton;
 
-    public void start() {
-        int choice;
-        do {
-            Message.printMessage("\n", Message.MESSAGE_PLAIN);
-            menu();
+    @FXML
+    private Button removeButton;
 
-            System.out.print("Enter choice: ");
-            choice = scanner.nextInt();
-
-            if(choice == 1) {
-            	cart.displayCart();
-            }
-            else if(choice == 2) {
-                Message.printMessage("Enter ID: ", Message.MESSAGE_QUESTION);
-                int ID = scanner.nextInt();
-                filterMediaByID(cart, ID);
-            }
-            else if(choice == 3) {
-                Message.printMessage("Enter Title: ", Message.MESSAGE_QUESTION);
-                scanner.nextLine();
-                String title = scanner.nextLine();
-                filterMediaByTitle(cart, title);
-            }
-            else if(choice == 4) {
-                cart.sortByCostDescending();
-                cart.printAllMedia();
-            }
-            else if(choice == 5) {
-                cart.sortByTitle();
-                cart.printAllMedia();
-            }
-            else if(choice == 6) {
-				Message.printMessage("Input Removed ID: ", Message.MESSAGE_QUESTION);
-				int ID = scanner.nextInt();
-				cart.removeMedia(ID);
-            }
-            else if(choice == 7) {
-                Media luckyItem = cart.getLuckyItem();
-
-                if(luckyItem == null) {
-                    Message.printMessage("Good luck next time\n", Message.MESSAGE_INFORMATION);
-                }
-                else {
-                    Message.printMessage("Free: " + luckyItem.toString(), Message.MESSAGE_INFORMATION);
-                }
-            }
-            else if(choice == 8) {
-                cart.clear();
-                Message.printMessage("An order is created", Message.MESSAGE_INFORMATION);
-            }
-
-        } while(choice != 0);
-    }
-
-    private void filterMediaByID(Cart cart, int ID) {
-        Media found = cart.searchByID(ID);
-        Message.printMessage("\n----------\n", Message.MESSAGE_PLAIN);
-        if(found != null) {
-            Message.printMessage(found.toString(), Message.MESSAGE_PLAIN);
-        }
-        else {
-            Message.printMessage("No media matching", Message.MESSAGE_ERROR);
-        }
-        Message.printMessage("\n----------\n", Message.MESSAGE_PLAIN);
-    }
+    @FXML
+    private ToggleGroup filterCategory;
     
-    private void filterMediaByTitle(Cart cart, String title) {
-        Media[] found = cart.searchByTitle(title);
-        if(found.length == 0) {
-            Message.printMessage("No media matching", Message.MESSAGE_ERROR);
-        }
-        else {
-            for(Media f : found) {
-                Message.printMessage(f.toString(), Message.MESSAGE_PLAIN);
-                Message.printMessage("\n", Message.MESSAGE_PLAIN);
-            }
-        }
+    @FXML
+    private TableView<Media> tableMedia;
+
+    @FXML
+    private TableColumn<Media, String> colMediaTitle;
+
+    @FXML
+    private TableColumn<Media, String> colMediaCategory;
+
+    @FXML
+    private TableColumn<Media, Float> colMediaCost;
+    
+    @FXML
+    private Label totalCostLabel;
+    
+    public SeeCartController() {
+    	super();
     }
+
+	@FXML
+	public void initialize() {
+		colMediaTitle.setCellValueFactory(
+				new PropertyValueFactory<Media, String> ("title"));
+		colMediaCategory.setCellValueFactory(
+				new PropertyValueFactory<Media, String> ("category"));
+		colMediaCost.setCellValueFactory(
+				new PropertyValueFactory<Media, Float> ("cost"));
+		tableMedia.setItems(cart.getItemsOrdered());
+		
+		playButton.setVisible(false);
+		removeButton.setVisible(false);
+		
+		tableMedia.getSelectionModel().selectedItemProperty().addListener(
+				new ChangeListener<Media>() {
+
+					@Override
+					public void changed(ObservableValue<? extends Media> arg0, 
+										Media oldValue, Media newValue) {
+						if(newValue != null) {
+							updateButtonBar(newValue);
+						}
+					}
+					
+				});
+		totalCostLabel.textProperty().bind(total.asString());
+	}
+
+    @FXML
+    void calculateCost() {
+    	total.set(cart.totalCost());
+    }
+	
+	protected void updateButtonBar(Media media) {
+		removeButton.setVisible(true);
+		if(media instanceof Playable) {
+			playButton.setVisible(true);
+		}
+		else {
+			playButton.setVisible(false);
+		}
+	}
+	
+	@FXML
+	public void playMedia() {
+		Disc disc = (Disc) tableMedia.getSelectionModel().getSelectedItem();
+		String message = "Title: " + disc.getTitle() + "\nLength: " + disc.getLength();
+		JOptionPane.showMessageDialog(null, message);
+	}
+    
+	@FXML
+	public void removeMedia(ActionEvent e) {
+		Media media = tableMedia.getSelectionModel().getSelectedItem();
+		cart.removeMedia(media);
+		calculateCost();
+	}
+	
+	@FXML
+	public void filterMedia() {
+		String filterBy = ((RadioButton)this.filterCategory.getSelectedToggle()).getText();
+		if(filterBy.equals("ID")) {
+			
+		}
+	}
+	
+	@FXML
+	public void placeOrder() {
+		cart.clear();
+		calculateCost();
+	}
 }
