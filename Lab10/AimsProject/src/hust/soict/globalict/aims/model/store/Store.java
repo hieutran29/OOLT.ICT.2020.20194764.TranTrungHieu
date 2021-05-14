@@ -30,7 +30,7 @@ public class Store {
 			return -1;
 		}
 		this.itemsInStore.add(media.clone());
-		System.out.printf("Added %s to store\n", media.title());
+		System.out.printf("Added %s to store\n", media.getTitle());
 		return 0;
 	}
 
@@ -39,7 +39,7 @@ public class Store {
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsInStore.contains(mediaList[i])) {
 				this.itemsInStore.add(mediaList[i].clone());
-				System.out.printf("Added %s to store\n", mediaList[i].title());
+				System.out.printf("Added %s to store\n", mediaList[i].getTitle());
 			}
 			else {
 				countNullObjects += 1;

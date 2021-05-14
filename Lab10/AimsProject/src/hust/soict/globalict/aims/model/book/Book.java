@@ -46,7 +46,7 @@ public class Book extends Media {
 
     public Book clone() {
 		int oldNumberMedias = Media.numberMedias;
-        Book book = new Book(this.title(), this.category(), this.content, this.authors(), this.cost());
+        Book book = new Book(this.getTitle(), this.getCategory(), this.content, this.authors(), this.getCost());
         
         book.id = this.ID();
         book.dateAdded = this.dateAdded;
@@ -103,8 +103,8 @@ public class Book extends Media {
     public String toString() {
         StringBuffer ret = new StringBuffer();
         ret.append("[ID = " + this.ID()  + "]" + " " +
-                    "[Title = " + this.title()    + "]" + " " + 
-                    "[Category = " + this.category() + "]" + " ");
+                    "[Title = " + this.getTitle()    + "]" + " " + 
+                    "[Category = " + this.getCategory() + "]" + " ");
 
         ret.append("[Author = ");
         for(String author : this.authors) {
@@ -112,7 +112,7 @@ public class Book extends Media {
         }
         ret.append("] ");
 
-        ret.append("[Cost = " + this.cost() + "] ");
+        ret.append("[Cost = " + this.getCost() + "] ");
 
         ret.append("[\n");
         for(Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {

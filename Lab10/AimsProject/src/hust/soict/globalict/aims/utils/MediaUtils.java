@@ -7,10 +7,10 @@ import hust.soict.globalict.aims.model.media.Media;
 
 public class MediaUtils {
 	public static int compareByCost(Media o1, Media o2) {
-		if(o1.cost() < o2.cost()) {
+		if(o1.getCost() < o2.getCost()) {
 			return -1;
 		}
-		else if(o1.cost() > o2.cost()) {
+		else if(o1.getCost() > o2.getCost()) {
 			return 1;
 		}
 		else {
@@ -19,7 +19,7 @@ public class MediaUtils {
 	}
 	
 	public static int compareByTitle(Media o1, Media o2) {
-		return o1.title().compareToIgnoreCase(o2.title());
+		return o1.getTitle().compareToIgnoreCase(o2.getTitle());
 	}
 	
 	public static Media[] sortByCost(Media[] disc) {

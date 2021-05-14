@@ -32,7 +32,7 @@ public class CD extends Disc {
         return this.artist;
     }
 
-    public int length() {
+    public int getLength() {
         int totalLength = 0;
         for(Track t : tracks) {
             totalLength += t.length();
@@ -76,12 +76,12 @@ public class CD extends Disc {
     @Override
     public String toString() {
         StringBuffer ret = new StringBuffer("[ID = " + this.ID()  + "]" + " " +
-                                            "[Title = " + this.title()    + "]" + " " + 
-                                            "[Category = " + this.category() + "]" + " " +
-                                            "[Director = " + this.director() + "]" + " " +
+                                            "[Title = " + this.getTitle()    + "]" + " " + 
+                                            "[Category = " + this.getCategory() + "]" + " " +
+                                            "[Director = " + this.getDirector() + "]" + " " +
                                             "[Artist = " + this.artist()   + "]" + " " +
-                                            "[Length = " + this.length()   + "]" + " " +
-                                            "[Cost = " + this.cost()     + "$]" + " ");
+                                            "[Length = " + this.getLength()   + "]" + " " +
+                                            "[Cost = " + this.getCost()     + "$]" + " ");
         for(Track t : tracks) {
             ret.append("\n\tTrack: " + t.title() + ", Length: " + t.length());
         }
@@ -90,7 +90,7 @@ public class CD extends Disc {
 
     @Override
     public void play() {
-        Message.displayMessage("Playing CD: " + this.title(), Message.MESSAGE_PLAIN);
+        Message.displayMessage("Playing CD: " + this.getTitle(), Message.MESSAGE_PLAIN);
         for(Track t : tracks) {
             t.play();
         }
@@ -100,8 +100,8 @@ public class CD extends Disc {
 	public CD clone() {
 		int oldNumberMedias = Media.numberMedias;
 
-        CD cd = new CD(this.title(), this.category(), this.director(), this.artist(), 
-                         this.tracks, this.cost());
+        CD cd = new CD(this.getTitle(), this.getCategory(), this.getDirector(), this.artist(), 
+                         this.tracks, this.getCost());
 
 		cd.id = this.id;
 		cd.dateAdded = this.dateAdded;

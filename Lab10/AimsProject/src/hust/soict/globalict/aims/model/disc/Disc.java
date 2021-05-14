@@ -29,21 +29,21 @@ public abstract class Disc extends Media implements Playable {
 		this.director = director;
 	}
 	
-	public String director() {
+	public String getDirector() {
 		return this.director;
 	}
-	public int length() {
+	public int getLength() {
 		return this.length;
 	}
 
     @Override
     public String toString() {
         return  "[ID = " + this.ID()  + "]" + " " +
-				"[Title = " + this.title()    + "]" + " " + 
-				"[Category = " + this.category() + "]" + " " +
-				"[Director = " + this.director() + "]" + " " +
-				"[Length = " + this.length()   + "]" + " " +
-				"[Cost = " + this.cost()     + "$]" + " ";
+				"[Title = " + this.getTitle()    + "]" + " " + 
+				"[Category = " + this.getCategory() + "]" + " " +
+				"[Director = " + this.getDirector() + "]" + " " +
+				"[Length = " + this.getLength()   + "]" + " " +
+				"[Cost = " + this.getCost()     + "$]" + " ";
     }
 
     public abstract Disc clone();

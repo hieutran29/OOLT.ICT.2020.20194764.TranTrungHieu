@@ -46,15 +46,15 @@ public abstract class Media implements Comparable<Media> {
         return this.id;
     }
 
-    public String title() {
+    public String getTitle() {
         return this.title;
     }
 
-    public String category() {
+    public String getCategory() {
         return this.category;
     }
 
-    public float cost() {
+    public float getCost() {
         return this.cost;
     }
 
@@ -94,7 +94,7 @@ public abstract class Media implements Comparable<Media> {
 
 	public boolean search(String title) {
 		String[] wordsInSearchedTitle = title.split("\\W+");
-		String[] wordsInDiscTitle = title().split("\\W+");
+		String[] wordsInDiscTitle = getTitle().split("\\W+");
 		for(String origin : wordsInDiscTitle) {
 			for(String searched : wordsInSearchedTitle)
 				if(origin.equalsIgnoreCase(searched) == true) {

@@ -32,11 +32,11 @@ public class DigitalVideoDisc extends Disc {
 
 	@Override
 	public void play() {
-		if(this.length() <= 0) {
+		if(this.getLength() <= 0) {
 			Message.displayMessage("DVD cannot be played!! Length <= 0", Message.MESSAGE_ERROR);
 		}
 		else {
-			String message = "DVD: " + this.title() + ", Length: " + this.length();
+			String message = "DVD: " + this.getTitle() + ", Length: " + this.getLength();
 			Message.displayMessage(message, Message.MESSAGE_INFORMATION);
 		}
 	}
@@ -45,8 +45,8 @@ public class DigitalVideoDisc extends Disc {
 	public DigitalVideoDisc clone() {
 		int oldNumberMedias = Media.numberMedias;
 
-        DigitalVideoDisc disc = new DigitalVideoDisc(this.title(), this.category(), this.director(), 
-													 this.length(), this.cost());
+        DigitalVideoDisc disc = new DigitalVideoDisc(this.getTitle(), this.getCategory(), this.getDirector(), 
+													 this.getLength(), this.getCost());
 
 		disc.id = this.id;
 		disc.dateAdded = this.dateAdded;

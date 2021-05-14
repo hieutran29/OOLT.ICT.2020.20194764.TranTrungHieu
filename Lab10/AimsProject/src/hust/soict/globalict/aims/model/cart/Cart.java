@@ -13,13 +13,19 @@ import java.util.List;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
 import hust.soict.globalict.aims.view.Message;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 	public final static int MAX_NUMBER_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media> ();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
 	public Cart() {
 		super();
+	}
+	
+	public ObservableList<Media> getItemsOrdered() {
+		return this.itemsOrdered;
 	}
 
 	public int addMedia(Media media) {
@@ -36,7 +42,7 @@ public class Cart {
 			return -1;
 		}
         this.itemsOrdered.add(media.clone());
-        Message.printMessage("Add " + media.title() + " to cart\n", Message.MESSAGE_INFORMATION);
+		Message.printMessage("Add " + media.getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 		return 0;
 	}
 	
@@ -49,7 +55,7 @@ public class Cart {
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsOrdered.contains(mediaList[i])) {
 				this.itemsOrdered.add(mediaList[i].clone());
-				Message.printMessage("Add " + mediaList[i].title() + " to cart\n", Message.MESSAGE_INFORMATION);
+				Message.printMessage("Add " + mediaList[i].getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 			}
 		}
 		return 0;
@@ -94,7 +100,7 @@ public class Cart {
     public float totalCost() {	
 		float cost = 0;
 		for(Media item : itemsOrdered) {
-			cost += item.cost();
+			cost += item.getCost();
 		}
 		return cost;
 	}
@@ -178,30 +184,30 @@ public class Cart {
 	 */
 	public void displayCart() {
 		// comparator function
-		Comparator<Media> comparator = new Comparator<Media>() {
-			@Override
-			public int compare(Media media1, Media media2) {
-				int compareByTitle = MediaUtils.compareByTitle(media1, media2);
-				if(compareByTitle == 0) {
-					int compareByCost = MediaUtils.compareByCost(media1, media2);
-					return -compareByCost;
-				}
-				return compareByTitle;
-			}
-		};
-		@SuppressWarnings("unchecked")
-		ArrayList<Media> allMedias = (ArrayList<Media>) itemsOrdered.clone();
-		Collections.sort(allMedias, comparator);
-		
-		Message.printMessage("*********CART*********\n", Message.MESSAGE_PLAIN);
-		Message.printMessage("Ordered Items:\n", Message.MESSAGE_PLAIN);
-		for(int i = 0; i < allMedias.size(); i++) {
-			System.out.print((i + 1) + ". ");
-			Message.printMessage(allMedias.get(i).toString(), Message.MESSAGE_PLAIN);
-			Message.printMessage("\n", Message.MESSAGE_PLAIN);
-		}
-		Message.printMessage("Total cost: " + this.totalCost() + "\n", Message.MESSAGE_PLAIN);
-		Message.printMessage("******************\n", Message.MESSAGE_PLAIN);
+//		Comparator<Media> comparator = new Comparator<Media>() {
+//			@Override
+//			public int compare(Media media1, Media media2) {
+//				int compareByTitle = MediaUtils.compareByTitle(media1, media2);
+//				if(compareByTitle == 0) {
+//					int compareByCost = MediaUtils.compareByCost(media1, media2);
+//					return -compareByCost;
+//				}
+//				return compareByTitle;
+//			}
+//		};
+//		@SuppressWarnings("unchecked")
+//		ArrayList<Media> allMedias = (ArrayList<Media>) itemsOrdered.clone();
+//		Collections.sort(allMedias, comparator);
+//		
+//		Message.printMessage("*********CART*********\n", Message.MESSAGE_PLAIN);
+//		Message.printMessage("Ordered Items:\n", Message.MESSAGE_PLAIN);
+//		for(int i = 0; i < allMedias.size(); i++) {
+//			System.out.print((i + 1) + ". ");
+//			Message.printMessage(allMedias.get(i).toString(), Message.MESSAGE_PLAIN);
+//			Message.printMessage("\n", Message.MESSAGE_PLAIN);
+//		}
+//		Message.printMessage("Total cost: " + this.totalCost() + "\n", Message.MESSAGE_PLAIN);
+//		Message.printMessage("******************\n", Message.MESSAGE_PLAIN);
 	}
 	
 	public void clear() {

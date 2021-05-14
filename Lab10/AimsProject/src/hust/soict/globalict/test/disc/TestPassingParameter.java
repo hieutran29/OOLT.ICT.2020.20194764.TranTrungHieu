@@ -21,8 +21,8 @@ public class TestPassingParameter {
 		DVDWrapper cinderellaWrapper = new DVDWrapper(cinderellaDVD);
 		
 		swap(jungleWrapper, cinderellaWrapper);
-		System.out.println("Jungle DVD title: " + jungleWrapper.dvd.title());
-		System.out.println("Cinderella DVD title: " + cinderellaWrapper.dvd.title());
+		System.out.println("Jungle DVD title: " + jungleWrapper.dvd.getTitle());
+		System.out.println("Cinderella DVD title: " + cinderellaWrapper.dvd.getTitle());
 	}
 	
 	public static void swap(DVDWrapper disc1, DVDWrapper disc2) {

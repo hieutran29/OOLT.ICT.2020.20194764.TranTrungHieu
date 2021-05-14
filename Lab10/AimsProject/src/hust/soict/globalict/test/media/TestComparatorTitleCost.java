@@ -41,7 +41,7 @@ public class TestComparatorTitleCost {
         collection.add(book2);
 
         for(Media media : collection) {
-            System.out.println(media.title());
+            System.out.println(media.getTitle());
         }
 
         // sort the collection
