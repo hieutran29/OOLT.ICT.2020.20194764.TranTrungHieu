@@ -1,6 +1,10 @@
 package hust.soict.globalict.aims.model.book;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.Message;

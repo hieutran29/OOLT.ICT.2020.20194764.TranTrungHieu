@@ -1,15 +1,11 @@
 package hust.soict.globalict.aims.view.updatestore;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.GridLayout;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
 import hust.soict.globalict.aims.model.media.Media;
 
 public abstract class AddDiscToStore extends AddItemToStore {

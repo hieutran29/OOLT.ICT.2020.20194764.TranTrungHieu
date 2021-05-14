@@ -1,11 +1,5 @@
 package hust.soict.globalict.aims.view;
 
-import java.awt.Container;
-import java.awt.Frame;
-import java.awt.Window;
-
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Message {

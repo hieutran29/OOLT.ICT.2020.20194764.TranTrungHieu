@@ -13,7 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import hust.soict.globalict.aims.controller.*;
+import hust.soict.globalict.aims.controller.Controller;
+import hust.soict.globalict.aims.controller.ViewStoreController;
 import hust.soict.globalict.aims.model.disc.Playable;
 import hust.soict.globalict.aims.model.media.Media;
 
@@ -40,11 +41,11 @@ class MediaCell extends JPanel implements ActionListener {
 		ID.setFont(new Font(ID.getFont().getName(), Font.PLAIN, 20));
 		ID.setAlignmentX(CENTER_ALIGNMENT);
 		
-		JLabel title = new JLabel(media.title());
+		JLabel title = new JLabel(media.getTitle());
 		title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
 		title.setAlignmentX(CENTER_ALIGNMENT);
 		
-		JLabel cost = new JLabel("" + media.cost() + "$");
+		JLabel cost = new JLabel("" + media.getCost() + "$");
 		cost.setAlignmentX(CENTER_ALIGNMENT);
 		
 		JPanel container = new JPanel();
