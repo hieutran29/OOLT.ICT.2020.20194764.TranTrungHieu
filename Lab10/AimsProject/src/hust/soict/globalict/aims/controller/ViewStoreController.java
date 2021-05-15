@@ -2,6 +2,8 @@ package hust.soict.globalict.aims.controller;
 
 import java.awt.Container;
 
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
@@ -9,13 +11,6 @@ import hust.soict.globalict.aims.view.ErrorMessage;
 import hust.soict.globalict.aims.view.Message;
 
 public class ViewStoreController extends Controller {
-	Container container;
-	
-	public ViewStoreController(Container container/*, Store store, Cart cart*/) {
-		this.container = container;
-//		this.store = store;
-//		this.cart = cart;
-	}
     /**
      * See a Media object's detail
      * @param store	Store where the object is located
@@ -50,5 +45,15 @@ public class ViewStoreController extends Controller {
         else {
         	ErrorMessage.displayError(ErrorMessage.PLAY_NON_DISC);
         }
+    }
+    
+    public void searchByID(int ID) {
+    	Media result = store.searchByID(ID);
+    	if(result != null) {
+    		 JOptionPane.showMessageDialog(null, result.toString());
+    	}
+    	else {
+    		ErrorMessage.displayError(ErrorMessage.NOT_FOUND);
+    	}
     }
 }

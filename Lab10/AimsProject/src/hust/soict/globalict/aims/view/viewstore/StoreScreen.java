@@ -4,18 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import hust.soict.globalict.aims.controller.Controller;
+import hust.soict.globalict.aims.controller.ViewStoreController;
 import hust.soict.globalict.aims.data.StoreDB;
 import hust.soict.globalict.aims.model.media.Media;
 
 public class StoreScreen extends JPanel {
+	private JButton searchIDButton = new JButton("Search by ID");
+	
 	public StoreScreen() {
 		this.setLayout(new BorderLayout());
 		
@@ -35,7 +45,7 @@ public class StoreScreen extends JPanel {
 		center.setLayout(new GridLayout(3, 3, 2, 2));
 		
 		ArrayList<Media> mediaInStore = StoreDB.store.getItemsInStore();
-		for(int i = 0; i < 9; i++) {
+		for(int i = 0; i < mediaInStore.size(); i++) {
 			MediaCell cell = new MediaCell(mediaInStore.get(i));
 			center.add(cell);
 		}
@@ -50,25 +60,53 @@ public class StoreScreen extends JPanel {
 		headerTitle.setFont(new Font(headerTitle.getFont().getName(), Font.PLAIN, 50));
 		headerTitle.setForeground(Color.cyan);
 		
-//		JButton viewCart = new JButton("See Cart");
-//		viewCart.setPreferredSize(new Dimension(150, 50));
-//		viewCart.setMaximumSize(new Dimension(150, 50));
-//		viewCart.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				Controller controller = new SeeCartController();
-//				
-//			}
-//			
-//		});
+		searchIDButton.setPreferredSize(new Dimension(150, 50));
+		searchIDButton.setMaximumSize(new Dimension(100, 50));
+		searchIDButton.addActionListener(new SearchButtonListener());
 		
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(headerTitle);
 		header.add(Box.createHorizontalGlue());
-//		header.add(viewCart);
+		header.add(searchIDButton);
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
 		return header;
 	}
+
+	private class SearchButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JDialog dialog = new JDialog((Frame) getRootPane().getParent());
+			JButton submitButton = new JButton("Submit");
+			JTextField searchTextField = new JTextField();
+			
+			Controller controller = new ViewStoreController();
+			
+			searchTextField.setFont(new Font(searchTextField.getFont().getName(), Font.PLAIN, 20));
+			
+			dialog.setSize(420, 80);
+			dialog.setLayout(new BorderLayout(7, 2));
+			
+			dialog.add(searchTextField, BorderLayout.CENTER);
+			dialog.add(submitButton, BorderLayout.WEST);
+			dialog.setLocationRelativeTo(null);
+			
+			if(e.getSource() == searchIDButton) {
+				dialog.setTitle("Search by ID");
+				dialog.setVisible(true);
+				submitButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent event) {
+						((ViewStoreController) controller).searchByID(
+								Integer.parseInt(searchTextField.getText()));
+						dialog.dispose();
+					}
+				});
+			}
+			
+		}
+		
+	}
+
 }

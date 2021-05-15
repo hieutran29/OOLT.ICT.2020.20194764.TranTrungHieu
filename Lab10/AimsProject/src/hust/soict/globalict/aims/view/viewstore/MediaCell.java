@@ -23,7 +23,7 @@ class MediaCell extends JPanel implements ActionListener {
 	private JButton addToCartButton = new JButton("Add to cart");
 	private JButton playButton = new JButton("Play");
 	
-	private Controller controller = new ViewStoreController(this);
+	private Controller controller = new ViewStoreController();
 
 	public MediaCell(Media media) {
 		this.media = media;
