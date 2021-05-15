@@ -58,6 +58,8 @@ public class MainView extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("View Store");
 		this.setSize(1024, 768);
+		this.setLocationRelativeTo(null);
+		
 		this.setVisible(true);
 	}
 	
