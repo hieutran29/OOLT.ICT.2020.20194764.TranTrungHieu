@@ -39,12 +39,12 @@
                <children>
                   <Label text="Filter" />
                   <TextField fx:id="filterTextField" />
-                  <RadioButton mnemonicParsing="false" onAction="#filterMedia" selected="true" text="ID">
+                  <RadioButton fx:id="filterIDButton" mnemonicParsing="false" selected="true" text="ID">
                      <toggleGroup>
                         <ToggleGroup fx:id="filterCategory" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" onAction="#filterMedia" text="Title" toggleGroup="$filterCategory" />
+                  <RadioButton fx:id="filterTitleButton" mnemonicParsing="false" text="Title" toggleGroup="$filterCategory" />
                </children>
             </HBox>
             <TableView fx:id="tableMedia">
