@@ -45,7 +45,7 @@ public class CartTest {
 		SUCC_FAIL_MSG("Remove DVD6", testRemoveDVD6);
 		System.out.println();
 		
-		float totalCostAfterRemoveID6 = cart.totalCost();
+		float totalCostAfterRemoveID6 = cart.getTotalCost().getValue();
 		if(totalCostAfterRemoveID6 == 38.3f) {
 			SUCC_FAIL_MSG("Cost After Remove ID6 = 38.3", 0);
 		}
@@ -100,7 +100,7 @@ public class CartTest {
 		SUCC_FAIL_MSG("Remove ID8", testRemoveID8);
 		System.out.println();
 		
-		float totalCostAfterRemoveID8 = cart.totalCost();
+		float totalCostAfterRemoveID8 = cart.getTotalCost().getValue();
 		if(totalCostAfterRemoveID8 == 33.3f) {
 			SUCC_FAIL_MSG("Cost After Remove ID8 = 33.3", 0);
 		}

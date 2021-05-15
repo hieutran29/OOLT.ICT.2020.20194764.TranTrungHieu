@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.disc.Playable;
 import hust.soict.globalict.aims.model.media.Media;
+import javafx.application.Platform;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.value.ChangeListener;
@@ -20,8 +21,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SeeCartController extends Controller {
-	private FloatProperty total = new SimpleFloatProperty(0f);
-	
     @FXML
     private Button playButton;
 
@@ -75,13 +74,8 @@ public class SeeCartController extends Controller {
 					}
 					
 				});
-		totalCostLabel.textProperty().bind(total.asString());
+		totalCostLabel.textProperty().bind(cart.getTotalCost().asString());
 	}
-
-    @FXML
-    void calculateCost() {
-    	total.set(cart.totalCost());
-    }
 	
 	protected void updateButtonBar(Media media) {
 		removeButton.setVisible(true);
@@ -104,7 +98,6 @@ public class SeeCartController extends Controller {
 	public void removeMedia(ActionEvent e) {
 		Media media = tableMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
-		calculateCost();
 	}
 	
 	@FXML
@@ -118,6 +111,5 @@ public class SeeCartController extends Controller {
 	@FXML
 	public void placeOrder() {
 		cart.clear();
-		calculateCost();
 	}
 }

@@ -12,15 +12,36 @@ import java.util.List;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
 import hust.soict.globalict.aims.view.Message;
+import javafx.application.Platform;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Cart {
 	public final static int MAX_NUMBER_ORDERED = 20;
 	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+	private FloatProperty totalCost = new SimpleFloatProperty(0f);
 
 	public Cart() {
 		super();
+	}
+	
+	private void calculateTotalCost() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				totalCost.setValue(0);
+				for(Media item : itemsOrdered) {
+					totalCost.setValue(totalCost.getValue() + item.getCost());
+				}
+			}
+			
+		});
+	}
+
+    public FloatProperty getTotalCost() {
+    	return totalCost;
 	}
 	
 	public ObservableList<Media> getItemsOrdered() {
@@ -41,6 +62,7 @@ public class Cart {
 			return -1;
 		}
         this.itemsOrdered.add(media.clone());
+        calculateTotalCost();
 		Message.printMessage("Add " + media.getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 		return 0;
 	}
@@ -57,6 +79,7 @@ public class Cart {
 				Message.printMessage("Add " + mediaList[i].getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 			}
 		}
+		calculateTotalCost();
 		return 0;
 	}
 
@@ -77,6 +100,7 @@ public class Cart {
 			return -1;
 		}
 		this.itemsOrdered.remove(media);
+		calculateTotalCost();
 		return 0;
 	}
 	
@@ -93,15 +117,8 @@ public class Cart {
 			return -1;
 		}
 		itemsOrdered.remove(indexRemoved);
+		calculateTotalCost();
 		return 0;
-	}
-
-    public float totalCost() {	
-		float cost = 0;
-		for(Media item : itemsOrdered) {
-			cost += item.getCost();
-		}
-		return cost;
 	}
 
 	public Media getLuckyItem() {
@@ -211,6 +228,7 @@ public class Cart {
 	
 	public void clear() {
 		this.itemsOrdered.clear();
+		calculateTotalCost();
 	}
 	
 	public void printAllMedia() {
