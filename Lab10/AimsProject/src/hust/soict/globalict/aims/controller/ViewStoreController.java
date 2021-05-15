@@ -5,6 +5,7 @@ import java.awt.Container;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
+import hust.soict.globalict.aims.view.ErrorMessage;
 import hust.soict.globalict.aims.view.Message;
 
 public class ViewStoreController extends Controller {
@@ -33,11 +34,11 @@ public class ViewStoreController extends Controller {
      */
     public void addMediaFromStoreToCart(Media media) {
         int result = cart.addMedia(media);
-        if(result == -1) {
-        	Message.displayMessage("Error while adding media to cart", Message.MESSAGE_ERROR);
+        if(result == 0) {
+        	Message.displayMessage("Adding media to cart", Message.MESSAGE_PLAIN);
         }
         else {
-        	Message.displayMessage("Adding media to cart successfully", Message.MESSAGE_PLAIN);
+        	ErrorMessage.displayError(result);
         }
     }
 
@@ -47,7 +48,7 @@ public class ViewStoreController extends Controller {
         	disc.play();
         }
         else {
-        	Message.displayMessage("Cannot play a non-disc", Message.MESSAGE_ERROR);
+        	ErrorMessage.displayError(ErrorMessage.PLAY_NON_DISC);
         }
     }
 }

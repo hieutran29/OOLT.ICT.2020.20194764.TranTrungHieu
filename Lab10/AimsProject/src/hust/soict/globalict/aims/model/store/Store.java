@@ -3,6 +3,7 @@ package hust.soict.globalict.aims.model.store;
 import java.util.ArrayList;
 
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.ErrorMessage;
 
 public class Store {
 	private ArrayList<Media> itemsInStore;
@@ -22,23 +23,19 @@ public class Store {
 	
 	public int addMedia(Media media) {
 		if(media == null) {
-			return -1;
+			return ErrorMessage.ITEM_NULL;
 		}
 		if(itemsInStore.contains(media)) {
-			return -1;
+			return ErrorMessage.ALREADY_EXISTED_IN_CART;
 		}
 		this.itemsInStore.add(media.clone());
 		return 0;
 	}
 
 	public int addMedia(Media ... mediaList) {
-		int countNullObjects = 0;
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsInStore.contains(mediaList[i])) {
 				this.itemsInStore.add(mediaList[i].clone());
-			}
-			else {
-				countNullObjects += 1;
 			}
 		}
 		return 0;
@@ -46,11 +43,11 @@ public class Store {
 	
 	public int removeMedia(Media media) {
 		if(media == null) {
-			return -1;
+			return ErrorMessage.ITEM_NULL;
 		}
 		
 		if(this.itemsInStore.size() <= 0) {
-			return -1;
+			return ErrorMessage.STORE_EMPTY;
 		}
 		if(this.itemsInStore.size() > 0) {
 			this.itemsInStore.remove(media);
@@ -68,7 +65,7 @@ public class Store {
 		}
 		
 		if(indexRemoved == -1) {
-			return -1;
+			return ErrorMessage.NOT_FOUND;
 		}
 		itemsInStore.remove(indexRemoved);
 		return 0;

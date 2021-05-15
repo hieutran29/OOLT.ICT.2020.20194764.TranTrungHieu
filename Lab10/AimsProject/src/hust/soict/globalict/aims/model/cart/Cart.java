@@ -11,6 +11,7 @@ import java.util.List;
 
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
+import hust.soict.globalict.aims.view.ErrorMessage;
 import hust.soict.globalict.aims.view.Message;
 import javafx.application.Platform;
 import javafx.beans.property.FloatProperty;
@@ -53,29 +54,24 @@ public class Cart {
 			return -1;
 		}
 		if(this.itemsOrdered.size() + 1 > MAX_NUMBER_ORDERED) {
-			Message.displayMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
-			return -1;
+			return ErrorMessage.CART_FULL;
 		}
 		if(itemsOrdered.contains(media)) {
-			Message.displayMessage("Object existed in cart\n", Message.MESSAGE_ERROR);
-			return -1;
+			return ErrorMessage.ALREADY_EXISTED_IN_CART;
 		}
         this.itemsOrdered.add(media.clone());
         calculateTotalCost();
-		Message.displayMessage("Add " + media.getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 		return 0;
 	}
 	
 	public int addMedia(Media ... mediaList) {
 		if(this.itemsOrdered.size() + mediaList.length > MAX_NUMBER_ORDERED) {
-			Message.displayMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
-			return -1;
+			return ErrorMessage.CART_FULL;
 		}
 
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsOrdered.contains(mediaList[i])) {
 				this.itemsOrdered.add(mediaList[i].clone());
-				Message.displayMessage("Add " + mediaList[i].getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 			}
 		}
 		calculateTotalCost();
@@ -90,13 +86,11 @@ public class Cart {
 	 */
 	public int removeMedia(Media media) {
 		if(media == null) {
-			Message.displayMessage("Object is NULL\n", Message.MESSAGE_ERROR);
-			return -1;
+			return ErrorMessage.ITEM_NULL;
 		}
 
 		if(this.itemsOrdered.size() <= 0) {
-			Message.displayMessage("Cart is empty\n", Message.MESSAGE_ERROR);
-			return -1;
+			return ErrorMessage.CART_EMPTY;
 		}
 		this.itemsOrdered.remove(media);
 		calculateTotalCost();
@@ -112,8 +106,7 @@ public class Cart {
 		}
 		
 		if(indexRemoved == -1) {
-			Message.displayMessage("No matching ID\n", Message.MESSAGE_ERROR);
-			return -1;
+			return ErrorMessage.NOT_FOUND;
 		}
 		itemsOrdered.remove(indexRemoved);
 		calculateTotalCost();
@@ -234,7 +227,6 @@ public class Cart {
 		// for debugging
 		for(Media media : this.itemsOrdered) {
 			Message.displayMessage(media.toString(), Message.MESSAGE_PLAIN);
-			Message.displayMessage("\n", Message.MESSAGE_PLAIN);
 		}
 	}
 }

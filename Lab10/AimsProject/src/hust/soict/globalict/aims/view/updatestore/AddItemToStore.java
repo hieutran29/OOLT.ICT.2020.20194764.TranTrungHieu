@@ -54,10 +54,7 @@ public abstract class AddItemToStore extends JPanel implements Header, Body, Foo
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = ((UpdateStoreController) controller).addMediaToStore(getItem());
-				if(result != -1) {
-					confirmAddItem();
-				}
+				((UpdateStoreController) controller).addMediaToStore(getItem());
 			}
 			
 		});
@@ -81,9 +78,5 @@ public abstract class AddItemToStore extends JPanel implements Header, Body, Foo
 		titleTF.setText("");
 		categoryTF.setText("");
 		costTF.setText("");
-	}
-
-	protected void confirmAddItem() {
-		Message.displayMessage("Add " + titleTF.getText() + " successfully", Message.MESSAGE_INFORMATION);
 	}
 }
