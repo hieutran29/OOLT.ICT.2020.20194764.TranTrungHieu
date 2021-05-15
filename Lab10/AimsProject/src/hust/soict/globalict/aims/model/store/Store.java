@@ -22,15 +22,12 @@ public class Store {
 	
 	public int addMedia(Media media) {
 		if(media == null) {
-			System.out.println("ERROR: media = NULL");
 			return -1;
 		}
 		if(itemsInStore.contains(media)) {
-			System.out.println("ERROR: Media existed in cart");
 			return -1;
 		}
 		this.itemsInStore.add(media.clone());
-		System.out.printf("Added %s to store\n", media.getTitle());
 		return 0;
 	}
 
@@ -39,25 +36,20 @@ public class Store {
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsInStore.contains(mediaList[i])) {
 				this.itemsInStore.add(mediaList[i].clone());
-				System.out.printf("Added %s to store\n", mediaList[i].getTitle());
 			}
 			else {
 				countNullObjects += 1;
 			}
 		}
-		System.out.printf("Added %d objects to store; Ignored %d NULL objects\n",
-							mediaList.length - countNullObjects, countNullObjects);
 		return 0;
 	}
 	
 	public int removeMedia(Media media) {
 		if(media == null) {
-			System.out.println("ERROR: Object = NULL");
 			return -1;
 		}
 		
 		if(this.itemsInStore.size() <= 0) {
-			System.out.println("Store is empty!");
 			return -1;
 		}
 		if(this.itemsInStore.size() > 0) {
@@ -76,7 +68,6 @@ public class Store {
 		}
 		
 		if(indexRemoved == -1) {
-			System.out.println("NO MATCHING ID FOUND");
 			return -1;
 		}
 		itemsInStore.remove(indexRemoved);
@@ -95,7 +86,6 @@ public class Store {
 				return i;
 			}
 		}
-		System.out.println("NO ID MATCHING FOUND");
 		return null;
 	}
 

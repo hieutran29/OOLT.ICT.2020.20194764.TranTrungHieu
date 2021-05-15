@@ -42,7 +42,7 @@ public class CD extends Disc {
 
     public int addTrack(Track track) {
         if(track == null) {
-            Message.printMessage("Track is NULL\n", Message.MESSAGE_ERROR);
+            Message.displayMessage("Track is NULL\n", Message.MESSAGE_ERROR);
             return -1;
         }
 
@@ -50,18 +50,18 @@ public class CD extends Disc {
             this.tracks.add(track);
             return 0;
         }
-        Message.printMessage("Track is already existed\n", Message.MESSAGE_ERROR);
+        Message.displayMessage("Track is already existed\n", Message.MESSAGE_ERROR);
         return -1;
     }
 
     public int removeTrack(Track track) {
         if(track == null) {
-            Message.printMessage("ERROR: Track is NULL\n", Message.MESSAGE_ERROR);
+            Message.displayMessage("ERROR: Track is NULL\n", Message.MESSAGE_ERROR);
             return -1;
         }
 
         if(this.tracks.size() <= 0) {
-            Message.printMessage("CD is empty\n", Message.MESSAGE_ERROR);
+            Message.displayMessage("CD is empty\n", Message.MESSAGE_ERROR);
             return -1;
         }
 
@@ -69,7 +69,7 @@ public class CD extends Disc {
             this.tracks.remove(track);
             return 0;
         }
-        Message.printMessage("Track is not existed\n", Message.MESSAGE_ERROR);
+        Message.displayMessage("Track is not existed\n", Message.MESSAGE_ERROR);
         return -1;
     }
 

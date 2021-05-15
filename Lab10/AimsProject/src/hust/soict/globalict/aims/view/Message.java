@@ -3,7 +3,6 @@ package hust.soict.globalict.aims.view;
 import javax.swing.JOptionPane;
 
 public class Message {
-	static JOptionPane optionPane = new JOptionPane();
 
     public static int MESSAGE_PLAIN = -1;
     public static int MESSAGE_ERROR = 0;
@@ -31,17 +30,7 @@ public class Message {
         return "<" + messageType + ">";
     }
 
-    public static void printMessage(String message, int type) {
-        String messageType = messageType(type);
-        if(type == MESSAGE_PLAIN) {
-            System.out.printf("%s", message);
-        }
-        else {
-            System.out.printf("%s %s", messageType, message);
-        }
-    }
-    
     public static void displayMessage(String message, int type) {
-        optionPane.showMessageDialog(null, message, null, type);
+        JOptionPane.showMessageDialog(null, message, null, type);
     }
 }

@@ -50,33 +50,32 @@ public class Cart {
 
 	public int addMedia(Media media) {
 		if(media == null) {
-			Message.printMessage("Object is NULL\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 		if(this.itemsOrdered.size() + 1 > MAX_NUMBER_ORDERED) {
-			Message.printMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
+			Message.displayMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
 			return -1;
 		}
 		if(itemsOrdered.contains(media)) {
-			Message.printMessage("Object existed in cart\n", Message.MESSAGE_ERROR);
+			Message.displayMessage("Object existed in cart\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
         this.itemsOrdered.add(media.clone());
         calculateTotalCost();
-		Message.printMessage("Add " + media.getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
+		Message.displayMessage("Add " + media.getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 		return 0;
 	}
 	
 	public int addMedia(Media ... mediaList) {
 		if(this.itemsOrdered.size() + mediaList.length > MAX_NUMBER_ORDERED) {
-			Message.printMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
+			Message.displayMessage("The cart is almost full\n", Message.MESSAGE_WARNING);
 			return -1;
 		}
 
 		for(int i = 0; i < mediaList.length; i++) {
 			if(mediaList[i] != null && !itemsOrdered.contains(mediaList[i])) {
 				this.itemsOrdered.add(mediaList[i].clone());
-				Message.printMessage("Add " + mediaList[i].getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
+				Message.displayMessage("Add " + mediaList[i].getTitle() + " to cart\n", Message.MESSAGE_INFORMATION);
 			}
 		}
 		calculateTotalCost();
@@ -91,12 +90,12 @@ public class Cart {
 	 */
 	public int removeMedia(Media media) {
 		if(media == null) {
-			Message.printMessage("Object is NULL\n", Message.MESSAGE_ERROR);
+			Message.displayMessage("Object is NULL\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 
 		if(this.itemsOrdered.size() <= 0) {
-			Message.printMessage("Cart is empty\n", Message.MESSAGE_ERROR);
+			Message.displayMessage("Cart is empty\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 		this.itemsOrdered.remove(media);
@@ -113,7 +112,7 @@ public class Cart {
 		}
 		
 		if(indexRemoved == -1) {
-			Message.printMessage("No matching ID\n", Message.MESSAGE_ERROR);
+			Message.displayMessage("No matching ID\n", Message.MESSAGE_ERROR);
 			return -1;
 		}
 		itemsOrdered.remove(indexRemoved);
@@ -234,8 +233,8 @@ public class Cart {
 	public void printAllMedia() {
 		// for debugging
 		for(Media media : this.itemsOrdered) {
-			Message.printMessage(media.toString(), Message.MESSAGE_PLAIN);
-			Message.printMessage("\n", Message.MESSAGE_PLAIN);
+			Message.displayMessage(media.toString(), Message.MESSAGE_PLAIN);
+			Message.displayMessage("\n", Message.MESSAGE_PLAIN);
 		}
 	}
 }

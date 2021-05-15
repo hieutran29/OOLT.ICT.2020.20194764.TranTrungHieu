@@ -62,7 +62,7 @@ public class Book extends Media {
 
     public int addAuthor(String authorName) {
         if(authors.contains(authorName)) {
-            Message.printMessage("Author already existed!!\n", Message.MESSAGE_ERROR);
+            Message.displayMessage("Author already existed!!\n", Message.MESSAGE_ERROR);
             return -1;
         }
         this.authors.add(authorName);
@@ -71,7 +71,7 @@ public class Book extends Media {
 
     public int removeAuthor(String authorName) {
         if(!authors.contains(authorName)) {
-            Message.printMessage("Author does not exist in list\n", Message.MESSAGE_ERROR);
+            Message.displayMessage("Author does not exist in list\n", Message.MESSAGE_ERROR);
             return -1;
         }
         authors.remove(authorName);
