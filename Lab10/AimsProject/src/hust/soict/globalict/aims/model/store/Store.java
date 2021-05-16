@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.ErrorMessage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Store {
-	private ArrayList<Media> itemsInStore;
+	private ObservableList<Media> itemsInStore;
 	
 	public Store() {
 		super();
-		itemsInStore = new ArrayList<Media> ();
+		itemsInStore = FXCollections.observableArrayList();
 	}
 	
-	public ArrayList<Media> getItemsInStore() {
+	public ObservableList<Media> getItemsInStore() {
 		return this.itemsInStore;
 	}
 

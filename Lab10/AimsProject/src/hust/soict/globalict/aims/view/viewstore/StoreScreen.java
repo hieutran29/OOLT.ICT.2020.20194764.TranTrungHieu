@@ -22,6 +22,9 @@ import hust.soict.globalict.aims.controller.Controller;
 import hust.soict.globalict.aims.controller.ViewStoreController;
 import hust.soict.globalict.aims.data.StoreDB;
 import hust.soict.globalict.aims.model.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 
 public class StoreScreen extends JPanel {
 	private JButton searchIDButton = new JButton("Search by ID");
@@ -44,11 +47,27 @@ public class StoreScreen extends JPanel {
 		JPanel center = new JPanel();
 		center.setLayout(new GridLayout(3, 3, 2, 2));
 		
-		ArrayList<Media> mediaInStore = StoreDB.store.getItemsInStore();
+		ObservableList<Media> mediaInStore = StoreDB.store.getItemsInStore();
 		for(int i = 0; i < mediaInStore.size(); i++) {
 			MediaCell cell = new MediaCell(mediaInStore.get(i));
 			center.add(cell);
 		}
+		
+		/*
+		 * Add listener such that whenever there is change in store,
+		 * the GUI for ViewStore will be updated
+		 */
+		mediaInStore.addListener(new ListChangeListener<Media>() {
+			@Override
+			public void onChanged(Change arg0) {
+				center.removeAll();
+				for(int i = 0; i < mediaInStore.size(); i++) {
+					MediaCell cell = new MediaCell(mediaInStore.get(i));
+					center.add(cell);
+				}
+			}
+			
+		});
 		return center;
 	}
 
