@@ -17,14 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import hust.soict.globalict.aims.controller.Controller;
-import hust.soict.globalict.aims.controller.UpdateStoreController;
 import hust.soict.globalict.aims.model.disc.CD;
 import hust.soict.globalict.aims.model.disc.Track;
 import hust.soict.globalict.aims.model.media.Media;
 
 public class AddCDToStore extends AddDiscToStore {
-	Controller controller = new UpdateStoreController();
 	
 	private JTextField artistTF = new JTextField();
 	private JTextField tracksTF = new JTextField();
