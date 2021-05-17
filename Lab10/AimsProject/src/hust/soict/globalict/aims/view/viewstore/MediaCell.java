@@ -36,7 +36,7 @@ class MediaCell extends JPanel implements ActionListener {
 		type.setFont(new Font(type.getFont().getName(), Font.PLAIN, 20));
 		type.setAlignmentX(CENTER_ALIGNMENT);
 		
-		String id = "ID = " + Integer.valueOf(media.ID()).toString();
+		String id = "ID = " + Integer.valueOf(media.getID()).toString();
 		JLabel ID = new JLabel(id);
 		ID.setFont(new Font(ID.getFont().getName(), Font.PLAIN, 20));
 		ID.setAlignmentX(CENTER_ALIGNMENT);

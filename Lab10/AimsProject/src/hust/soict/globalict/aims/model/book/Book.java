@@ -52,7 +52,7 @@ public class Book extends Media {
 		int oldNumberMedias = Media.numberMedias;
         Book book = new Book(this.getTitle(), this.getCategory(), this.content, this.authors(), this.getCost());
         
-        book.id = this.ID();
+        book.id = this.getID();
         book.dateAdded = this.dateAdded;
         book.free = this.free;
         
@@ -106,7 +106,7 @@ public class Book extends Media {
     @Override
     public String toString() {
         StringBuffer ret = new StringBuffer();
-        ret.append("[ID = " + this.ID()  + "]" + " " +
+        ret.append("[ID = " + this.getID()  + "]" + " " +
                     "[Title = " + this.getTitle()    + "]" + " " + 
                     "[Category = " + this.getCategory() + "]" + " ");
 

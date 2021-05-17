@@ -100,7 +100,7 @@ public class Cart {
 	public int removeMedia(int removedID) {
 		int indexRemoved = -1;
 		for(int i = 0; i < itemsOrdered.size(); i++) {
-			if(itemsOrdered.get(i).ID() == removedID) {
+			if(itemsOrdered.get(i).getID() == removedID) {
 				indexRemoved = i;
 			}
 		}
@@ -118,13 +118,13 @@ public class Cart {
 		int maxID = -1;
 
 		for(Media item : this.itemsOrdered) {
-			ids.add(item.ID());
-			maxID = Math.max(maxID, item.ID());
+			ids.add(item.getID());
+			maxID = Math.max(maxID, item.getID());
 		}
 
 		int luckyID = (int) (Math.random() * (double) maxID) + 1;
 		for(Media item : itemsOrdered) {
-			if(item.ID() == luckyID) {
+			if(item.getID() == luckyID) {
 				item.setFree(true);
 				return item;
 			}
@@ -139,7 +139,7 @@ public class Cart {
 	 */
 	public Media searchByID(int ID) {
 		for(Media dvd : this.itemsOrdered) {
-			if(dvd.ID() == ID) {
+			if(dvd.getID() == ID) {
 				return dvd;
 			}
 		}

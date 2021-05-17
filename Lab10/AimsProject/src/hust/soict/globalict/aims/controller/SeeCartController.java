@@ -75,7 +75,7 @@ public class SeeCartController extends Controller {
 				if(filterCategory.getSelectedToggle().equals(filterIDButton)) {
 					int comparedID;
 					comparedID = Integer.parseInt(filterTextField.getText());
-					return media.ID() == comparedID;
+					return media.getID() == comparedID;
 				}
 				else if(filterCategory.getSelectedToggle().equals(filterTitleButton)) {
 					return media.search(newValue);

@@ -61,7 +61,7 @@ public class Store {
 	public int removeMedia(int removedID) {
 		int indexRemoved = -1;
 		for(int i = 0; i < itemsInStore.size(); i++) {
-			if(itemsInStore.get(i).ID() == removedID) {
+			if(itemsInStore.get(i).getID() == removedID) {
 				indexRemoved = i;
 			}
 		}
@@ -81,7 +81,7 @@ public class Store {
 	 */
 	public Media searchByID(int ID) {
 		for(Media i : itemsInStore) {
-			if(i.ID() == ID) {
+			if(i.getID() == ID) {
 				return i;
 			}
 		}

@@ -42,7 +42,7 @@ public abstract class Media implements Comparable<Media> {
         this.id = ++Media.numberMedias;
     }
 
-    public int ID() {
+    public int getID() {
         return this.id;
     }
 
