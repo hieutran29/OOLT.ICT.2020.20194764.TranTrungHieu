@@ -73,12 +73,16 @@ public class SeeCartController extends Controller {
 				}
 				
 				if(filterCategory.getSelectedToggle().equals(filterIDButton)) {
-					int comparedID;
-					comparedID = Integer.parseInt(filterTextField.getText());
-					return media.getID() == comparedID;
+					try {
+						int comparedID;
+						comparedID = Integer.parseInt(filterTextField.getText());
+						return media.getID() == comparedID;
+					} catch(NumberFormatException e) {
+						return false;
+					}
 				}
 				else if(filterCategory.getSelectedToggle().equals(filterTitleButton)) {
-					return media.search(newValue);
+					return media.search(filterTextField.getText());
 				}
 				
 				return false;
