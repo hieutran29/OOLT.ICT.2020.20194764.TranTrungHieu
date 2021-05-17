@@ -19,6 +19,7 @@ import hust.soict.globalict.aims.view.updatestore.AddBookToStore;
 import hust.soict.globalict.aims.view.updatestore.AddCDToStore;
 import hust.soict.globalict.aims.view.updatestore.AddDVDToStore;
 import hust.soict.globalict.aims.view.updatestore.AddItemToStore;
+import hust.soict.globalict.aims.view.updatestore.RemoveMediaScreen;
 import hust.soict.globalict.aims.view.viewstore.StoreScreen;
 
 
@@ -29,6 +30,7 @@ public class MainView extends JFrame implements ActionListener {
 	private StoreScreen viewStoreScreen;
 	private AddItemToStore addBookScreen, addDVDScreen, addCDScreen;
 	private SeeCartScreen seeCartScreen;
+	private RemoveMediaScreen removeMediaScreen;
 	
 	public MainView() {
 		cp = this.getContentPane();
@@ -37,6 +39,7 @@ public class MainView extends JFrame implements ActionListener {
 		this.addDVDScreen = new AddDVDToStore();
 		this.addCDScreen = new AddCDToStore();
 		this.seeCartScreen = new SeeCartScreen();
+		this.removeMediaScreen = new RemoveMediaScreen();
 		
 		JPanel greetingPanel = new JPanel();
 		JLabel greetings = new JLabel("Welcome to AIMS Store");
@@ -53,6 +56,7 @@ public class MainView extends JFrame implements ActionListener {
 		cp.add(addDVDScreen, "Add DVD");
 		cp.add(addCDScreen, "Add CD");
 		cp.add(seeCartScreen, "See Cart");
+		cp.add(removeMediaScreen, "Remove media");
 		
 		this.setJMenuBar(createMenuBar());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +73,7 @@ public class MainView extends JFrame implements ActionListener {
 		JMenu options = new JMenu("Options");
 		
 		JMenu updateStore = new JMenu("Update Store");
-		String[] updateStoreChoices = {"Add Book", "Add DVD", "Add CD"};
+		String[] updateStoreChoices = {"Add Book", "Add DVD", "Add CD", "Remove media"};
 		for(int i = 0; i < updateStoreChoices.length; i++) {
 			JMenuItem items = new JMenuItem(updateStoreChoices[i]);
 			items.addActionListener(this);
