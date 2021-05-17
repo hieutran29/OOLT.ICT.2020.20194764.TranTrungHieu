@@ -126,16 +126,23 @@ public class SeeCartController extends Controller {
 		Disc disc = (Disc) tableMedia.getSelectionModel().getSelectedItem();
 		String message = "Title: " + disc.getTitle() + "\nLength: " + disc.getLength();
 		JOptionPane.showMessageDialog(null, message);
+		Unselectrow();
 	}
     
 	@FXML
 	public void removeMedia(ActionEvent e) {
 		Media media = tableMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
+		Unselectrow();
 	}
 	
 	@FXML
 	public void placeOrder() {
 		cart.clear();
+		Unselectrow();
+	}
+	
+	private void Unselectrow() {
+		tableMedia.getSelectionModel().clearSelection();
 	}
 }
