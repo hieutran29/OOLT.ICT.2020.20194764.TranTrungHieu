@@ -1,0 +1,87 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "vmArgs": "--module-path /home/hieutran/Downloads/Java/JavaFX/javafx-sdk-16/lib --add-modules javafx.controls,javafx.fxml,javafx.swing"
+        },
+        {
+            "type": "java",
+            "name": "Launch Aims",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.aims.Aims",
+            "projectName": "AimsProject",
+            "vmArgs": "--module-path /home/hieutran/Downloads/Java/JavaFX/javafx-sdk-16/lib --add-modules javafx.controls,javafx.fxml,javafx.swing"
+        },
+        {
+            "type": "java",
+            "name": "Launch CartTest",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.cart.CartTest",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestLuckyItem",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.cart.TestLuckyItem",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch DiscTest",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.disc.DiscTest",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestPassingParameter",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.disc.TestPassingParameter",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestComparatorCostTitle",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.media.TestComparatorCostTitle",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestComparatorTitleCost",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.media.TestComparatorTitleCost",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestMediaCompareTo",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.media.TestMediaCompareTo",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch StoreTest",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.store.StoreTest",
+            "projectName": "AimsProject"
+        },
+        {
+            "type": "java",
+            "name": "Launch DVDTest",
+            "request": "launch",
+            "mainClass": "hust.soict.globalict.test.utils.DVDTest",
+            "projectName": "AimsProject"
+        }
+    ]
+}

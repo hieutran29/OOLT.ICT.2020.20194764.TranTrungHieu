@@ -1,0 +1,6 @@
+{
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.project.referencedLibraries": [
+       "/home/hieutran/Downloads/Java/JavaFX/javafx-sdk-16/lib/*.jar" 
+    ]
+}
