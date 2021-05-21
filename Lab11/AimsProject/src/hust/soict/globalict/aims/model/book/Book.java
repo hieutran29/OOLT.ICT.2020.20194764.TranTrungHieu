@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
+import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.Message;
 
@@ -60,20 +62,27 @@ public class Book extends Media {
         return book;
     }
 
-    public int addAuthor(String authorName) {
+    public void addAuthor(String authorName) throws AlreadyExistedException {
+    	if(authorName == null) {
+    		throw new NullPointerException("Author name is NULL");
+    	}
+    	
         if(authors.contains(authorName)) {
-            Message.displayMessage("Author already existed!!\n", Message.MESSAGE_ERROR);
-            return -1;
+            throw new AlreadyExistedException("Author already existed");
         }
+        
         this.authors.add(authorName);
-        return 0;
     }
 
     public int removeAuthor(String authorName) {
+    	if(authorName == null) {
+    		throw new NullPointerException("Author name is NULL");
+    	}
+    	
         if(!authors.contains(authorName)) {
-            Message.displayMessage("Author does not exist in list\n", Message.MESSAGE_ERROR);
-            return -1;
+            throw new NoSuchElementException("Author is not existed to be removed");
         }
+        
         authors.remove(authorName);
         return 0;
     }
