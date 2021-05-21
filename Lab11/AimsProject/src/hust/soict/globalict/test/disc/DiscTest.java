@@ -1,11 +1,13 @@
 package hust.soict.globalict.test.disc;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
 import hust.soict.globalict.aims.model.media.Media;
 
 public class DiscTest {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
 		Cart cart = new Cart();
 
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);

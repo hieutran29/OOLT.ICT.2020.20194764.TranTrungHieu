@@ -1,5 +1,7 @@
 package hust.soict.globalict.test.cart;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.globalict.aims.model.book.Book;
 import hust.soict.globalict.aims.model.cart.Cart;
 import hust.soict.globalict.aims.model.disc.DigitalVideoDisc;
@@ -15,7 +17,7 @@ public class CartTest {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
 		// TODO Auto-generated method stub
 		Cart cart = new Cart();
 
@@ -30,20 +32,14 @@ public class CartTest {
 		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
 		Book book3 = new Book("Lap trinh huong doi tuong", "Giao duc", "", new String[] { "" }, 2f);
 		
-		int testRemoveWhenEmpty = cart.removeMedia(dvd1);
-		SUCC_FAIL_MSG("Remove When Empty", testRemoveWhenEmpty);
-		System.out.println();
+		cart.removeMedia(dvd1);
 		
-		int testAdding = cart.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6, book1, book2, book3);
-		SUCC_FAIL_MSG("Adding To Cart", testAdding);
-		System.out.println();
+		cart.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6, book1, book2, book3);
 		
 		cart.displayCart();
 		System.out.println();
 		
-		int testRemoveDVD6 = cart.removeMedia(dvd6);
-		SUCC_FAIL_MSG("Remove DVD6", testRemoveDVD6);
-		System.out.println();
+		cart.removeMedia(dvd6);
 		
 		float totalCostAfterRemoveID6 = cart.getTotalCost().getValue();
 		if(totalCostAfterRemoveID6 == 38.3f) {
@@ -96,9 +92,7 @@ public class CartTest {
 		
 		}
 
-		int testRemoveID8 = cart.removeMedia(8);
-		SUCC_FAIL_MSG("Remove ID8", testRemoveID8);
-		System.out.println();
+		cart.removeMedia(8);
 		
 		float totalCostAfterRemoveID8 = cart.getTotalCost().getValue();
 		if(totalCostAfterRemoveID8 == 33.3f) {

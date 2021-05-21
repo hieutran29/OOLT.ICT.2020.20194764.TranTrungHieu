@@ -41,12 +41,16 @@ public class StoreDB {
 		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
 		Book book3 = new Book("Tu dien Anh-Viet", "Giao duc", "Translate English words to Vietnamese", new String[] { "Oxford", "NXB Giao Duc" }, 2f);
 
-		store.addMedia(dvd1);
-		store.addMedia(dvd2);
-		store.addMedia(dvd3);
-		store.addMedia(dvd4);
-		store.addMedia(dvd5);
-		store.addMedia(cd1, cd2, cd3);
-		store.addMedia(book1, book2, book3);
+		try {
+			store.addMedia(dvd1);
+			store.addMedia(dvd2);
+			store.addMedia(dvd3);
+			store.addMedia(dvd4);
+			store.addMedia(dvd5);
+			store.addMedia(cd1, cd2, cd3);
+			store.addMedia(book1, book2, book3);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
     }
 }

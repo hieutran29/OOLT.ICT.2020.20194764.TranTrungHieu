@@ -29,13 +29,12 @@ public class ViewStoreController extends Controller {
      * @return 0 if successful, -1 otherwise 
      */
     public void addMediaFromStoreToCart(Media media) {
-        int result = cart.addMedia(media);
-        if(result == 0) {
-        	Message.displayMessage("Adding media to cart", Message.MESSAGE_PLAIN);
-        }
-        else {
-        	ErrorMessage.displayError(result);
-        }
+    	try {
+    		cart.addMedia(media);
+    		Message.displayMessage("Added media to cart successfully", Message.MESSAGE_INFORMATION);
+    	} catch(Exception e) {
+    		ErrorMessage.displayError(e.getMessage());
+    	}
     }
 
     public void play(Media media) {

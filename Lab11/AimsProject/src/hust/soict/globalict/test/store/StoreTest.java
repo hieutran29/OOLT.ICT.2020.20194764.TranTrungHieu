@@ -21,16 +21,20 @@ public class StoreTest {
 		Book book2 = new Book("Tam Quoc", "Lich su TQ", "", new String[] { "La Quan Trung" }, 5f);
 		Book book3 = new Book("Lap trinh huong doi tuong", "Giao duc", "", new String[] { "" }, 2f);
 
-		store.addMedia(dvd1);
-		store.addMedia(dvd2);
-		store.addMedia(dvd3);
-		store.addMedia(dvd4);
-		store.addMedia(dvd5);
-		store.addMedia(dvd6);
-
-		store.addMedia(book1);
-		store.addMedia(book2);
-		store.addMedia(book3);
+		try {
+			store.addMedia(dvd1);
+			store.addMedia(dvd2);
+			store.addMedia(dvd3);
+			store.addMedia(dvd4);
+			store.addMedia(dvd5);
+			store.addMedia(dvd6);
+	
+			store.addMedia(book1);
+			store.addMedia(book2);
+			store.addMedia(book3);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println("Store before removing id6");
 		store.printMediasInStore();
