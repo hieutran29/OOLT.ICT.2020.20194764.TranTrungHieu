@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import javax.naming.LimitExceededException;
+
+import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
 import hust.soict.globalict.aims.view.ErrorMessage;
@@ -49,24 +53,25 @@ public class Cart {
 		return this.itemsOrdered;
 	}
 
-	public int addMedia(Media media) {
-		if(media == null) {
-			return -1;
+	public void addMedia(Media media) throws AlreadyExistedException, LimitExceededException {
+		if(itemsOrdered.size() >= MAX_NUMBER_ORDERED) {
+			throw new LimitExceededException("Cart is full");
 		}
-		if(this.itemsOrdered.size() + 1 > MAX_NUMBER_ORDERED) {
-			return ErrorMessage.CART_FULL;
+		
+		try {
+			if(itemsOrdered.contains(media)) {
+				throw new AlreadyExistedException("Media already existed in cart");
+			}
+			this.itemsOrdered.add(media.clone());
+			calculateTotalCost();
+		} catch(NullPointerException e) {
+			throw new NullPointerException("Media is NULL");
 		}
-		if(itemsOrdered.contains(media)) {
-			return ErrorMessage.ALREADY_EXISTED_IN_CART;
-		}
-        this.itemsOrdered.add(media.clone());
-        calculateTotalCost();
-		return 0;
 	}
 	
-	public int addMedia(Media ... mediaList) {
+	public void addMedia(Media ... mediaList) throws LimitExceededException {
 		if(this.itemsOrdered.size() + mediaList.length > MAX_NUMBER_ORDERED) {
-			return ErrorMessage.CART_FULL;
+			throw new LimitExceededException("Cart is full");
 		}
 
 		for(int i = 0; i < mediaList.length; i++) {
@@ -75,7 +80,6 @@ public class Cart {
 			}
 		}
 		calculateTotalCost();
-		return 0;
 	}
 
 	/**
@@ -84,20 +88,24 @@ public class Cart {
 	 * @param media element to be removed from cart
 	 * @return 0 if successful, -1 if failed
 	 */
-	public int removeMedia(Media media) {
+	public void removeMedia(Media media) {
 		if(media == null) {
-			return ErrorMessage.ITEM_NULL;
+			throw new NullPointerException("Cannot remove, media is full");
 		}
 
 		if(this.itemsOrdered.size() <= 0) {
-			return ErrorMessage.CART_EMPTY;
+			throw new NoSuchElementException("Cart is empty");
 		}
+		
 		this.itemsOrdered.remove(media);
 		calculateTotalCost();
-		return 0;
 	}
 	
-	public int removeMedia(int removedID) {
+	public void removeMedia(int removedID) {
+		if(this.itemsOrdered.size() <= 0) {
+			throw new NoSuchElementException("Cart is empty");
+		}
+		
 		int indexRemoved = -1;
 		for(int i = 0; i < itemsOrdered.size(); i++) {
 			if(itemsOrdered.get(i).getID() == removedID) {
@@ -106,11 +114,11 @@ public class Cart {
 		}
 		
 		if(indexRemoved == -1) {
-			return ErrorMessage.NOT_FOUND;
+			throw new NoSuchElementException("Cannot find media with ID " + removedID);
 		}
+		
 		itemsOrdered.remove(indexRemoved);
 		calculateTotalCost();
-		return 0;
 	}
 
 	public Media getLuckyItem() {
@@ -153,6 +161,10 @@ public class Cart {
 	 * @return an array Media objects that match the condition.
 	 */
 	public Media[] searchByTitle(String title) {
+		if(title == null) {
+			throw new NullPointerException("Cannot search a null title");
+		}
+		
 		Media[] ret = new Media[MAX_NUMBER_ORDERED];
 		int found = 0;
 		for(Media media : this.itemsOrdered) {
