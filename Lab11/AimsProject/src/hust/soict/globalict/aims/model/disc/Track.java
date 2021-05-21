@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims.model.disc;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.view.Message;
 
 public class Track implements Playable, Comparable<Track> {
@@ -40,9 +41,9 @@ public class Track implements Playable, Comparable<Track> {
     }
 
     @Override
-    public void play() {
+    public void play() throws PlayerException {
         if(this.length() <= 0) {
-			Message.displayMessage("Track " + this.title() + " cannot be played!! Length <= 0\n", Message.MESSAGE_ERROR);
+        	throw new PlayerException("ERROR: Track length is non-positive!");
 		}
 		else {
 			Message.displayMessage("\t[Play Track: " + this.title() + ", Length: " + this.length() +"]", Message.MESSAGE_PLAIN);

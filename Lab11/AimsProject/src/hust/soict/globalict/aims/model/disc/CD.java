@@ -2,6 +2,7 @@ package hust.soict.globalict.aims.model.disc;
 
 import java.util.ArrayList;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.Message;
 
@@ -89,11 +90,19 @@ public class CD extends Disc {
     }
 
     @Override
-    public void play() {
-        Message.displayMessage("Playing CD: " + this.getTitle(), Message.MESSAGE_PLAIN);
-        for(Track t : tracks) {
-            t.play();
-        }
+    public void play() throws PlayerException {
+    	if(this.getLength() > 0) {
+	        for(Track t : tracks) {
+	        	try {
+	        		t.play();
+	        	} catch(PlayerException e) {
+	        		throw e;
+	        	}
+	        }
+    	}
+    	else {
+    		throw new PlayerException("ERROR: CD length is non-positive!");
+    	}
     }
 
 	@Override

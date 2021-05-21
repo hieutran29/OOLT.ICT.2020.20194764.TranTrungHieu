@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims.model.disc;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.media.Media;
 
 public abstract class Disc extends Media implements Playable {
@@ -48,6 +49,6 @@ public abstract class Disc extends Media implements Playable {
 
     public abstract Disc clone();
 
-	public abstract void play();
+	public abstract void play() throws PlayerException;
     
 }
