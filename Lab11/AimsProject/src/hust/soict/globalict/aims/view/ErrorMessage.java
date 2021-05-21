@@ -22,4 +22,12 @@ public class ErrorMessage {
 	public static void displayError(int errorType) {
 		JOptionPane.showMessageDialog(null, errorMessage[errorType - 1], null, JOptionPane.ERROR_MESSAGE);
 	}
+	
+	public static void displayError(String message) {
+		JOptionPane.showMessageDialog(null, message, null, JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public static void displayError(String message, String title) {
+		JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
+	}
 }
