@@ -1,9 +1,12 @@
 package hust.soict.globalict.aims.model.disc;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
+import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.ErrorMessage;
 import hust.soict.globalict.aims.view.Message;
 
 public class CD extends Disc {
@@ -41,37 +44,31 @@ public class CD extends Disc {
         return totalLength;
     }
 
-    public int addTrack(Track track) {
+    public void addTrack(Track track) throws AlreadyExistedException {
         if(track == null) {
-            Message.displayMessage("Track is NULL\n", Message.MESSAGE_ERROR);
-            return -1;
-        }
-
-        if(!tracks.contains(track)) {
-            this.tracks.add(track);
-            return 0;
-        }
-        Message.displayMessage("Track is already existed\n", Message.MESSAGE_ERROR);
-        return -1;
-    }
-
-    public int removeTrack(Track track) {
-        if(track == null) {
-            Message.displayMessage("ERROR: Track is NULL\n", Message.MESSAGE_ERROR);
-            return -1;
-        }
-
-        if(this.tracks.size() <= 0) {
-            Message.displayMessage("CD is empty\n", Message.MESSAGE_ERROR);
-            return -1;
+            throw new NullPointerException("Track is NULL");
         }
 
         if(tracks.contains(track)) {
-            this.tracks.remove(track);
-            return 0;
+            throw new AlreadyExistedException("Track is already existed");
         }
-        Message.displayMessage("Track is not existed\n", Message.MESSAGE_ERROR);
-        return -1;
+        
+        this.tracks.add(track);
+    }
+
+    public void removeTrack(Track track) {
+        if(track == null) {
+            throw new NullPointerException("Track is NULL");
+        }
+
+        if(this.tracks.size() <= 0) {
+            throw new NoSuchElementException("CD is empty to be removed");
+        }
+
+        if(!tracks.contains(track)) {
+            throw new NoSuchElementException("Track is not existed");
+        }
+        this.tracks.remove(track);
     }
 
     @Override
