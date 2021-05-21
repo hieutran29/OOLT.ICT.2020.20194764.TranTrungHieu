@@ -73,26 +73,34 @@ public abstract class Media implements Comparable<Media> {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Media) {
-            Media media = (Media) obj;
-            if(media.id == this.id) {
-                return true;
-            }
-        }
-        return false;
+    	try {
+    		Media media = (Media) obj;
+    		return media.id == this.id;
+    	} catch(NullPointerException e) {
+    		throw e;
+    	} catch(ClassCastException e) {
+    		throw new ClassCastException("Cannot cast to Media");
+    	}
     }
 
     @Override
     public int compareTo(Media o) {
-        int compareByTitle = MediaUtils.compareByTitle(this, o);
-        if(compareByTitle == 0) {
-            int compareByCost = MediaUtils.compareByCost(this, o);
-            return -compareByCost;
-        }
-        return compareByTitle;
+    	try {
+	        int compareByTitle = MediaUtils.compareByTitle(this, o);
+	        if(compareByTitle == 0) {
+	            int compareByCost = MediaUtils.compareByCost(this, o);
+	            return -compareByCost;
+	        }
+	        return compareByTitle;
+    	} catch(NullPointerException e) {
+    		throw e;
+    	}
     }
 
 	public boolean search(String title) {
+		if(title == null) {
+			throw new NullPointerException("Title is null");
+		}
 		String[] wordsInSearchedTitle = title.split("\\W+");
 		String[] wordsInDiscTitle = getTitle().split("\\W+");
 		for(String origin : wordsInDiscTitle) {
