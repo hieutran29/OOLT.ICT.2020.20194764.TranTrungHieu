@@ -4,6 +4,7 @@ import java.awt.Container;
 
 import javax.swing.JOptionPane;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.model.store.Store;
@@ -40,7 +41,11 @@ public class ViewStoreController extends Controller {
     public void play(Media media) {
         if(media instanceof Disc) {
         	Disc disc = (Disc) media;
-        	disc.play();
+        	try {
+        		disc.play();
+        	} catch(PlayerException e) {
+        		ErrorMessage.displayError(e.getMessage());
+        	}
         }
         else {
         	ErrorMessage.displayError(ErrorMessage.PLAY_NON_DISC);

@@ -4,9 +4,11 @@ import java.util.function.Predicate;
 
 import javax.swing.JOptionPane;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.disc.Playable;
 import hust.soict.globalict.aims.model.media.Media;
+import hust.soict.globalict.aims.view.ErrorMessage;
 import javafx.application.Platform;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
@@ -128,8 +130,11 @@ public class SeeCartController extends Controller {
 	@FXML
 	public void playMedia() {
 		Disc disc = (Disc) tableMedia.getSelectionModel().getSelectedItem();
-		String message = "Title: " + disc.getTitle() + "\nLength: " + disc.getLength();
-		JOptionPane.showMessageDialog(null, message);
+		try {
+			disc.play();
+		} catch(PlayerException e) {
+			ErrorMessage.displayError(e.getMessage(), "Invalid Length");
+		}
 		Unselectrow();
 	}
     
