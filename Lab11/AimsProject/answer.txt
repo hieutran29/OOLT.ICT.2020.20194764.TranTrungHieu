@@ -1,0 +1,8 @@
+Can we use existing exceptions in Java API instead of creating a new
+user-defined exception PlayerException for the AimsProject? 
+Why or why not?
+
+Answer: Can and can not! In some exceptions, the defined exceptions in Java API
+can not handle. For example, if we want to check if a length of a Disc
+is smaller than 0 or not, then we have to write our own exception handler,
+because Java API does not define any handler that can handle that exception.
