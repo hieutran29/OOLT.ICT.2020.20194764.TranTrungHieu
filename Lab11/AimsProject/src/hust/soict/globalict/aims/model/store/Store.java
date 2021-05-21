@@ -1,7 +1,9 @@
 package hust.soict.globalict.aims.model.store;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
+import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.ErrorMessage;
 import javafx.collections.FXCollections;
@@ -23,15 +25,15 @@ public class Store {
 		return itemsInStore.contains(media);
 	}
 	
-	public int addMedia(Media media) {
-		if(media == null) {
-			return ErrorMessage.ITEM_NULL;
+	public void addMedia(Media media) throws AlreadyExistedException {
+		try {
+			if(itemsInStore.contains(media)) {
+				throw new AlreadyExistedException("Media already existed in store");
+			}
+			this.itemsInStore.add(media.clone());
+		} catch(NullPointerException e) {
+			throw new NullPointerException("Media is NULL");
 		}
-		if(itemsInStore.contains(media)) {
-			return ErrorMessage.ALREADY_EXISTED_IN_CART;
-		}
-		this.itemsInStore.add(media.clone());
-		return 0;
 	}
 
 	public int addMedia(Media ... mediaList) {
@@ -43,22 +45,23 @@ public class Store {
 		return 0;
 	}
 	
-	public int removeMedia(Media media) {
+	public void removeMedia(Media media) {
 		if(media == null) {
-			return ErrorMessage.ITEM_NULL;
+			throw new NullPointerException("Cannot remove, media is full");
+		}
+
+		if(itemsInStore.size() <= 0) {
+			throw new NoSuchElementException("Store is empty");
 		}
 		
-		if(this.itemsInStore.size() <= 0) {
-			return ErrorMessage.STORE_EMPTY;
-		}
-		if(this.itemsInStore.size() > 0) {
-			this.itemsInStore.remove(media);
-		}
-		
-		return 0;
+		this.itemsInStore.remove(media);
 	}
 	
-	public int removeMedia(int removedID) {
+	public void removeMedia(int removedID) {
+		if(itemsInStore.size() <= 0) {
+			throw new NoSuchElementException("Store is empty");
+		}
+		
 		int indexRemoved = -1;
 		for(int i = 0; i < itemsInStore.size(); i++) {
 			if(itemsInStore.get(i).getID() == removedID) {
@@ -67,10 +70,10 @@ public class Store {
 		}
 		
 		if(indexRemoved == -1) {
-			return ErrorMessage.NOT_FOUND;
+			throw new NoSuchElementException("Media with ID " + removedID + "does not exist");
 		}
+		
 		itemsInStore.remove(indexRemoved);
-		return 0;
 	}
 	
 	/**

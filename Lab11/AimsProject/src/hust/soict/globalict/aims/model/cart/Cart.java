@@ -114,9 +114,9 @@ public class Cart {
 		}
 		
 		if(indexRemoved == -1) {
-			throw new NoSuchElementException("Cannot find media with ID " + removedID);
+			throw new NoSuchElementException("Media with ID " + removedID + "does not exist");
 		}
-		
+
 		itemsOrdered.remove(indexRemoved);
 		calculateTotalCost();
 	}
