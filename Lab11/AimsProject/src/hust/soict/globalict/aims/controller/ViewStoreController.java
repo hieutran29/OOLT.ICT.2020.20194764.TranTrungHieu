@@ -1,7 +1,5 @@
 package hust.soict.globalict.aims.controller;
 
-import java.awt.Container;
-
 import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.exception.PlayerException;

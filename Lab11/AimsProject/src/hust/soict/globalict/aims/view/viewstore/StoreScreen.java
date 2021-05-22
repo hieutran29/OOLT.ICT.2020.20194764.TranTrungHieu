@@ -8,7 +8,6 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -22,7 +21,6 @@ import hust.soict.globalict.aims.controller.Controller;
 import hust.soict.globalict.aims.controller.ViewStoreController;
 import hust.soict.globalict.aims.data.StoreDB;
 import hust.soict.globalict.aims.model.media.Media;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 

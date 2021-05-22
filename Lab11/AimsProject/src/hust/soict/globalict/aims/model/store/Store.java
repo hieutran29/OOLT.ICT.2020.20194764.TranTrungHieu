@@ -1,11 +1,9 @@
 package hust.soict.globalict.aims.model.store;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.model.media.Media;
-import hust.soict.globalict.aims.view.ErrorMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

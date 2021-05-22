@@ -6,8 +6,6 @@ import java.util.NoSuchElementException;
 import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.media.Media;
-import hust.soict.globalict.aims.view.ErrorMessage;
-import hust.soict.globalict.aims.view.Message;
 
 public class CD extends Disc {
     private String artist = "";

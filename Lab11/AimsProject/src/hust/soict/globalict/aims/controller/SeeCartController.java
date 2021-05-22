@@ -1,18 +1,11 @@
 package hust.soict.globalict.aims.controller;
 
-import java.util.function.Predicate;
-
-import javax.swing.JOptionPane;
-
 import hust.soict.globalict.aims.exception.LuckyItemException;
 import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.disc.Playable;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.view.ErrorMessage;
-import javafx.application.Platform;
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;

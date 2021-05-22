@@ -4,10 +4,8 @@ package hust.soict.globalict.aims.model.cart;
  */
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.naming.LimitExceededException;
@@ -16,7 +14,6 @@ import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.exception.LuckyItemException;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
-import hust.soict.globalict.aims.view.ErrorMessage;
 import hust.soict.globalict.aims.view.Message;
 import javafx.application.Platform;
 import javafx.beans.property.FloatProperty;

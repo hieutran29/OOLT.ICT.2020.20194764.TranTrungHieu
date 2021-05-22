@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import hust.soict.globalict.aims.controller.Controller;
 import hust.soict.globalict.aims.controller.RemoveMediaController;
-import hust.soict.globalict.aims.controller.SeeCartController;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;

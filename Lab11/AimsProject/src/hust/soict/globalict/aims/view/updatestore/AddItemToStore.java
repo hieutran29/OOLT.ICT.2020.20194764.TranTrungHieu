@@ -14,7 +14,6 @@ import javax.swing.SwingConstants;
 import hust.soict.globalict.aims.controller.Controller;
 import hust.soict.globalict.aims.controller.UpdateStoreController;
 import hust.soict.globalict.aims.model.media.Media;
-import hust.soict.globalict.aims.view.Message;
 import hust.soict.globalict.aims.view.layout.Body;
 import hust.soict.globalict.aims.view.layout.Footer;
 import hust.soict.globalict.aims.view.layout.Header;

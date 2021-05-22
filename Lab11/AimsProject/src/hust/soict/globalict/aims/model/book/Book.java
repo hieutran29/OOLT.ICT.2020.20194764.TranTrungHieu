@@ -9,7 +9,6 @@ import java.util.NoSuchElementException;
 
 import hust.soict.globalict.aims.exception.AlreadyExistedException;
 import hust.soict.globalict.aims.model.media.Media;
-import hust.soict.globalict.aims.view.Message;
 
 public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
