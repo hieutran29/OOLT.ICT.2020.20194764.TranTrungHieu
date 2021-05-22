@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 import javax.naming.LimitExceededException;
 
 import hust.soict.globalict.aims.exception.AlreadyExistedException;
+import hust.soict.globalict.aims.exception.LuckyItemException;
 import hust.soict.globalict.aims.model.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
 import hust.soict.globalict.aims.view.ErrorMessage;
@@ -121,23 +122,36 @@ public class Cart {
 		calculateTotalCost();
 	}
 
-	public Media getLuckyItem() {
-		List<Integer> ids = new ArrayList<Integer>();
-		int maxID = -1;
+	public Media getLuckyItem() throws LuckyItemException {
+		float threshold = 50;
+		float conditionForLuckyItem = 200;
+		
+		if(getTotalCost().get() > conditionForLuckyItem) {
+			int freeItemIndex = -1;
+			float maxCost = -1;
 
-		for(Media item : this.itemsOrdered) {
-			ids.add(item.getID());
-			maxID = Math.max(maxID, item.getID());
-		}
+			for(int i = 0; i < itemsOrdered.size(); i++) {
+				if(itemsOrdered.get(i).getCost() <= threshold && 
+					itemsOrdered.get(i).getCost() > maxCost) {
+					maxCost = itemsOrdered.get(i).getCost();
+					freeItemIndex = i;
+				}
+			}
 
-		int luckyID = (int) (Math.random() * (double) maxID) + 1;
-		for(Media item : itemsOrdered) {
-			if(item.getID() == luckyID) {
-				item.setFree(true);
-				return item;
+			if(freeItemIndex != -1) {
+				itemsOrdered.get(freeItemIndex).setFree(true);
+				calculateTotalCost();
+				return itemsOrdered.get(freeItemIndex);
+			}
+			else {
+				throw new LuckyItemException("Our threshold is only " + 
+						Float.toString(threshold));
 			}
 		}
-		return null;
+		else {
+			throw new LuckyItemException("Total cost must be greater than " + 
+					Float.toString(conditionForLuckyItem));
+		}
 	}
 
 	/**

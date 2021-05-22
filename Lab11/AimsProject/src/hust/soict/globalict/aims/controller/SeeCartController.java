@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import javax.swing.JOptionPane;
 
+import hust.soict.globalict.aims.exception.LuckyItemException;
 import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.model.disc.Disc;
 import hust.soict.globalict.aims.model.disc.Playable;
@@ -143,6 +144,16 @@ public class SeeCartController extends Controller {
 		Media media = tableMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
 		Unselectrow();
+	}
+	
+	@FXML
+	public void getLuckyItem(ActionEvent event) {
+		try {
+			Media media = cart.getLuckyItem();
+			tableMedia.refresh();
+		} catch (LuckyItemException e) {
+			ErrorMessage.displayError(e.getMessage());
+		}
 	}
 	
 	@FXML
