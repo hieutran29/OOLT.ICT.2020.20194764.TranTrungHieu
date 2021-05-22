@@ -35,6 +35,9 @@ public class SeeCartController extends Controller {
     private Button removeButton;
     
     @FXML
+    private Button luckyItemButton;
+    
+    @FXML
     private TextField filterTextField;
 
     @FXML

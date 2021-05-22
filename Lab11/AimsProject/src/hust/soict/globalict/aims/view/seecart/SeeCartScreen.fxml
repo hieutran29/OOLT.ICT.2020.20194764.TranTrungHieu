@@ -61,7 +61,7 @@
               <buttons>
                   <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMedia" text="Play" />
                 <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeMedia" text="Remove" />
-                  <Button mnemonicParsing="false" onAction="#getLuckyItem" text="Lucky item" />
+                  <Button fx:id="luckyItemButton" mnemonicParsing="false" onAction="#getLuckyItem" text="Lucky item" />
               </buttons>
             </ButtonBar>
          </children>
